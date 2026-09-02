@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>复盘自己 · 每日记录</title>
+<style>
+/* ============ 设计令牌 ============ */
+:root{
+  --bg:#FBF9F5; --card:#FFFFFF; --sub:#F2EEE7;
+  --text:#2C2A28; --sub2:#6B6660; --muted:#9C958C;
+  --pri:#2F6F5E; --pri2:#4A8C7A; --acc:#D9A441;
+  --line:#EAE4DA; --line2:#F2EEE7;
+  --shadow:0 2px 10px rgba(44,42,40,.05), 0 12px 32px rgba(44,42,40,.05);
+  --shadow-lg:0 8px 28px rgba(44,42,40,.10), 0 20px 56px rgba(44,42,40,.08);
+  --r:16px; --r-sm:12px; --r-lg:22px;
+}
+[data-theme="dark"]{
+  --bg:#1B1A18; --card:#262421; --sub:#302D29;
+  --text:#EDE8E0; --sub2:#A9A29A; --muted:#7A736B;
+  --pri:#57A08B; --pri2:#4A8C7A; --acc:#D9A441;
+  --line:#3A3631; --line2:#302D29;
+  --shadow:0 2px 10px rgba(0,0,0,.30), 0 12px 32px rgba(0,0,0,.24);
+  --shadow-lg:0 8px 28px rgba(0,0,0,.42), 0 20px 56px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  transition:background .35s ease,color .35s ease;
+}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+a{color:var(--pri);text-decoration:none}
+::selection{background:rgba(217,164,65,.28)}
+
+/* ============ 布局 ============ */
+.app{max-width:1120px;margin:0 auto;padding:0 20px 120px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 0 6px}
+.brand{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:500;letter-spacing:.04em}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(217,164,65,.16)}
+.hd-act{display:flex;align-items:center;gap:6px}
+.iconbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--sub2);transition:.2s}
+.iconbtn:hover{background:var(--sub);color:var(--text)}
+
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:60;
+  display:flex;gap:2px;padding:5px;border-radius:999px;
+  background:var(--card);box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+.nav button{padding:9px 20px;border-radius:999px;font-size:14px;color:var(--sub2);transition:.22s;white-space:nowrap}
+.nav button:hover{color:var(--text)}
+.nav button.on{background:var(--pri);color:#fff}
+
+/* ============ 通用组件 ============ */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:22px;transition:box-shadow .3s ease,border-color .3s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 22px;border-radius:999px;font-size:15px;transition:.22s;border:1px solid transparent}
+.btn-pri{background:var(--pri);color:#fff;box-shadow:0 4px 14px rgba(47,111,94,.24)}
+.btn-pri:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);color:var(--sub2);background:var(--card)}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted)}
+.btn-lg{padding:14px 34px;font-size:16px}
+.btn-txt{color:var(--sub2);padding:8px 12px;border-radius:10px;font-size:14px}
+.btn-txt:hover{color:var(--pri)}
+.muted{color:var(--sub2)}
+.mini{font-size:13px}
+.hint{font-size:13px;color:var(--muted);line-height:1.7}
+
+.fade{animation:fadeUp .42s cubic-bezier(.22,.9,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 首页 */
+.hero{text-align:center;padding:20px 0 26px}
+.hero .d{font-size:13px;letter-spacing:.22em;color:var(--muted)}
+.hero .g{font-size:24px;font-weight:600;margin-top:6px;letter-spacing:.02em}
+.stat{text-align:center;padding:30px 24px}
+.stat .t{font-size:19px;font-weight:500}
+.stat .s{font-size:13px;color:var(--muted);margin-top:6px}
+.bar{height:6px;border-radius:99px;background:var(--sub);overflow:hidden;margin-top:20px}
+.bar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--pri2),var(--pri));transition:width .8s cubic-bezier(.22,.9,.3,1)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;
+  text-align:left;transition:.24s;box-shadow:var(--shadow)}
+.tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--pri2)}
+.tile .tt{font-size:15px;font-weight:500}
+.tile .ts{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+/* 记录页 */
+.pghd{display:flex;align-items:center;gap:12px;padding:6px 0 16px}
+.pghd .ti{font-size:17px;font-weight:500;flex:1}
+.dots{display:flex;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.3s}
+.dots i.on{background:var(--pri);transform:scale(1.15)}
+
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.stepcol{display:flex;flex-direction:column;gap:14px}
+.stephead{display:flex;align-items:baseline;gap:9px;padding:2px 4px}
+.stephead .n{font-size:15px;font-weight:600;color:var(--pri)}
+.stephead .s{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+.stephead::after{content:"";flex:1;height:1px;background:var(--line);margin-bottom:4px}
+
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 18px;box-shadow:var(--shadow);transition:opacity .3s ease,box-shadow .3s ease,border-color .3s ease}
+.fcard.dim{opacity:.4}
+.fcard.focus{border-color:var(--pri2);box-shadow:var(--shadow-lg)}
+.fchead{display:flex;align-items:center;gap:8px}
+.fcno{font-size:14px;color:var(--acc);font-weight:600;min-width:26px}
+.fclabel{font-size:15px;font-weight:500}
+.req{font-size:11px;font-style:normal;color:var(--muted);border:1px solid var(--line);
+  border-radius:99px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+.fcguide{font-size:13px;color:var(--sub2);margin-top:5px;line-height:1.65}
+.fcprompts{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:12.5px;line-height:1.9}
+.fcta{width:100%;margin-top:11px;border:none;background:var(--sub);border-radius:var(--r-sm);
+  padding:11px 13px;line-height:1.75;resize:none;outline:none;overflow:hidden;
+  border:1px solid transparent;transition:.24s;font-size:14.5px}
+.fcta:focus{background:var(--card);border-color:var(--pri2)}
+.fcta::placeholder{color:var(--muted)}
+.fctip{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.7;
+  padding-left:10px;border-left:2px solid var(--line)}
+.fcsplit{margin-top:8px;font-size:12.5px;line-height:1.7;color:#A9762B;
+  background:rgba(217,164,65,.10);border-radius:10px;padding:8px 12px;display:none}
+.fcsplit.show{display:block;animation:fadeUp .3s ease both}
+[data-theme="dark"] .fcsplit{color:#E0B463;background:rgba(217,164,65,.10)}
+
+/* 情绪轮盘 */
+.emotoggle{margin-top:10px;font-size:12.5px;color:var(--sub2);padding:6px 0;display:inline-flex;align-items:center;gap:5px}
+.emotoggle:hover{color:var(--pri)}
+.emopanel{margin-top:8px;padding:10px 0;text-align:center;animation:fadeUp .34s ease both}
+.wheel{width:100%;max-width:300px;height:auto}
+.wsect{cursor:pointer;transition:.2s;stroke:var(--card);stroke-width:1.5}
+.wsect:hover{stroke:var(--acc);stroke-width:2.5}
+.wtxt{cursor:pointer;font-size:11.5px;text-anchor:middle;dominant-baseline:middle;pointer-events:auto}
+.wname{font-size:10.5px;text-anchor:middle;dominant-baseline:middle;opacity:.85}
+.wmid{font-size:10px;fill:var(--muted);text-anchor:middle;dominant-baseline:middle}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;justify-content:center}
+.chip{font-size:12.5px;padding:4px 12px;border-radius:999px;
+  background:rgba(217,164,65,.14);color:var(--acc);display:inline-flex;align-items:center;gap:5px}
+.chip b{font-weight:400;cursor:pointer;opacity:.6}
+.chip b:hover{opacity:1}
+
+/* 底部操作条 */
+.footbar{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:14px 20px 18px;
+  background:linear-gradient(to top,var(--bg) 62%,rgba(0,0,0,0));
+  display:flex;flex-direction:column;align-items:center;gap:7px}
+.footbar .row{display:flex;gap:10px;align-items:center}
+
+/* 日历 */
+.calhead{display:flex;align-items:center;justify-content:space-between;padding:8px 0 12px;max-width:420px;margin:0 auto}
+.calhead .m{font-size:17px;font-weight:500}
+.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:420px;margin:0 auto}
+.calgrid .wd{text-align:center;font-size:12px;color:var(--muted);padding-bottom:3px}
+.cel{aspect-ratio:1/1;max-height:56px;border-radius:11px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;font-size:13.5px;color:var(--sub2);transition:.2s;border:1px solid transparent}
+.cel:hover:not(.dis){background:var(--sub);color:var(--text)}
+.cel.dis{cursor:not-allowed;opacity:.28}
+.cel.today{border-color:var(--pri2)}
+.cel .mk{width:9px;height:9px;border-radius:50%}
+.cel .mk.l1{background:var(--pri);opacity:.34}
+.cel .mk.l2{background:var(--pri);opacity:.62}
+.cel .mk.l3{background:var(--pri)}
+.cel .mk.l4{background:var(--pri);box-shadow:0 0 0 3px rgba(47,111,94,.16)}
+.cel .dd{line-height:1}
+.overview{max-width:420px;margin:14px auto 0;padding:14px 18px;border-radius:var(--r);background:var(--sub);font-size:14px;color:var(--sub2)}
+.overview .kw{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+
+/* 详情 */
+.dt-hd{display:flex;align-items:baseline;gap:10px;padding:6px 0 16px}
+.dt-hd .d{font-size:24px;font-weight:600}
+.dt-hd .w{font-size:13px;color:var(--muted)}
+.fnd{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-radius:var(--r);
+  background:rgba(217,164,65,.12);border-left:3px solid var(--acc);margin-bottom:16px;font-size:14px}
+.fnd .l{color:var(--acc);font-size:12.5px;flex:none;letter-spacing:.04em}
+.rocard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.rocard .h{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.rocard .no{font-size:13px;color:var(--acc);font-weight:600;min-width:26px}
+.rocard .lb{font-size:14.5px;font-weight:500}
+.rocard .v{font-size:14.5px;color:var(--sub2);line-height:1.85;white-space:pre-wrap;word-break:break-word}
+
+/* 设置 */
+.set-sec{margin-bottom:20px}
+.set-sec h3{font-size:14px;font-weight:500;margin:0 0 12px;color:var(--sub2);letter-spacing:.04em}
+.fld{margin-bottom:12px}
+.fld label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+.fld input{width:100%;padding:10px 13px;border-radius:var(--r-sm);border:1px solid var(--line);
+  background:var(--sub);outline:none;transition:.2s;font-size:14px}
+.fld input:focus{border-color:var(--pri2);background:var(--card)}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+
+/* 正反馈页 */
+.fbwrap{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 0}
+.fbcard{max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:34px 30px;box-shadow:var(--shadow-lg);animation:fadeUp .55s cubic-bezier(.22,.9,.3,1) both}
+.fbcard .lbl{font-size:13px;letter-spacing:.18em;color:var(--acc)}
+.fbcard .txt{font-size:19px;font-weight:500;line-height:1.85;margin-top:14px;word-break:break-word;white-space:pre-wrap}
+.gold{height:3px;border-radius:99px;background:linear-gradient(90deg,transparent,var(--acc),transparent);margin:22px 0}
+.enco{font-size:14.5px;color:var(--sub2);animation:fadeUp .6s .18s cubic-bezier(.22,.9,.3,1) both}
+
+/* 弹层 */
+.mask{position:fixed;inset:0;z-index:90;background:rgba(28,26,24,.42);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .24s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--card);border-radius:var(--r-lg);padding:26px;max-width:400px;width:100%;
+  box-shadow:var(--shadow-lg);animation:fadeUp .3s cubic-bezier(.22,.9,.3,1) both}
+.modal .mt{font-size:16px;font-weight:500}
+.modal .mb{font-size:14px;color:var(--sub2);line-height:1.8;margin-top:10px}
+.modal .mf{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+
+/* toast */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:100;
+  background:var(--text);color:var(--bg);padding:11px 22px;border-radius:999px;font-size:13.5px;
+  box-shadow:var(--shadow-lg);animation:toastIn .3s cubic-bezier(.22,.9,.3,1) both;max-width:88vw;text-align:center}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+.toast.out{animation:toastOut .28s ease both}
+@keyframes toastOut{to{opacity:0;transform:translate(-50%,10px)}}
+
+.empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;line-height:2}
+.empty .e{font-size:32px;opacity:.5;display:block;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="hd">
+    <div class="brand"><span class="dot"></span><span>复盘自己</span></div>
+    <div class="hd-act">
+      <button class="iconbtn" onclick="W.go('settings')" title="设置">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+      <button class="iconbtn" onclick="W.toggleTheme()" title="切换主题">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="view"></div>
+</div>
+
+<div class="nav">
+  <button data-nav="home" onclick="W.go('home')">首页</button>
+  <button data-nav="calendar" onclick="W.go('calendar')">日历</button>
+  <button data-nav="settings" onclick="W.go('settings')">我的</button>
+</div>
+
+<div id="modal"></div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   《复盘自己》每日记录 · 单文件 MVP
+   工程范式沿用用户的 todolist：单文件 HTML + localStorage + GitHub 云同步
+   代码从零编写，业务按《复盘自己》[日]山田智惠 的 8 栏真实结构实现
+   ===================================================================== */
+
+/* ---------- §2 配置：8 栏（书摘核对后锁定，改配置即改全局） ---------- */
+var FIELDS = [
+  { step:1, no:'①', key:'event', label:'事件', guide:'什么事件让你内心有所触动？积极或消极都可以。',
+    required:true, splitCheck:'fact',
+    placeholder:'只写发生的客观事实。先完整写下来，再看看有没有夹杂感受或判断——有的话，挪到 ② 去。',
+    rows:3 },
+
+  { step:1, no:'②', key:'thoughts', label:'当时的想法和感受', guide:'事件发生时，你产生了什么念头？感受到了什么？',
+    required:true, emotionWheel:true,
+    placeholder:'写真心话。暂时搁下"我这样写会不会不太好"的顾虑，如实写下脑海与心中闪过的内容。',
+    rows:3 },
+
+  { step:1, no:'③', key:'action', label:'行动', guide:'当时你采取了什么行动？（若未采取任何行动，可留空）',
+    required:false, placeholder:'例：我表情严肃，听取了那位成员的报告。', rows:2 },
+
+  { step:1, no:'④', key:'result', label:'结果', guide:'当时的行动带来了什么结果？',
+    required:false, placeholder:'例：那位成员情绪低落，我也在反复思考这样的处理是否妥当。', rows:2 },
+
+  { step:2, no:'①-A', key:'reframe', label:'重新注意到了什么', guide:'回顾事件及左侧所写的内容，你重新注意到了什么？',
+    required:true,
+    tip:'你已经不在当时那个需要马上反应的情境里了。可以站在自己的角度、对方的角度，甚至第三者的角度重新审视。',
+    placeholder:'有没有不同的看法？是否可以尝试新的思考角度？', rows:3 },
+
+  { step:2, no:'②', key:'nextAction', label:'从现在开始可以采取的行动', guide:'从现在开始，你可以采取什么具体行动？',
+    required:false, splitCheck:'self',
+    tip:'只写仅靠"自己"就能做到的事。"我希望对方这样做"取决于对方，不算；改成"我计划与对方沟通看看"才算。',
+    placeholder:'例：今后，我会在表述事实的基础上，传达自己的内心所想。', rows:2 },
+
+  { step:2, no:'③', key:'nextResult', label:'这些行动可能会带来的结果', guide:'这些行动可能会带来怎样的结果？',
+    required:false,
+    tip:'只要有所行动，就一定会带来某种结果。即使看似"什么都没有发生"，那也是结果的一种，请如实记录下来。',
+    placeholder:'例：给 A 发了信息，但过了 X 天都没有回应。', rows:2 },
+
+  { step:2, no:'①-B', key:'selfDiscovery', label:'对自己的新发现', guide:'是否有关于自己的新发现？（可空）',
+    required:false, collapsible:false,
+    prompts:['我的心中为什么会产生那样的想法？','那一刻，我真正渴望的是什么？','是否还存在其他可选方式？'],
+    placeholder:'判断标准只有一个：自己是否真心认同。能由衷说出"确实如此"，就是满分。', rows:3 }
+];
+
+/* 切分检测词表 */
+var WORDS_FACT = ['我觉得','我感到','我感觉','我认为','我以为','我想他','我想她','很糟糕','太糟糕','不应该','不应该的',
+  '真是','居然','竟然','开心','难过','生气','害怕','担心','失望','遗憾','后悔','讨厌','喜欢','郁闷','烦躁','焦虑',
+  '委屈','尴尬','自责','无助','崩溃','烦死了','过分','不合理','很不好','太差','很不爽','很失落','很紧张','很生气','很难过'];
+var WORDS_SELF = ['希望对方','希望他','希望她','希望他们','让他','让她','叫他们','叫他','叫她','取得信任','赢得信任',
+  '得到认可','被认可','得到理解','别人会','他会','她会','他们能','对方能','对方会','大家能','大家会','改变他','改变她',
+  '他应该','她应该','让他们','让他们能','获得好评','被看见'];
+
+/* 普鲁奇克情绪轮盘：8 主情绪 × 3 强度（外圈弱 → 内圈强） */
+var EMOTIONS = [
+  { name:'喜悦', color:'#DDB24C', lv:['平静','欣喜','狂喜'] },
+  { name:'信任', color:'#83B36F', lv:['接受','信任','仰慕'] },
+  { name:'期待', color:'#D9A441', lv:['关注','期待','警觉'] },
+  { name:'惊讶', color:'#9A8DC6', lv:['分心','惊讶','惊奇'] },
+  { name:'悲伤', color:'#6C9AAA', lv:['伤感','悲伤','悲痛'] },
+  { name:'厌恶', color:'#A78CB2', lv:['厌烦','厌恶','憎恶'] },
+  { name:'愤怒', color:'#D4835F', lv:['烦恼','愤怒','暴怒'] },
+  { name:'恐惧', color:'#7C97B4', lv:['不安','恐惧','惊恐'] }
+];
+
+/* ---------- §3 存储层 ---------- */
+var K = { rec:'review_records', bak:'review_backup', prefs:'review_prefs', gh:'review_github' };
+
+var S = {
+  page:'home',
+  date:'',
+  records:{},            // { 'YYYY-MM-DD': rec }
+  prefs:{ theme:'light', lastExport:0 },
+  gh:{ token:'', owner:'', repo:'', path:'review-data.json', branch:'main' },
+  emoOpen:false,
+  calYM:'',
+  fbDate:'',
+  modal:null
+};
+
+function lsGet(k, dft){
+  try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : dft; }
+  catch(e){ return dft; }
+}
+function lsSet(k, v){
+  try{ localStorage.setItem(k, JSON.stringify(v)); return true; }
+  catch(e){ toast('这个浏览器存不下记录了，换普通模式就能保存'); return false; }
+}
+function storageOK(){
+  try{ localStorage.setItem('__t','1'); localStorage.removeItem('__t'); return true; }
+  catch(e){ return false; }
+}
+
+function loadAll(){
+  S.records = lsGet(K.rec, {}) || {};
+  S.prefs   = Object.assign({ theme:'light', lastExport:0 }, lsGet(K.prefs, {}));
+  S.gh      = Object.assign({ token:'', owner:'', repo:'', path:'review-data.json', branch:'main' }, lsGet(K.gh, {}));
+  document.documentElement.setAttribute('data-theme', S.prefs.theme || 'light');
+}
+function saveRecords(){
+  lsSet(K.rec, S.records);
+  lsSet(K.bak, { at:Date.now(), records:S.records });
+}
+
+function newRec(date){
+  var r = { id:Date.now()+Math.random(), date:date, emotions:[], isDraft:true, createdAt:0, updatedAt:0 };
+  FIELDS.forEach(function(f){ r[f.key] = ''; });
+  return r;
+}
+function ensureRec(date){
+  if(!S.records[date]) S.records[date] = newRec(date);
+  var r = S.records[date];
+  if(!Array.isArray(r.emotions)) r.emotions = [];
+  FIELDS.forEach(function(f){ if(typeof r[f.key] !== 'string') r[f.key] = ''; });
+  return r;
+}
+function filledCount(r){
+  if(!r) return 0;
+  return FIELDS.filter(function(f){ return String(r[f.key]||'').trim(); }).length;
+}
+function hasContent(r){ return filledCount(r) > 0; }
+
+/* ---------- 工具 ---------- */
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function ymd(d){ d = d || new Date();
+  var m = d.getMonth()+1, day = d.getDate();
+  return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(day<10?'0':'')+day;
+}
+function parseYmd(s){ var p = String(s).split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+var WD = ['日','一','二','三','四','五','六'];
+function dateCN(s){ var d = parseYmd(s); return (d.getMonth()+1)+' 月 '+d.getDate()+' 日 星期'+WD[d.getDay()]; }
+function today(){ return ymd(new Date()); }
+function shiftDay(s, n){ var d = parseYmd(s); d.setDate(d.getDate()+n); return ymd(d); }
+
+var _tt;
+function toast(msg, ms){
+  var el = document.getElementById('toast');
+  el.innerHTML = '<div class="toast">'+esc(msg)+'</div>';
+  clearTimeout(_tt);
+  _tt = setTimeout(function(){
+    var t = el.querySelector('.toast'); if(t) t.classList.add('out');
+    setTimeout(function(){ el.innerHTML = ''; }, 280);
+  }, ms || 2400);
+}
+
+/* ---------- §5 情绪轮盘 SVG ---------- */
+function wheelSVG(){
+  var cx=140, cy=140, out='';
+  var rings = [[88,118,0],[58,88,1],[28,58,2]];
+  var op = [0.40,0.72,1];
+  EMOTIONS.forEach(function(e, i){
+    var c = i*45 - 90;
+    var a0 = (c-22.5)*Math.PI/180, a1 = (c+22.5)*Math.PI/180;
+    rings.forEach(function(r){
+      var r0=r[0], r1=r[1], li=r[2], w = e.lv[li];
+      var p = 'M '+P(r1,a0)+' A '+r1+' '+r1+' 0 0 1 '+P(r1,a1)+' L '+P(r0,a1)+' A '+r0+' '+r0+' 0 0 0 '+P(r0,a0)+' Z';
+      out += '<path class="wsect" d="'+p+'" fill="'+e.color+'" fill-opacity="'+op[li]+'" data-w="'+w+'" onclick="W.pickEmo(this)"><title>'+w+'</title></path>';
+      var rm=(r0+r1)/2, am=(a0+a1)/2;
+      var tx=(cx+rm*Math.cos(am)).toFixed(1), ty=(cy+rm*Math.sin(am)).toFixed(1);
+      out += '<text class="wtxt" x="'+tx+'" y="'+ty+'" fill="'+(li===2?'#FFFFFF':'var(--text)')+'" data-w="'+w+'" onclick="W.pickEmo(this)">'+w+'</text>';
+    });
+    var rn=132, an=(a0+a1)/2;
+    out += '<text class="wname" x="'+(cx+rn*Math.cos(an)).toFixed(1)+'" y="'+(cy+rn*Math.sin(an)).toFixed(1)+'" fill="'+e.color+'">'+e.name+'</text>';
+  });
+  out += '<circle cx="140" cy="140" r="26" fill="var(--card)" stroke="var(--line)"/>';
+  out += '<text class="wmid" x="140" y="135">情绪</text><text class="wmid" x="140" y="152">轮盘</text>';
+  return '<svg viewBox="0 0 280 280" class="wheel">'+out+'</svg>';
+}
+function P(r, a){ return (140+r*Math.cos(a)).toFixed(1)+' '+(140+r*Math.sin(a)).toFixed(1); }
+
+/* ---------- §5 切分检测 ---------- */
+function splitHit(text, mode){
+  var list = mode==='fact' ? WORDS_FACT : WORDS_SELF;
+  var hits = [];
+  list.forEach(function(w){ if(text.indexOf(w) >= 0) hits.push(w); });
+  return hits;
+}
+function splitMsg(mode, hits){
+  if(mode==='fact')
+    return '这里出现了「'+hits.slice(0,3).join('、')+'」——看起来是感受或判断。' +
+           '可以把它们挪到「② 当时的想法和感受」，让这一栏只留下客观事实。';
+  return '「'+hits.slice(0,3).join('、')+'」能否实现，取决于对方而不是你自己。' +
+         '试试改成「我计划…」「我将尝试…」这样只靠自己就能做到的表述？';
+}
+
+/* ---------- §5 正反馈：规则化提取，绝不编造 ---------- */
+function feedbackOf(r){
+  var sd = String(r.selfDiscovery||'').trim();
+  var rf = String(r.reframe||'').trim();
+  if(sd) return { text:sd, kind:'self' };
+  if(rf) return { text:rf, kind:'reframe' };
+  return { text:'', kind:'none' };
+}
+var ENCO = ['又多看见了自己一点','这一次，你如实记录了下来','写下来，就已经是开始','你今天没有跳过自己'];
+function encoOf(r){
+  if(!r) return ENCO[0];
+  var n = Object.keys(S.records).filter(function(k){ return S.records[k] && !S.records[k].isDraft; }).length;
+  if(n<=1) return '又多看见了自己一点';
+  if(n<=7) return '第 '+n+' 天，你又一次看见了自己';
+  return '已经 '+n+' 天了，这些记录正在慢慢变成你自己的财富';
+}
+
+/* ---------- §4 渲染 ---------- */
+function render(){
+  var v = document.getElementById('view');
+  var p = S.page;
+  if(p==='home')          v.innerHTML = viewHome();
+  else if(p==='record')   v.innerHTML = viewRecord();
+  else if(p==='feedback') v.innerHTML = viewFeedback();
+  else if(p==='calendar') v.innerHTML = viewCalendar();
+  else if(p==='detail')   v.innerHTML = viewDetail();
+  else                    v.innerHTML = viewSettings();
+
+  document.querySelectorAll('.nav button').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-nav')===p ||
+      (p==='record' && b.getAttribute('data-nav')==='home'));
+  });
+  // 记录页/反馈页底部有操作条，隐藏导航避免遮挡
+  var nav = document.querySelector('.nav');
+  if(nav) nav.style.display = (p==='record' || p==='feedback') ? 'none' : 'flex';
+  if(p==='record') setTimeout(afterRecordRender, 0);
+  renderModal();
+  window.scrollTo({ top:0 });
+}
+
+/* --- P1 首页 --- */
+function viewHome(){
+  var t = today(), y = shiftDay(t, -1);
+  var rec = S.records[t], yrec = S.records[y];
+  var done = rec && !rec.isDraft && hasContent(rec);
+  var all = Object.keys(S.records).filter(function(k){ return S.records[k] && !S.records[k].isDraft && hasContent(S.records[k]); }).sort();
+  var total = all.length;
+  var streak = 0;
+  if(total){
+    var cur = (S.records[t] && !S.records[t].isDraft && hasContent(S.records[t])) ? t : shiftDay(t,-1);
+    while(S.records[cur] && !S.records[cur].isDraft && hasContent(S.records[cur])){ streak++; cur = shiftDay(cur,-1); }
+  }
+  var h = new Date().getHours();
+  var greet = h<6 ? '夜深了，慢慢来' : h<11 ? '早上好，今天也看见自己' : h<14 ? '中午好，停一下' : h<18 ? '下午好' : '晚上好，今天，看见自己';
+
+  var s = '';
+  s += '<div class="hero fade"><div class="d">'+dateCN(t)+'</div><div class="g">'+greet+'</div></div>';
+
+  s += '<div class="card stat fade">';
+  if(done){
+    s += '<div class="t">今天已经记录了</div><div class="s">写下的那些，正在慢慢变成你自己的财富</div>';
+    s += '<div style="margin-top:20px;display:flex;gap:10px;justify-content:center">'
+      +  '<button class="btn btn-ghost" onclick="W.openDay(\''+t+'\')">去回看</button>'
+      +  '<button class="btn btn-pri" onclick="W.go(\'record\',\''+t+'\')">继续补充</button></div>';
+  }else{
+    var draft = rec && hasContent(rec);
+    s += '<div class="t">'+(draft ? '上次没写完，已为你留着' : '从今天开始，看见自己')+'</div>';
+    s += '<div class="s">选一件触动你的事，跟着八栏如实写下来。五分钟就够。</div>';
+    s += '<div style="margin-top:20px"><button class="btn btn-pri btn-lg" onclick="W.go(\'record\',\''+t+'\')">开始今天的复盘</button></div>';
+  }
+  s += '</div>';
+
+  if(total){
+    var pct = Math.min(100, Math.round(streak/7*100)) || 8;
+    s += '<div class="card fade" style="margin-top:14px;padding:18px 22px">'
+      +  '<div style="display:flex;justify-content:space-between;font-size:13.5px;color:var(--sub2)">'
+      +  '<span>已记录 '+total+' 天</span><span>'+(streak>0 ? '最近连着 '+streak+' 天' : '随时可以重新开始')+'</span></div>'
+      +  '<div class="bar"><i style="width:'+pct+'%"></i></div></div>';
+
+    s += '<div class="grid2 fade">';
+    s += '<button class="tile" onclick="W.openDay(\''+y+'\')"><div class="tt">'+
+         (yrec && hasContent(yrec) ? '看昨天的记录' : '补记昨天')+'</div><div class="ts">'+dateCN(y)+'</div></button>';
+    s += '<button class="tile" onclick="W.go(\'calendar\')"><div class="tt">回看日历</div><div class="ts">翻翻之前写下的</div></button>';
+    s += '</div>';
+  }else{
+    s += '<div class="empty fade"><span class="e">·</span>还没有任何记录<br>写下第一件事，就算开始了</div>';
+  }
+  return s;
+}
+
+/* --- P2 记录填写页 --- */
+function viewRecord(){
+  var rec = ensureRec(S.date);
+  var f = filledCount(rec);
+  var pct = Math.round(f / FIELDS.length * 100);
+
+  var s = '';
+  s += '<div class="pghd">'
+    +  '<button class="iconbtn" onclick="W.go(\'home\')" title="返回">'
+    +  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
+    +  '<div class="ti">'+dateCN(S.date)+'</div>'
+    +  '<div class="dots">'+FIELDS.map(function(x){
+         return '<i class="'+(String(rec[x.key]||'').trim()?'on':'')+'"></i>'; }).join('')+'</div>'
+    +  '</div>';
+
+  s += '<div class="steps" id="steps">';
+  [1,2].forEach(function(step){
+    s += '<div class="stepcol">';
+    s += '<div class="stephead"><span class="n">'+(step===1?'第一步':'第二步')+'</span>'
+      +  '<span class="s">'+(step===1?'记录':'意义重塑')+'</span></div>';
+    FIELDS.filter(function(x){ return x.step===step; }).forEach(function(x){
+      s += cardHTML(x, rec);
+    });
+    s += '</div>';
+  });
+  s += '</div>';
+
+  s += '<div class="footbar">'
+    +  '<div class="row"><button class="btn btn-pri btn-lg" onclick="W.save()">完成，保存</button></div>'
+    +  '<div class="hint">没写完也没关系，随时可以离开——已经自动存好了</div>'
+    +  '</div>';
+  return s;
+}
+function cardHTML(x, rec){
+  var val = String(rec[x.key]||'');
+  var s = '<div class="fcard" data-key="'+x.key+'">';
+  s += '<div class="fchead"><span class="fcno">'+x.no+'</span><span class="fclabel">'+esc(x.label)+
+       (x.required ? '<i class="req">建议写</i>' : '')+'</span></div>';
+  s += '<div class="fcguide">'+esc(x.guide)+'</div>';
+  if(x.prompts) s += '<ul class="fcprompts">'+x.prompts.map(function(p){ return '<li>'+esc(p)+'</li>'; }).join('')+'</ul>';
+  s += '<textarea class="fcta" data-key="'+x.key+'" rows="'+(x.rows||3)+'" placeholder="'+esc(x.placeholder||'')+'"'
+    +  ' oninput="W.onInput(this)" onfocus="W.onFocus(this)" onblur="W.onBlur(this)">'+esc(val)+'</textarea>';
+  if(x.tip) s += '<div class="fctip">'+esc(x.tip)+'</div>';
+  if(x.splitCheck) s += '<div class="fcsplit" id="split-'+x.key+'"></div>';
+
+  if(x.emotionWheel){
+    var emo = rec.emotions || [];
+    s += '<button class="emotoggle" onclick="W.toggleEmo()">'
+      +  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>'
+      +  '不知道怎么表达？看看情绪轮盘</button>';
+    if(S.emoOpen){
+      s += '<div class="emopanel">'
+        +  '<div class="hint" style="margin-bottom:6px">点一个词，它会加到上面的输入框里</div>'
+        +  wheelSVG()
+        +  (emo.length ? '<div class="chips">'+emo.map(function(w,i){
+             return '<span class="chip">'+esc(w)+'<b onclick="W.delEmo('+i+')">×</b></span>'; }).join('')+'</div>' : '')
+        +  '<button class="emotoggle" onclick="W.toggleEmo()">收起</button>'
+        +  '</div>';
+    }else if(emo.length){
+      s += '<div class="chips">'+emo.map(function(w,i){
+        return '<span class="chip">'+esc(w)+'<b onclick="W.delEmo('+i+')">×</b></span>'; }).join('')+'</div>';
+    }
+  }
+  s += '</div>';
+  return s;
+}
+function afterRecordRender(){
+  document.querySelectorAll('.fcta').forEach(function(ta){
+    autoGrow(ta);
+    var f = FIELDS.filter(function(x){ return x.key===ta.getAttribute('data-key'); })[0];
+    if(f && f.splitCheck) W.checkSplit(ta);
+  });
+}
+function autoGrow(ta){
+  ta.style.height = 'auto';
+  ta.style.height = Math.max(ta.scrollHeight, 44) + 'px';
+}
+
+/* --- P3 正反馈页 --- */
+function viewFeedback(){
+  var r = S.records[S.fbDate] || newRec(S.fbDate);
+  var fb = feedbackOf(r);
+  var s = '<div class="fbwrap">';
+  s += '<div class="fbcard">';
+  if(fb.kind==='none'){
+    s += '<div class="lbl">今天</div>';
+    s += '<div class="txt">你记录下了今天</div>';
+    s += '<div class="gold"></div>';
+    s += '<div class="enco">哪怕只是一句话，也已经在看见自己了</div>';
+  }else{
+    s += '<div class="lbl">'+(fb.kind==='self'?'我发现了':'我重新注意到了')+'</div>';
+    s += '<div class="txt">'+esc(fb.text)+'</div>';
+    s += '<div class="gold"></div>';
+    if(r.emotions && r.emotions.length){
+      s += '<div class="chips">'+r.emotions.map(function(w){ return '<span class="chip">'+esc(w)+'</span>'; }).join('')+'</div>';
+    }
+    s += '<div class="enco">'+encoOf(r)+'</div>';
+  }
+  s += '</div>';
+  s += '<div style="display:flex;gap:8px;margin-top:26px">'
+    +  '<button class="btn btn-txt" onclick="W.go(\'record\',\''+S.fbDate+'\')">继续补记</button>'
+    +  '<button class="btn btn-txt" onclick="W.go(\'calendar\')">查看日历</button>'
+    +  '<button class="btn btn-txt" onclick="W.go(\'home\')">回到首页</button></div>';
+  s += '</div>';
+  return s;
+}
+
+/* --- P4 日历页 --- */
+function viewCalendar(){
+  if(!S.calYM) S.calYM = today().slice(0,7);
+  var y = +S.calYM.slice(0,4), m = +S.calYM.slice(5,7);
+  var first = new Date(y, m-1, 1), start = (first.getDay()+6)%7;   // 周一为首列
+  var days  = new Date(y, m, 0).getDate();
+  var prevM = new Date(y, m-1, 0);
+  var t = today();
+  var cells = '', cnt = 0, kw = {};
+
+  for(var i=start-1; i>=0; i--){
+    cells += '<div class="cel dis"><span class="dd">'+(prevM.getDate()-i)+'</span></div>';
+  }
+  for(var d=1; d<=days; d++){
+    var ds = ymd(new Date(y, m-1, d));
+    var r = S.records[ds];
+    var mk = '', cls = 'cel';
+    if(r && !r.isDraft && hasContent(r)){
+      var n = filledCount(r);
+      cnt++;
+      mk = '<span class="mk l'+(n<=2?1:n<=4?2:n<=6?3:4)+'"></span>';
+      (r.emotions||[]).forEach(function(w){ kw[w] = (kw[w]||0)+1; });
+    }
+    if(ds===t) cls += ' today';
+    if(ds>t) cls += ' dis';
+    cells += '<div class="'+cls+'" '+(ds>t?'':'onclick="W.openDay(\''+ds+'\')"')+'>'
+      +  '<span class="dd">'+d+'</span>'+mk+'</div>';
+  }
+  var kws = Object.keys(kw).sort(function(a,b){ return kw[b]-kw[a]; }).slice(0,6);
+
+  var s = '';
+  s += '<div class="calhead">'
+    +  '<button class="iconbtn" onclick="W.calMove(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
+    +  '<div class="m">'+y+' 年 '+m+' 月</div>'
+    +  '<button class="iconbtn" onclick="W.calMove(1)" '+(S.calYM >= t.slice(0,7) ? 'style="opacity:.25;pointer-events:none"' : '')+'><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>'
+    +  '</div>';
+  s += '<div class="calgrid">'+['一','二','三','四','五','六','日'].map(function(w){
+       return '<div class="wd">'+w+'</div>'; }).join('')+cells+'</div>';
+  s += '<div class="overview">'
+    +  (cnt ? '这个月，你有 '+cnt+' 天记录了自己' : '这个月还没有记录，随时可以开始')
+    +  (kws.length ? '<div class="kw">'+kws.map(function(w){ return '<span class="chip">'+esc(w)+'</span>'; }).join('')+'</div>' : '')
+    +  '</div>';
+  return s;
+}
+
+/* --- P5 单日详情 --- */
+function viewDetail(){
+  var r = S.records[S.date];
+  if(!r || !hasContent(r)) return '<div class="empty"><span class="e">·</span>这一天还没有记录</div>';
+  var fb = feedbackOf(r);
+  var s = '<div class="dt-hd">'
+    +  '<button class="iconbtn" onclick="W.go(\'calendar\')" title="返回"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
+    +  '<span class="d">'+(parseYmd(S.date).getMonth()+1)+' 月 '+parseYmd(S.date).getDate()+' 日</span>'
+    +  '<span class="w">星期'+WD[parseYmd(S.date).getDay()]+(r.isDraft?' · 草稿':'')+'</span></div>';
+
+  if(fb.kind!=='none')
+    s += '<div class="fnd"><span class="l">'+(fb.kind==='self'?'发现':'重新注意到')+'</span><span>'+esc(fb.text)+'</span></div>';
+
+  if(r.emotions && r.emotions.length)
+    s += '<div class="chips" style="justify-content:flex-start;margin-bottom:16px">'
+      +  r.emotions.map(function(w){ return '<span class="chip">'+esc(w)+'</span>'; }).join('')+'</div>';
+
+  FIELDS.forEach(function(f){
+    var v = String(r[f.key]||'').trim();
+    if(!v) return;
+    s += '<div class="rocard"><div class="h"><span class="no">'+f.no+'</span><span class="lb">'+esc(f.label)+'</span></div>'
+      +  '<div class="v">'+esc(v)+'</div></div>';
+  });
+
+  s += '<div style="display:flex;gap:10px;justify-content:center;margin:26px 0 10px">'
+    +  '<button class="btn btn-ghost" onclick="W.go(\'record\',\''+S.date+'\')">编辑</button>'
+    +  '<button class="btn btn-ghost" onclick="W.askDel()">删除</button></div>';
+  return s;
+}
+
+/* --- 设置页 --- */
+function viewSettings(){
+  var json = JSON.stringify(Object.keys(S.records).map(function(k){ return S.records[k]; }));
+  var size = (new Blob([json]).size/1024).toFixed(1);
+  var bak = lsGet(K.bak, null);
+  var g = S.gh;
+
+  var s = '<div class="pghd"><div class="ti">我的</div></div>';
+
+  s += '<div class="card set-sec"><h3>GITHUB 云同步</h3>'
+    +  '<div class="fld"><label>Personal Access Token（仅保存在你的浏览器本地，不会写进代码）</label>'
+    +  '<input type="password" id="gh-token" value="'+esc(g.token)+'" placeholder="ghp_xxxxxxxxxxxx" oninput="W.setGH(\'token\',this.value)"></div>'
+    +  '<div class="fld"><label>仓库 owner / 用户名</label><input id="gh-owner" value="'+esc(g.owner)+'" placeholder="your-name" oninput="W.setGH(\'owner\',this.value)"></div>'
+    +  '<div class="fld"><label>仓库名</label><input id="gh-repo" value="'+esc(g.repo)+'" placeholder="my-review" oninput="W.setGH(\'repo\',this.value)"></div>'
+    +  '<div class="fld"><label>文件路径</label><input id="gh-path" value="'+esc(g.path)+'" placeholder="review-data.json" oninput="W.setGH(\'path\',this.value)"></div>'
+    +  '<div class="fld"><label>分支</label><input id="gh-branch" value="'+esc(g.branch)+'" placeholder="main" oninput="W.setGH(\'branch\',this.value)"></div>'
+    +  '<div class="row-btns">'
+    +  '<button class="btn btn-ghost" onclick="W.ghTest()">测试连接</button>'
+    +  '<button class="btn btn-ghost" onclick="W.ghPull(1)">从云端拉取</button>'
+    +  '<button class="btn btn-pri" onclick="W.ghPush()">立即推送到云端</button></div>'
+    +  '<div class="hint" style="margin-top:10px">token 需要勾选 repo 权限。填好后每次保存都会自动回推，换设备打开网页拉取一次即可接上。</div>'
+    +  '</div>';
+
+  s += '<div class="card set-sec"><h3>数据备份</h3>'
+    +  '<div class="hint" style="margin-bottom:12px">当前共 '+Object.keys(S.records).length+' 条记录，占用约 '+size+' KB</div>'
+    +  '<div class="row-btns">'
+    +  '<button class="btn btn-ghost" onclick="W.exportJSON()">导出 JSON</button>'
+    +  '<button class="btn btn-ghost" onclick="document.getElementById(\'imp\').click()">导入 JSON</button>'
+    +  (bak ? '<button class="btn btn-ghost" onclick="W.restoreBackup()">恢复上次备份（'+new Date(bak.at).toLocaleString('zh-CN')+'）</button>' : '')
+    +  '<button class="btn btn-ghost" onclick="W.askClear()">清空全部记录</button>'
+    +  '</div>'
+    +  '<input type="file" id="imp" accept=".json,application/json" style="display:none" onchange="W.importJSON(this)">'
+    +  '</div>';
+
+  s += '<div class="card set-sec"><h3>外观</h3><div class="row-btns">'
+    +  '<button class="btn '+(S.prefs.theme==='light'?'btn-pri':'btn-ghost')+'" onclick="W.setTheme(\'light\')">浅色</button>'
+    +  '<button class="btn '+(S.prefs.theme==='dark'?'btn-pri':'btn-ghost')+'" onclick="W.setTheme(\'dark\')">深色</button>'
+    +  '</div></div>';
+
+  s += '<div class="card"><h3 style="font-size:14px;font-weight:500;margin:0 0 10px;color:var(--sub2)">关于</h3>'
+    +  '<div class="hint">方法论来自《复盘自己：从记录到蜕变的行动指南》[日]山田智惠。<br>'
+    +  '复盘不是反思错误，而是发现自己早已拥有的财富。<br>'
+    +  '数据只存在你的浏览器和自己的 GitHub 仓库里，没有服务器，也没有账号。</div></div>';
+  return s;
+}
+
+/* ---------- 弹层 ---------- */
+function renderModal(){
+  var el = document.getElementById('modal');
+  if(!S.modal){ el.innerHTML = ''; return; }
+  var m = S.modal;
+  el.innerHTML = '<div class="mask" onclick="W.closeModal(event)"><div class="modal" onclick="event.stopPropagation()">'
+    + '<div class="mt">'+esc(m.title)+'</div>'
+    + (m.body ? '<div class="mb">'+m.body+'</div>' : '')
+    + '<div class="mf">'
+    + m.btns.map(function(b, i){
+        return '<button class="btn '+(b.pri?'btn-pri':'btn-ghost')+'" onclick="W.modalAct('+i+')">'+esc(b.text)+'</button>';
+      }).join('')
+    + '</div></div></div>';
+}
+
+/* ---------- §6 全局 W ---------- */
+var W = {};
+
+W.go = function(page, date){
+  if(S.page==='record' && page!=='record') W.flushDraft();
+  if(date) S.date = date;
+  if(page==='record' && !S.date) S.date = today();
+  if(page==='calendar' && !S.calYM) S.calYM = today().slice(0,7);
+  S.page = page;
+  S.emoOpen = false;
+  render();
+};
+
+W.openDay = function(ds){
+  var r = S.records[ds];
+  if(r && hasContent(r)){ S.date = ds; S.page = 'detail'; render(); }
+  else W.go('record', ds);
+};
+
+W.toggleTheme = function(){ W.setTheme(S.prefs.theme==='dark' ? 'light' : 'dark'); };
+W.setTheme = function(t){
+  S.prefs.theme = t; lsSet(K.prefs, S.prefs);
+  document.documentElement.setAttribute('data-theme', t);
+  render();
+};
+
+/* --- 记录页交互 --- */
+W.onInput = function(ta){
+  autoGrow(ta);
+  var key = ta.getAttribute('data-key');
+  var rec = ensureRec(S.date);
+  rec[key] = ta.value;
+  if(key==='thoughts' && !rec.emotions) rec.emotions = [];
+  var idx = FIELDS.map(function(f){ return f.key; }).indexOf(key);
+  var dots = document.querySelectorAll('.dots i');
+  if(dots[idx]) dots[idx].classList.toggle('on', ta.value.trim() !== '');
+  var f = FIELDS.filter(function(x){ return x.key===key; })[0];
+  if(f && f.splitCheck) W.checkSplit(ta);
+  debounceDraft();
+};
+W.onFocus = function(ta){
+  document.querySelectorAll('.fcard').forEach(function(c){
+    c.classList.toggle('dim', c !== ta.closest('.fcard'));
+    c.classList.toggle('focus', c === ta.closest('.fcard'));
+  });
+};
+W.onBlur = function(){
+  document.querySelectorAll('.fcard').forEach(function(c){ c.classList.remove('dim','focus'); });
+};
+W.checkSplit = function(ta){
+  var key = ta.getAttribute('data-key');
+  var f = FIELDS.filter(function(x){ return x.key===key; })[0];
+  var box = document.getElementById('split-'+key);
+  if(!f || !f.splitCheck || !box) return;
+  var hits = splitHit(ta.value, f.splitCheck);
+  if(hits.length){ box.innerHTML = esc(splitMsg(f.splitCheck, hits)); box.classList.add('show'); }
+  else { box.classList.remove('show'); box.innerHTML = ''; }
+};
+
+/* --- 情绪轮盘 --- */
+W.toggleEmo = function(){
+  S.emoOpen = !S.emoOpen;
+  var scroll = window.scrollY;
+  render();
+  window.scrollTo({ top:scroll });
+  if(S.emoOpen){
+    var p = document.querySelector('.emopanel');
+    if(p) setTimeout(function(){ p.scrollIntoView({ behavior:'smooth', block:'center' }); }, 60);
+  }
+};
+W.pickEmo = function(el){
+  var w = el.getAttribute('data-w');
+  var rec = ensureRec(S.date);
+  if(rec.emotions.indexOf(w) < 0) rec.emotions.push(w);
+  var ta = document.querySelector('.fcta[data-key="thoughts"]');
+  if(ta){
+    var v = ta.value.trim();
+    ta.value = v ? (v + '、' + w) : w;
+    rec.thoughts = ta.value;
+    autoGrow(ta);
+  }
+  saveRecords();
+  toast('已加上「'+w+'」');
+  S.emoOpen = false;
+  var y = window.scrollY;
+  render();
+  window.scrollTo({ top:y });
+  var t2 = document.querySelector('.fcta[data-key="thoughts"]');
+  if(t2) t2.focus();
+};
+W.delEmo = function(i){
+  var rec = ensureRec(S.date);
+  rec.emotions.splice(i, 1);
+  saveRecords();
+  var y = window.scrollY;
+  render();
+  window.scrollTo({ top:y });
+};
+
+/* --- 草稿 --- */
+var _dt;
+function debounceDraft(){
+  clearTimeout(_dt);
+  _dt = setTimeout(function(){ W.flushDraft(); }, 800);
+}
+W.flushDraft = function(){
+  var rec = S.records[S.date];
+  if(!rec || !hasContent(rec)) return;
+  if(rec.isDraft){
+    rec.updatedAt = Date.now();
+    if(!rec.createdAt) rec.createdAt = rec.updatedAt;
+  }
+  saveRecords();   // 已保存过的记录被编辑时，同样即时落盘
+};
+
+/* --- 保存 --- */
+function collectFromDOM(){
+  var rec = ensureRec(S.date);
+  document.querySelectorAll('.fcta').forEach(function(ta){
+    rec[ta.getAttribute('data-key')] = ta.value;
+  });
+  return rec;
+}
+W.save = function(){
+  var rec = collectFromDOM();
+  if(!hasContent(rec)){ toast('先写下一点点，哪怕一句话'); return; }
+  var miss = FIELDS.filter(function(f){ return f.required && !String(rec[f.key]||'').trim(); });
+  if(miss.length){
+    S.modal = {
+      title:'就先这样保存吗？',
+      body:'「'+miss.map(function(f){ return f.no+' '+f.label; }).join('」「')+'」还没写。<br>' +
+           '这本书建议至少写下这几栏——哪怕一句话也算。当然，现在保存也不会丢，随时可以回来补。',
+      btns:[{ text:'回去补上' }, { text:'就这样保存', pri:true, act:'forceSave' }]
+    };
+    renderModal();
+    return;
+  }
+  doSave(rec);
+};
+function doSave(rec){
+  rec.isDraft = false;
+  rec.updatedAt = Date.now();
+  if(!rec.createdAt) rec.createdAt = rec.updatedAt;
+  saveRecords();
+  S.fbDate = S.date;
+  S.page = 'feedback';
+  render();
+  if(S.gh.token && S.gh.owner && S.gh.repo) W.ghPush(1);
+}
+
+/* --- 删除 / 清空 --- */
+W.askDel = function(){
+  S.modal = {
+    title:'确定要删掉这一天的记录吗？',
+    body:'删掉就找不回来了。',
+    btns:[{ text:'再想想' }, { text:'确认删除', pri:true, act:'doDel' }]
+  };
+  renderModal();
+};
+W.askClear = function(){
+  S.modal = {
+    title:'确定要清空全部记录吗？',
+    body:'全部 '+Object.keys(S.records).length+' 条记录都会被删除，无法恢复。<br>建议先导出一份 JSON 备份。',
+    btns:[{ text:'再想想' }, { text:'确认清空', pri:true, act:'doClear' }]
+  };
+  renderModal();
+};
+W.closeModal = function(e){ if(e.target.classList.contains('mask')){ S.modal=null; renderModal(); } };
+W.modalAct = function(i){
+  var b = S.modal.btns[i];
+  var act = b.act;
+  S.modal = null; renderModal();
+  if(act==='forceSave') doSave(collectFromDOM());
+  else if(act==='doDel'){ delete S.records[S.date]; saveRecords(); toast('已删除'); W.go('calendar'); }
+  else if(act==='doClear'){ S.records = {}; saveRecords(); toast('已清空'); W.go('home'); }
+};
+
+/* --- 日历 --- */
+W.calMove = function(n){
+  var y = +S.calYM.slice(0,4), m = +S.calYM.slice(5,7) - 1 + n;
+  var d = new Date(y, m, 1);
+  var nv = d.getFullYear()+'-'+((d.getMonth()+1)<10?'0':'')+(d.getMonth()+1);
+  if(nv > today().slice(0,7)) return;
+  S.calYM = nv; render();
+};
+
+/* --- 设置：GitHub --- */
+W.setGH = function(k, v){ S.gh[k] = v.trim(); lsSet(K.gh, S.gh); };
+function ghURL(){
+  var g = S.gh;
+  return 'https://api.github.com/repos/'+encodeURIComponent(g.owner)+'/'+encodeURIComponent(g.repo)+
+         '/contents/'+g.path.split('/').map(encodeURIComponent).join('/');
+}
+function ghHeaders(){
+  return { 'Authorization':'token '+S.gh.token, 'Accept':'application/vnd.github.v3+json',
+           'Content-Type':'application/json' };
+}
+function b64(str){
+  var b = new TextEncoder().encode(str), s = '';
+  for(var i=0;i<b.length;i++) s += String.fromCharCode(b[i]);
+  return btoa(s);
+}
+function unb64(str){
+  var s = atob(String(str).replace(/\s/g,'')), b = new Uint8Array(s.length);
+  for(var i=0;i<s.length;i++) b[i] = s.charCodeAt(i);
+  return new TextDecoder().decode(b);
+}
+function ghReady(){
+  if(!S.gh.token || !S.gh.owner || !S.gh.repo){ toast('先把 token、用户名、仓库名填好'); return false; }
+  return true;
+}
+W.ghTest = function(){
+  if(!ghReady()) return;
+  fetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
+    .then(function(r){
+      if(r.status===404) { toast('连接正常，云端还没有数据文件，保存一次就会创建'); return null; }
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.json();
+    })
+    .then(function(j){ if(j) toast('连接正常，云端已有数据'); })
+    .catch(function(e){ toast('连不上：'+e.message+'（检查 token 与仓库名）'); });
+};
+W.ghPull = function(silent){
+  if(!ghReady()) return Promise.resolve();
+  var url = ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main');
+  return fetch(url, { headers:ghHeaders() })
+    .then(function(r){ if(r.status===404) return null; if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(j){
+      if(!j || !j.content) return;
+      var remote = JSON.parse(unb64(j.content));
+      S.gh.sha = j.sha;
+      var list = Array.isArray(remote) ? remote : Object.keys(remote||{}).map(function(k){ return remote[k]; });
+      var added = 0, upd = 0;
+      list.forEach(function(r){
+        if(!r || !r.date) return;
+        var old = S.records[r.date];
+        if(!old){ S.records[r.date] = r; added++; }
+        else if((r.updatedAt||0) > (old.updatedAt||0)){ S.records[r.date] = r; upd++; }
+      });
+      saveRecords();
+      if(!silent){ toast('已拉取：新增 '+added+' 条，更新 '+upd+' 条'); render(); }
+    })
+    .catch(function(e){ if(!silent) toast('拉取失败：'+e.message); });
+};
+W.ghPush = function(silent){
+  if(!ghReady()) return Promise.resolve();
+  var body = { message:'review: '+today()+' 更新', content:b64(JSON.stringify(
+      Object.keys(S.records).map(function(k){ return S.records[k]; }), null, 2)),
+      branch:S.gh.branch||'main' };
+  if(S.gh.sha) body.sha = S.gh.sha;
+  return fetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(j){
+      S.gh.sha = j.content && j.content.sha;
+      if(!silent) toast('已推送到云端');
+    })
+    .catch(function(e){
+      if(!silent) toast('推送失败：'+e.message);
+      // 仅 sha 冲突（409）时先拉再推一次，其它错误不重试
+      if(e.message === 'HTTP 409'){
+        W.ghPull(1).then(function(){ W.ghPush(1); });
+      }
+    });
+};
+
+/* --- 设置：导入导出备份 --- */
+W.exportJSON = function(){
+  var data = Object.keys(S.records).map(function(k){ return S.records[k]; });
+  var blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '复盘自己_备份_' + today().replace(/-/g,'') + '.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  S.prefs.lastExport = Date.now(); lsSet(K.prefs, S.prefs);
+  toast('已导出');
+};
+W.importJSON = function(input){
+  var file = input.files && input.files[0];
+  if(!file) return;
+  var fr = new FileReader();
+  fr.onload = function(){
+    try{
+      var data = JSON.parse(fr.result);
+      var list = Array.isArray(data) ? data : Object.keys(data||{}).map(function(k){ return data[k]; });
+      var n = 0;
+      list.forEach(function(r){
+        if(!r || !r.date) return;
+        var old = S.records[r.date];
+        if(!old || (r.updatedAt||0) > (old.updatedAt||0)){ S.records[r.date] = r; n++; }
+      });
+      saveRecords();
+      toast('已导入 '+n+' 条记录');
+      render();
+    }catch(e){ toast('这个文件读不出来，换一个备份文件试试'); }
+    input.value = '';
+  };
+  fr.readAsText(file, 'utf-8');
+};
+W.restoreBackup = function(){
+  var bak = lsGet(K.bak, null);
+  if(!bak || !bak.records){ toast('没有可用的备份'); return; }
+  S.records = bak.records;
+  saveRecords();
+  toast('已恢复到 '+new Date(bak.at).toLocaleString('zh-CN')+' 的状态');
+  render();
+};
+
+/* --- 快捷键 --- */
+document.addEventListener('keydown', function(e){
+  var tag = (e.target.tagName||'').toLowerCase();
+  if(tag==='textarea' || tag==='input') return;
+  if(e.key==='1') W.go('home');
+  if(e.key==='2') W.go('record', today());
+  if(e.key==='3') W.go('calendar');
+  if(e.key==='Escape' && S.modal){ S.modal = null; renderModal(); }
+});
+
+/* ---------- 启动 ---------- */
+(function init(){
+  S.date = today();
+  S.calYM = today().slice(0,7);
+  if(!storageOK()){
+    setTimeout(function(){ toast('当前浏览器无法保存记录，换普通模式即可保存'); }, 600);
+  }
+  loadAll();
+  render();
+  if(S.gh.token && S.gh.owner && S.gh.repo) W.ghPull(1);
+})();
+</script>
+</body>
+</html>
