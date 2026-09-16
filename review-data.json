@@ -302,5 +302,23 @@
     "nextAction": "",
     "nextResult": "",
     "selfDiscovery": ""
+  },
+  {
+    "id": "mu3vq4jiybk2p",
+    "date": "2026-09-16",
+    "emotions": [
+      "厌恶"
+    ],
+    "isDraft": false,
+    "createdAt": 1789549772526,
+    "updatedAt": 1789549871007,
+    "event": "工作上的事情好多，好累",
+    "thoughts": "厌恶工作了，头皮发紧，没睡好觉+思考过多，人不太舒服",
+    "action": "晚上打算不自己做饭了，点个外卖吃，然后早点洗澡躺床上休息。明天再投入新的工作",
+    "result": "",
+    "reframe": "",
+    "nextAction": "",
+    "nextResult": "",
+    "selfDiscovery": ""
   }
 ]
