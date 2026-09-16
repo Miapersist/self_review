@@ -647,6 +647,13 @@ var WD = ['日','一','二','三','四','五','六'];
 function dateCN(s){ var d = parseYmd(s); return (d.getMonth()+1)+' 月 '+d.getDate()+' 日 星期'+WD[d.getDay()]; }
 function today(){ return ymd(new Date()); }
 function shiftDay(s, n){ var d = parseYmd(s); d.setDate(d.getDate()+n); return ymd(d); }
+/* 该日期所在周的周一（周一为一周起点），用作"本周是否已备份"的周标识 */
+function mondayOf(s){
+  var d = parseYmd(s || today());
+  var wd = (d.getDay() + 6) % 7;            // 周一=0 … 周日=6
+  d.setDate(d.getDate() - wd);
+  return ymd(d);
+}
 
 var _tt;
 function toast(msg, ms){
@@ -1127,8 +1134,9 @@ function viewSettings(){
     +  '<div class="hint" style="margin-bottom:12px">当前共 '+allEntries().length+' 条记录，覆盖 '+recordedDays().length+' 天，占用约 '+size+' KB</div>'
     +  '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;'
     +  'background:var(--paper-2);border-radius:var(--r);padding:10px 14px;margin-bottom:12px">'
-    +  '<div style="font-size:13px;line-height:1.7"><b style="color:var(--ink-800)">每日自动备份（本地）</b><br>'
-    +  '<span style="color:var(--ink-400)">每天打开时自动下载一份 json，<br>上次备份：'+(S.prefs.lastAutoBackup ? S.prefs.lastAutoBackup : '今天还未备份')+'</span></div>'
+    +  '<div style="font-size:13px;line-height:1.7"><b style="color:var(--ink-800)">每周日自动备份（本地）</b><br>'
+    +  '<span style="color:var(--ink-400)">每周日打开时，自动下载一份<b>全部历史记录</b>的 json。<br>'
+    +  (S.prefs.lastAutoBackup ? '上次备份：'+S.prefs.lastAutoBackup+' 所在周' : '本周还未备份')+'</span></div>'
     +  '<button class="btn '+(S.prefs.autoBackup?'btn-pri':'btn-ghost')+'" onclick="W.toggleAutoBackup()" style="flex:none">'
     +  (S.prefs.autoBackup ? '开启中' : '已暂停')+'</button></div>'
     +  '<div class="row-btns">'
@@ -1138,9 +1146,10 @@ function viewSettings(){
     +  '<button class="btn btn-ghost" onclick="W.askClear()">清空全部记录</button>'
     +  '</div>'
     +  '<div class="hint" style="margin-top:10px">'
-    +  '自动备份会在<u>每次打开页面时</u>把当天记录下载成一个 json 文件（文件名带当天日期）。'
+    +  '自动备份会在<u>每周日打开页面时</u>下载一次，导出的是<b>全部历史记录</b>（不是某一天），'
+    +  '文件名带当天日期仅用于区分版本。若周日没打开，本周不补（避免打扰）。'
     +  '浏览器默认会询问一次"允许下载"，勾选"总是允许"后即自动。'
-    +  '手动导出的文件也请妥善保存。数据不丢的最稳组合：<b>每日本地备份 + GitHub 云同步</b>双保险。</div>'
+    +  '数据不丢的最稳组合：<b>每周日本地全量备份 + GitHub 云同步</b>双保险。</div>'
     +  '<input type="file" id="imp" accept=".json,application/json" style="display:none" onchange="W.importJSON(this)">'
     +  '</div>';
 
@@ -1502,40 +1511,43 @@ W.ghPush = function(silent){
 };
 
 /* --- 设置：导入导出备份 --- */
-/* 下载数据为 json 文件 */
+/* 下载数据为 json 文件：导出的是「全部历史记录」（不是某一天），
+   文件名带当天日期仅用于区分备份版本。 */
 function downloadJSON(silent){
   var data = allEntries();
   var blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = '复盘自己_备份_' + today().replace(/-/g,'') + '.json';
+  a.download = '复盘自己_全量备份_' + today().replace(/-/g,'') + '.json';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   S.prefs.lastExport = Date.now();
   lsSet(K.prefs, S.prefs);
-  if(!silent) toast('已导出');
+  if(!silent) toast('已导出全部 '+data.length+' 条记录');
   return true;
 }
 W.exportJSON = function(){ downloadJSON(false); };
 
-/* 每日自动备份：打开页面时，若当天还没自动备份过且有记录，
-   则自动下载一份当天日期的 json（双保险：本地留存 + GitHub 云）。 */
+/* 每周日自动备份：仅在周日打开页面时触发（指定备份日），
+   若本周日还没备份过且有记录，自动下载一份「全部历史」的 json（双保险：本地留存 + GitHub 云）。
+   低频、不催促——符合"不评判、不打扰"的产品原则。 */
 W.maybeAutoBackup = function(){
   if(!S.prefs.autoBackup) return;
-  var todayS = today();
-  if(S.prefs.lastAutoBackup === todayS) return;          /* 今天已备份过 */
+  if(new Date().getDay() !== 0) return;                  /* 只在周日备份（getDay: 0=周日） */
+  var week = mondayOf(today());                          /* 本周周一的日期作为周标识 */
+  if(S.prefs.lastAutoBackup === week) return;            /* 本周日已备份过 */
   if(allEntries().length === 0) return;                  /* 还没有任何记录，无需备份 */
-  S.prefs.lastAutoBackup = todayS;
+  S.prefs.lastAutoBackup = week;
   lsSet(K.prefs, S.prefs);
   downloadJSON(true);
-  toast('已自动备份今天的记录（'+todayS+'）到你的下载目录');
+  toast('已自动备份全部历史记录（'+today()+'）到你的下载目录');
 };
 
 /* 自动备份开关 */
 W.toggleAutoBackup = function(){
   S.prefs.autoBackup = !S.prefs.autoBackup;
   lsSet(K.prefs, S.prefs);
-  if(S.prefs.autoBackup) W.maybeAutoBackup(); else toast('已暂停每日本地自动备份');
+  if(S.prefs.autoBackup) W.maybeAutoBackup(); else toast('已暂停每周本地自动备份');
   render();
 };
 W.importJSON = function(input){
@@ -1584,7 +1596,7 @@ document.addEventListener('keydown', function(e){
   }
   loadAll();
   render();
-  // 每日自动本地备份：仅在首次进入页面时下载一次，避免重复打扰
+  // 每周日自动本地备份：仅周日首次进入时下载一次，避免重复打扰
   setTimeout(function(){ W.maybeAutoBackup(); }, 600);
   // GitHub 云：启动拉取一次合并；若有新改动由保存时自动回推
   if(S.gh.token && S.gh.owner && S.gh.repo) W.ghPull(1);
