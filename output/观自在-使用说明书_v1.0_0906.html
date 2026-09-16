@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>观自在 · 使用说明书</title>
+<style>
+:root{
+  --ink-900:#1B201D; --ink-800:#262C28; --ink-700:#343C36; --ink-600:#424A43;
+  --ink-500:#555E56; --ink-400:#6E786E; --ink-300:#8D968C; --ink-200:#B2BAB0;
+  --paper:#F3F2ED; --paper-2:#EAEAE3; --paper-3:#DEDED5; --surface:#FBFAF6;
+  --line:#D7D9CE; --line-soft:#EAE9E1;
+  --pri:#45594B; --pri-600:#37493E; --pri-400:#7E9A88; --pri-050:#E4EBE1;
+  --acc:#A08D4E; --acc-050:#F3EEDC;
+  --r-xs:8px; --r-sm:10px; --r:14px; --r-md:18px; --r-lg:24px;
+  --ease:cubic-bezier(.22,.9,.3,1);
+  --fs-xs:12px; --fs-sm:13px; --fs-base:15px; --fs-md:16px; --fs-lg:18px;
+  --fs-xl:clamp(20px,2.4vw,23px); --fs-2xl:clamp(26px,3.6vw,34px);
+  --shadow-sm:0 1px 3px rgba(27,32,29,.05), 0 4px 12px rgba(27,32,29,.04);
+}
+[data-theme="dark"]{
+  --ink-900:#F2F3EE; --ink-800:#E2E5DF; --ink-700:#C3C9C0; --ink-600:#A5ADA2;
+  --ink-500:#8A9488; --ink-400:#707A6F; --ink-300:#576057; --ink-200:#40483F;
+  --paper:#191C19; --paper-2:#20241F; --paper-3:#2A2F29; --surface:#20241F;
+  --line:#343A33; --line-soft:#2A2F29;
+  --pri:#8FAB98; --pri-600:#718B7B; --pri-400:#AAC4B1; --pri-050:#232E27;
+  --acc:#C0AD66; --acc-050:#2E2C20;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.30), 0 4px 12px rgba(0,0,0,.22);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink-800);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+  font-size:var(--fs-base); line-height:1.78; -webkit-font-smoothing:antialiased;
+  transition:background .4s var(--ease),color .4s var(--ease);
+}
+a{color:var(--pri);text-decoration:none}
+::selection{background:rgba(160,141,78,.24)}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px 96px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:30px 0 8px}
+.brand{display:flex;align-items:center;gap:11px;font-size:var(--fs-md);font-weight:600;letter-spacing:.02em}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3.5px rgba(160,141,78,.18)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;
+  font-size:var(--fs-sm);border:1px solid var(--line);color:var(--ink-600);background:var(--surface);
+  cursor:pointer;transition:.22s var(--ease)}
+.btn:hover{color:var(--ink-800);border-color:var(--ink-300);background:var(--paper-2)}
+
+h1.title{font-size:var(--fs-2xl);font-weight:600;letter-spacing:.01em;margin:26px 0 10px;line-height:1.35}
+.lede{font-size:var(--fs-md);color:var(--ink-500);margin:0 0 6px}
+.meta{font-size:var(--fs-sm);color:var(--ink-400)}
+
+.layout{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:1000px){
+  .layout{grid-template-columns:196px 1fr;gap:44px;align-items:start}
+  .toc{position:sticky;top:28px}
+}
+.toc{margin:32px 0 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-md);box-shadow:var(--shadow-sm)}
+.toc h4{margin:0 0 10px;font-size:var(--fs-xs);font-weight:600;letter-spacing:.09em;color:var(--ink-400)}
+.toc a{display:block;padding:5px 0;font-size:var(--fs-sm);color:var(--ink-500)}
+.toc a:hover{color:var(--pri)}
+
+section{scroll-margin-top:24px;padding-top:6px}
+h2{font-size:var(--fs-xl);font-weight:600;margin:44px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);letter-spacing:.01em}
+h3{font-size:var(--fs-md);font-weight:600;margin:26px 0 10px;color:var(--ink-700)}
+p{margin:12px 0}
+ul,ol{margin:12px 0;padding-left:22px}
+li{margin:6px 0}
+b{color:var(--ink-900);font-weight:600}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:var(--r-md);box-shadow:var(--shadow-sm);margin:16px 0}
+.card.acc{background:var(--acc-050);border-color:transparent}
+.card.pri{background:var(--pri-050);border-color:transparent}
+.card h3{margin:0 0 8px}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:16px 0}
+.steps li{counter-increment:s;position:relative;padding:14px 0 14px 46px;border-bottom:1px solid var(--line-soft)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:28px;height:28px;
+  border-radius:50%;background:var(--pri);color:#fff;font-size:var(--fs-sm);font-weight:600;
+  display:grid;place-items:center}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:var(--fs-sm)}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{color:var(--ink-400);font-weight:500;font-size:var(--fs-xs);letter-spacing:.06em;
+  border-bottom:1px solid var(--line)}
+td.ex{color:var(--ink-500)}
+.req{color:var(--acc);font-weight:600;font-size:var(--fs-xs)}
+
+.note{border-left:3px solid var(--acc);background:var(--acc-050);
+  padding:12px 16px;border-radius:0 var(--r) var(--r) 0;margin:14px 0;
+  font-size:var(--fs-sm);color:var(--ink-600)}
+
+.q{margin:18px 0}
+.q .ask{font-weight:600;color:var(--ink-800)}
+.q .ans{color:var(--ink-500);margin-top:2px}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:var(--fs-sm);margin:12px 0}
+.kv dt{color:var(--ink-400);white-space:nowrap}
+.kv dd{margin:0;color:var(--ink-600)}
+
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:var(--fs-sm);color:var(--ink-400);font-style:normal}
+
+@media(max-width:640px){
+  .wrap{padding:0 18px 72px}
+  .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table.stk thead{display:none}
+  table.stk,table.stk tbody{display:block;width:100%}
+  table.stk tr{display:block;border:1px solid var(--line);border-radius:var(--r);
+    padding:12px 14px;margin-bottom:12px;background:var(--surface)}
+  table.stk td{display:block;padding:3px 0;border:none}
+  table.stk td[data-l]::before{content:attr(data-l);display:block;font-size:var(--fs-xs);
+    color:var(--ink-400);margin-top:6px}
+  table.stk td[data-l]:first-child::before{margin-top:0}
+  table.stk td:first-child{font-weight:600;color:var(--ink-800)}
+}
+
+@media print{
+  .hd .btn,.toc{display:none}
+  body{background:#fff}
+  .card{box-shadow:none}
+  h2{page-break-after:avoid}
+  table{page-break-inside:avoid}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hd">
+    <div class="brand"><span class="dot"></span><span>观自在</span></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="toggleTheme()">切换主题</button>
+      <button class="btn" onclick="window.print()">打印 / 存为 PDF</button>
+    </div>
+  </div>
+
+  <h1 class="title">观自在 · 使用说明书</h1>
+  <p class="lede">每天 5 分钟，把今天触动你的那件事写下来，然后看见自己。</p>
+  <p class="meta">v1.0 · 一个网页，打开即用 · 数据只在你自己的设备里，没有账号，没有服务器</p>
+
+  <div class="layout">
+    <nav class="toc">
+      <h4>目录</h4>
+      <a href="#s1">1 · 60 秒上手</a>
+      <a href="#s2">2 · 它是什么</a>
+      <a href="#s3">3 · 八栏怎么写</a>
+      <a href="#s4">4 · 你会用到的地方</a>
+      <a href="#s5">5 · 数据安全</a>
+      <a href="#s6">6 · 常见问题</a>
+      <a href="#s7">7 · 写给第一次用的人</a>
+    </nav>
+
+    <main>
+
+      <section id="s1">
+        <h2>1 · 60 秒上手</h2>
+        <ol class="steps">
+          <li><b>打开</b>：用手机或电脑浏览器打开网址。建议在浏览器菜单里选「添加到主屏幕」，之后点图标就进，用起来跟 App 一样。</li>
+          <li><b>写</b>：点「开始今天的复盘」，挑一件今天让你心里动了一下（好事坏事都行）的事，跟着八栏往下写。写多少算多少，<b>不用写满</b>。</li>
+          <li><b>存</b>：点「完成，保存」，立刻会得到一句「我发现了……」——那是你刚写下的、关于你自己的发现。</li>
+        </ol>
+        <div class="note">就这三步。今天写完就可以关掉，明天见。</div>
+      </section>
+
+      <section id="s2">
+        <h2>2 · 它是什么，不是什么</h2>
+        <div class="card pri">
+          <h3>它是</h3>
+          <ul>
+            <li>一个<b>每天 5 分钟</b>的自我记录工具；</li>
+            <li>一套<b>有引导的提问</b>（八栏），你不用想「该写什么」；</li>
+            <li>一个<b>只属于你</b>的本子：没有注册、没有登录、没有云端服务器。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>它不是</h3>
+          <ul>
+            <li><b>不是日记</b>：日记是存档，这里是「拆开一件事看自己」。</li>
+            <li><b>不是自我检讨</b>：它不帮你找错。它的前提是——痛苦、挫折、喜悦里都藏着你的优势与在意，只是从没被梳理过。</li>
+            <li><b>不是打卡工具</b>：不催你、不提醒你、不断签。哪天没写，日历就是一个安静的空格，什么都不会说。</li>
+          </ul>
+        </div>
+        <p class="meta">方法论来自《复盘自己：从记录到蜕变的行动指南》[日]山田智惠 的八栏结构。</p>
+      </section>
+
+      <section id="s3">
+        <h2>3 · 八栏怎么写（核心）</h2>
+        <p>八栏分两步：<b>左边记事情，右边看意义</b>。建议按顺序写，顺序本身就是方法。</p>
+
+        <h3>第一步 · 记录</h3>
+        <div class="scroller">
+        <table class="stk">
+          <thead><tr><th>栏</th><th>写什么</th><th>举例</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="栏位">① 事件 <span class="req">必填</span></td>
+              <td data-l="写什么">只写<b>客观事实</b>，像监控摄像头</td>
+              <td class="ex" data-l="举例">「汇报时，成员把数据填错了，我当场指了出来。」</td>
+            </tr>
+            <tr>
+              <td data-l="栏位">② 当时的想法和感受 <span class="req">必填</span></td>
+              <td data-l="写什么">写<b>真心话</b>，别管好不好看</td>
+              <td class="ex" data-l="举例">「我很恼火，又有点后悔：当着那么多人的面，是不是太凶了。」</td>
+            </tr>
+            <tr>
+              <td data-l="栏位">③ 行动（可空）</td>
+              <td data-l="写什么">当时你做了什么</td>
+              <td class="ex" data-l="举例">「我表情严肃，让他把报告重做一遍。」</td>
+            </tr>
+            <tr>
+              <td data-l="栏位">④ 结果（可空）</td>
+              <td data-l="写什么">带来了什么结果</td>
+              <td class="ex" data-l="举例">「他情绪低落，我自己也一直在想这样处理对不对。」</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="note">① 栏的小机关：如果你写了「我觉得……」「太糟糕了」「居然……」，它会轻轻提醒你——这更像感受，挪到 ② 栏去。<b>事实和感受分开写，是这套方法最关键的一步。</b></div>
+
+        <h3>第二步 · 意义重塑</h3>
+        <div class="scroller">
+        <table class="stk">
+          <thead><tr><th>栏</th><th>写什么</th><th>举例</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="栏位">①-A 重新注意到了什么 <span class="req">必填</span></td>
+              <td data-l="写什么">事情过去之后，换个角度再看一遍。可以站在自己、对方、甚至第三者的角度</td>
+              <td class="ex" data-l="举例">「我在意的其实不是数据错，而是怕项目被质疑。我用了最省事的强硬，而不是最有效的沟通。」</td>
+            </tr>
+            <tr>
+              <td data-l="栏位">② 从现在开始可以采取的行动（可空）</td>
+              <td data-l="写什么"><b>只写靠你自己就能做到的</b></td>
+              <td class="ex" data-l="举例">「我计划明天单独找他聊一次，先说事实，再说我的担心。」</td>
+            </tr>
+            <tr>
+              <td data-l="栏位">③ 这些行动可能带来的结果（可空）</td>
+              <td data-l="写什么">如实写，包括「什么都没发生」</td>
+              <td class="ex" data-l="举例">「发消息三天没回，事情看起来没有变化。」</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="note">② 栏的小机关：如果你写了「希望他能……」「得到认可」「他应该……」，它会提醒你——这取决于别人，不算。改成「我计划……」「我将尝试……」。<br>
+        <b>顺序别颠倒</b>：先看懂事情（①-A），再想怎么办（②），最后才猜结果（③）。</div>
+
+        <h3>延伸</h3>
+        <div class="card acc">
+          <h3>①-B 对自己的新发现（可空）</h3>
+          <p style="margin:0">「我心里为什么会有那个念头？那一刻我真正想要的是什么？还有别的方式吗？」</p>
+          <p style="margin:8px 0 0">判断标准只有一个：<b>你自己是否真心认同</b>。能由衷说出「确实如此」，就是满分。</p>
+        </div>
+        <p>只需要填 3 栏（①、②、①-A）就能保存，其余五栏空着不碍事，回看时也不会显示空栏。</p>
+      </section>
+
+      <section id="s4">
+        <h2>4 · 你会用到的地方</h2>
+        <div class="scroller">
+        <table class="stk">
+          <thead><tr><th>页面</th><th>能做什么</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="页面">首页</td>
+              <td data-l="能做什么">显示「已记录 N 天 · M 条」「最近连着 N 天」；点「开始今天的复盘」进入记录；同一天想写第二件事，点「再记一条」。</td>
+            </tr>
+            <tr>
+              <td data-l="页面">回看</td>
+              <td data-l="能做什么">月历 / 清单 双视图。月历上颜色越深，那天记得越充实；点某天看详情、编辑、删除。清单按日期倒序列出所有条目。</td>
+            </tr>
+            <tr>
+              <td data-l="页面">我的</td>
+              <td data-l="能做什么">主题（浅色 / 深色）、数据备份、GitHub 云同步、关于。</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <dl class="kv">
+          <dt>一天几条</dt><dd>不限。同一天有几件触动你的事，就写几条，每条独立保存。</dd>
+          <dt>情绪轮盘</dt><dd>② 栏下方可展开，8 种情绪 × 3 档强度，点一下就写进去了——想不出词的时候很好用。</dd>
+          <dt>草稿</dt><dd>边写边自动存，中途关掉也不会丢，下次打开它还等着你。</dd>
+          <dt>快捷键</dt><dd>电脑端：<code>1</code> 首页、<code>2</code> 记录、<code>3</code> 回看、<code>Esc</code> 关弹窗。</dd>
+        </dl>
+      </section>
+
+      <section id="s5">
+        <h2>5 · 数据安全：这句话请一定看</h2>
+        <div class="card acc">
+          <p style="margin:0;font-size:var(--fs-md)">记录保存在<b>你这台设备的浏览器里</b>。清浏览器缓存 / 用无痕模式 / 换手机，数据会丢。</p>
+        </div>
+        <p>两条防线，建议至少开一条：</p>
+        <ol class="steps">
+          <li><b>每周日自动备份</b>：周日打开页面时，自动下载一份全部历史的 JSON 文件到你的下载目录（设置页可开关）。</li>
+          <li><b>GitHub 云同步</b>：设置页填 token / 用户名 / 仓库名 / 文件路径 → 测试连接 → 之后每次保存自动回推，换设备点「从云端拉取」即可接上。这是最稳的一条，换手机也不怕。</li>
+        </ol>
+        <p>另外还有：手动「导出 JSON」「导入 JSON」「恢复上次备份」。</p>
+        <p><b>隐私</b>：没有账号，没有服务器，没人能看到你写了什么；如果开了云同步，数据存在<b>你自己的</b> GitHub 仓库里。</p>
+      </section>
+
+      <section id="s6">
+        <h2>6 · 常见问题</h2>
+        <div class="q"><div class="ask">Q：写不出来怎么办？</div><div class="ans">只写 ① 事件和 ② 感受两句也行，先存着。写不出来的时候，往往是因为这件事其实没那么触动你——换一件。</div></div>
+        <div class="q"><div class="ask">Q：一天没写会断签吗？</div><div class="ans">不会。这个产品不做断签，不显示「你已中断 N 天」。像健身一样，屡败屡战，回来就行。</div></div>
+        <div class="q"><div class="ask">Q：能导出成文档吗？</div><div class="ans">可以导出 JSON（设置页）。想做成文档，导出后自己粘贴即可。</div></div>
+        <div class="q"><div class="ask">Q：手机上怎么用最顺手？</div><div class="ans">浏览器打开 → 分享 / 菜单 → <b>添加到主屏幕</b>，之后点桌面图标就进，跟 App 一样，而且离线也能写。</div></div>
+        <div class="q"><div class="ask">Q：为什么不做成小程序 / App？</div><div class="ans">因为那样就需要账号、服务器、审核。现在这样，你打开就能写，写的东西谁也拿不走。</div></div>
+        <div class="q"><div class="ask">Q：目前还做不到什么？</div><div class="ans">周复盘 / 月复盘、成长档案检索、AI 洞察、多人共享 —— 都在后面，MVP 先只做「每天写」这一件事。</div></div>
+      </section>
+
+      <section id="s7">
+        <h2>7 · 写给第一次用的人</h2>
+        <p>第一天不用追求写得好。挑一件今天的小事，老老实实写完 ①②，再试着问自己一句「我重新注意到了什么」。</p>
+        <p>写完你会得到一句话：「我发现了……」。那句话就是从今天起，你开始看见自己的证据。</p>
+        <div class="card pri">
+          <p style="margin:0;font-size:var(--fs-md)">复盘不是反思错误，而是发现自己早已拥有的财富。</p>
+        </div>
+      </section>
+
+      <div class="foot">有想法、有 bug、有想要的功能，直接告诉我。它还在长。</div>
+    </main>
+  </div>
+</div>
+
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('gz_doc_theme', next); }catch(e){}
+}
+(function(){
+  var saved = null;
+  try{ saved = localStorage.getItem('gz_doc_theme'); }catch(e){}
+  if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) saved = 'dark';
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
+</body>
+</html>
