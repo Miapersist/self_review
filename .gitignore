@@ -1,0 +1,8 @@
+# 原始书页照片（体积大，不入库；如需请自行本地保存）
+input/
+
+# 工具 / IDE 内部数据
+.codebuddy/
+
+# 浏览器自检产物
+.playwright-cli/

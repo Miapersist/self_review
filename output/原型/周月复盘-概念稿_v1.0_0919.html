@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>观自在 · 周月复盘 · 概念总览稿 v1.0</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2345594B'/%3E%3Ccircle cx='32' cy='25' r='9' fill='%23A08D4E'/%3E%3Cpath d='M16 46h32' stroke='%23E4EBE1' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ============ 设计令牌 · 山谷苔原 · 沉静的绿 ============ */
+:root{
+  --ink-900:#1B201D; --ink-800:#262C28; --ink-700:#343C36; --ink-600:#424A43;
+  --ink-500:#555E56; --ink-400:#6E786E; --ink-300:#8D968C; --ink-200:#B2BAB0;
+  --paper:#F3F2ED; --paper-2:#EAEAE3; --paper-3:#DEDED5; --surface:#FBFAF6;
+  --line:#D7D9CE; --line-soft:#EAE9E1;
+  --pri:#45594B; --pri-600:#37493E; --pri-400:#7E9A88; --pri-050:#E4EBE1;
+  --acc:#A08D4E; --acc-050:#F3EEDC; --acc-200:#DCCD9B;
+  --alert:#A8574B;
+  --r-xs:8px; --r-sm:10px; --r:14px; --r-md:18px; --r-lg:24px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px;
+  --fs-xs:12px; --fs-sm:13px; --fs-base:15px; --fs-md:16px; --fs-lg:18px;
+  --fs-xl:clamp(20px,2.4vw,23px); --fs-2xl:clamp(26px,3.6vw,34px);
+  --ease:cubic-bezier(.22,.9,.3,1);
+  --shadow-xs:0 1px 2px rgba(27,32,29,.05);
+  --shadow-sm:0 1px 3px rgba(27,32,29,.05), 0 4px 12px rgba(27,32,29,.04);
+  --shadow-md:0 2px 6px rgba(27,32,29,.05), 0 12px 28px rgba(27,32,29,.06);
+  --shadow-lg:0 8px 20px rgba(27,32,29,.08), 0 24px 56px rgba(27,32,29,.10);
+  --font:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; font-family:var(--font); font-size:var(--fs-base); line-height:1.75;
+  color:var(--ink-800);
+  background:
+    radial-gradient(1200px 600px at 12% -8%, #F7F6F1 0%, rgba(247,246,241,0) 60%),
+    radial-gradient(900px 500px at 100% 0%, #EDEEE7 0%, rgba(237,238,231,0) 55%),
+    var(--paper);
+  -webkit-font-smoothing:antialiased; font-feature-settings:"kern","liga";
+}
+:focus-visible{outline:2px solid var(--pri-400); outline-offset:2px; border-radius:4px;}
+
+.wrap{max-width:1180px; margin:0 auto; padding:var(--sp-7) var(--sp-5) 96px;}
+
+/* ---------- 文档头 ---------- */
+.doc-head{margin-bottom:var(--sp-7);}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:var(--sp-2);
+  font-size:var(--fs-xs); letter-spacing:.14em; color:var(--pri);
+  background:var(--pri-050); border:1px solid #D3DFD2;
+  padding:5px 12px; border-radius:999px; margin-bottom:var(--sp-4);
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);}
+h1{
+  font-size:var(--fs-2xl); font-weight:600; line-height:1.25; letter-spacing:.01em;
+  margin:0 0 var(--sp-3); color:var(--ink-900);
+}
+h1 .sub{display:block; font-size:var(--fs-md); font-weight:400; color:var(--ink-400); margin-top:8px; letter-spacing:.02em;}
+.meta{display:flex; flex-wrap:wrap; gap:var(--sp-2) var(--sp-3); font-size:var(--fs-sm); color:var(--ink-400); margin:0 0 var(--sp-5);}
+.meta b{color:var(--ink-600); font-weight:500;}
+.src-note{
+  background:var(--surface); border:1px solid var(--line-soft); border-left:3px solid var(--pri-400);
+  border-radius:var(--r); padding:var(--sp-4) var(--sp-5); color:var(--ink-500); font-size:var(--fs-sm);
+  box-shadow:var(--shadow-xs);
+}
+.src-note b{color:var(--ink-700); font-weight:600;}
+
+/* ---------- 图例 ---------- */
+.legend{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:var(--sp-3); margin:var(--sp-5) 0 var(--sp-6);
+}
+.legend .item{
+  background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--r);
+  padding:var(--sp-3) var(--sp-4); box-shadow:var(--shadow-xs);
+}
+.legend .item .k{display:block; font-size:var(--fs-xs); letter-spacing:.08em; color:var(--ink-400); margin-bottom:4px;}
+.legend .item .v{font-size:var(--fs-sm); color:var(--ink-700);}
+.legend .sw{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:1px;}
+
+/* ---------- 锚点导航 ---------- */
+.toc{
+  position:sticky; top:0; z-index:20; margin:0 0 var(--sp-6);
+  background:rgba(243,242,237,.86); backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--line-soft);
+}
+.toc-in{max-width:1180px; margin:0 auto; padding:10px var(--sp-5); display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;}
+.toc-in::-webkit-scrollbar{display:none;}
+.toc a{
+  flex:0 0 auto; font-size:var(--fs-xs); color:var(--ink-500); text-decoration:none;
+  border:1px solid var(--line); background:var(--surface); border-radius:999px;
+  padding:5px 12px; transition:all .22s var(--ease); white-space:nowrap;
+}
+.toc a:hover{color:var(--pri); border-color:var(--pri-400); background:var(--pri-050); transform:translateY(-1px);}
+
+/* ---------- 设计板 ---------- */
+.board{
+  background:linear-gradient(180deg,var(--surface), #F8F7F3);
+  border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:var(--sp-6); margin-bottom:var(--sp-6);
+  box-shadow:var(--shadow-sm); scroll-margin-top:64px;
+  transition:box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.board:hover{box-shadow:var(--shadow-md); transform:translateY(-2px);}
+.board-head{display:flex; align-items:flex-start; gap:var(--sp-4); margin-bottom:var(--sp-5);}
+.board-no{
+  flex:0 0 auto; width:44px; height:44px; border-radius:var(--r-sm);
+  display:grid; place-items:center; font-size:var(--fs-lg); font-weight:600;
+  color:var(--pri); background:var(--pri-050); border:1px solid #D3DFD2;
+}
+.board-title{font-size:var(--fs-xl); font-weight:600; color:var(--ink-900); margin:0 0 2px; letter-spacing:.01em;}
+.board-duty{font-size:var(--fs-sm); color:var(--ink-400); margin:0;}
+
+/* ---------- 线框/草图通用 ---------- */
+.wf{
+  background:var(--paper-2); border:1px dashed var(--line);
+  border-radius:var(--r-md); padding:var(--sp-5);
+}
+.wf + .wf{margin-top:var(--sp-4);}
+.wf-label{
+  display:inline-block; font-size:var(--fs-xs); letter-spacing:.1em; color:var(--ink-400);
+  margin-bottom:var(--sp-3);
+}
+.panel{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--r); box-shadow:var(--shadow-xs);}
+.pad{padding:var(--sp-4);}
+.row{display:flex; gap:var(--sp-4); flex-wrap:wrap;}
+.col{flex:1 1 220px; min-width:0;}
+.muted{color:var(--ink-400);}
+.small{font-size:var(--fs-sm);}
+.tiny{font-size:var(--fs-xs);}
+
+.tag{
+  display:inline-flex; align-items:center; gap:5px; font-size:var(--fs-xs);
+  padding:3px 9px; border-radius:999px; border:1px solid var(--line); color:var(--ink-500); background:var(--surface);
+}
+.tag.pri{color:var(--pri); border-color:#D3DFD2; background:var(--pri-050);}
+.tag.acc{color:#7C6A2E; border-color:var(--acc-200); background:var(--acc-050);}
+.tag.ghost{color:var(--ink-300); background:transparent;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px; font-size:var(--fs-sm); font-weight:500;
+  padding:9px 18px; border-radius:999px; border:1px solid var(--pri); color:#fff; background:var(--pri);
+  transition:all .22s var(--ease); cursor:pointer;
+}
+.btn:hover{background:var(--pri-600); transform:translateY(-1px); box-shadow:var(--shadow-sm);}
+.btn.ghost{background:transparent; color:var(--pri); border-color:var(--pri-400);}
+.btn.ghost:hover{background:var(--pri-050);}
+.btn.acc{background:var(--acc); border-color:var(--acc);}
+
+.hint{
+  background:var(--acc-050); border:1px solid var(--acc-200); border-left:3px solid var(--acc);
+  border-radius:var(--r); padding:var(--sp-3) var(--sp-4); font-size:var(--fs-sm); color:#6E5C22;
+}
+.hint b{color:#5C4C1B;}
+
+/* 事件卡 */
+.evt{background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--r-sm); padding:10px 12px; font-size:var(--fs-sm); color:var(--ink-700); position:relative; transition:all .22s var(--ease);}
+.evt:hover{border-color:var(--pri-400); box-shadow:var(--shadow-xs); transform:translateY(-1px);}
+.evt .d{display:block; font-size:var(--fs-xs); color:var(--ink-300); margin-bottom:2px; letter-spacing:.04em;}
+.evt.sel{border-color:var(--pri); background:var(--pri-050);}
+.evt.sel::after{content:"已聚焦"; position:absolute; right:8px; top:8px; font-size:10px; color:var(--pri); background:#fff; border:1px solid #D3DFD2; border-radius:999px; padding:1px 7px;}
+
+.grid3{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--sp-3);}
+
+/* 流程条 */
+.flow{display:flex; align-items:stretch; gap:var(--sp-3); flex-wrap:wrap;}
+.flow .node{flex:1 1 240px; min-width:0;}
+.node-card{height:100%; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--sp-4); box-shadow:var(--shadow-xs); transition:all .28s var(--ease);}
+.node-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--pri-400);}
+.node-h{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;}
+.node-t{font-size:var(--fs-md); font-weight:600; color:var(--ink-900);}
+.arrow{flex:0 0 auto; align-self:center; color:var(--pri-400); font-size:22px; line-height:1;}
+@media (max-width:720px){.arrow{transform:rotate(90deg);}}
+
+/* 箭头联线示意 */
+.linkmap{position:relative;}
+.conn{display:flex; align-items:center; gap:10px; margin:6px 0;}
+.conn .from,.conn .to{flex:1 1 0; background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--r-sm); padding:8px 10px; font-size:var(--fs-sm); color:var(--ink-700);}
+.conn .to{border-color:var(--acc-200); background:var(--acc-050); color:#6E5C22;}
+.conn .mid{flex:0 0 auto; color:var(--acc); font-size:16px;}
+
+/* 表格 */
+.tbl{width:100%; border-collapse:separate; border-spacing:0; font-size:var(--fs-sm); background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--r); overflow:hidden;}
+.tbl th,.tbl td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line-soft); vertical-align:top;}
+.tbl thead th{background:var(--paper-2); color:var(--ink-500); font-weight:600; font-size:var(--fs-xs); letter-spacing:.06em; white-space:nowrap;}
+.tbl tbody tr:last-child td{border-bottom:none;}
+.tbl tbody tr:hover td{background:#FAFAF6;}
+.tbl td.k{color:var(--ink-500); white-space:nowrap;}
+.tbl .lv{font-weight:600; color:var(--ink-800);}
+.tbl tr.on td{background:linear-gradient(90deg,rgba(228,235,225,.6),rgba(228,235,225,.15));}
+.tbl tr.off td{color:var(--ink-300);}
+.tbl tr.off .lv{color:var(--ink-300); font-weight:500;}
+
+/* 批注 */
+.annos{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--sp-3); margin-top:var(--sp-5);}
+.anno{background:var(--paper-2); border:1px solid var(--line-soft); border-radius:var(--r); padding:var(--sp-3) var(--sp-4); font-size:var(--fs-sm); color:var(--ink-600);}
+.anno .ak{display:block; font-size:var(--fs-xs); letter-spacing:.08em; color:var(--ink-400); margin-bottom:4px;}
+.anno.q{background:var(--acc-050); border-color:var(--acc-200); color:#6E5C22;}
+.anno.q .ak{color:#8A7639;}
+.anno.r{background:var(--pri-050); border-color:#D3DFD2;}
+.anno.r .ak{color:var(--pri);}
+.anno .cite{display:inline-block; margin-top:6px; font-size:var(--fs-xs); color:var(--ink-400);}
+
+/* 括号注释 */
+.note{font-size:var(--fs-xs); color:var(--ink-400);}
+.pending{color:var(--alert); font-size:var(--fs-xs); border:1px dashed var(--alert); border-radius:999px; padding:1px 8px; margin-left:6px;}
+
+/* 手机框 */
+.phone{
+  width:300px; max-width:100%; margin:0 auto; background:var(--surface);
+  border:1px solid var(--line); border-radius:32px; padding:12px; box-shadow:var(--shadow-md);
+}
+.phone .notch{width:70px;height:6px;border-radius:999px;background:var(--paper-3); margin:4px auto 12px;}
+.phone .screen{background:var(--paper-2); border-radius:22px; padding:12px; min-height:340px;}
+.phone .appbar{display:flex; align-items:center; justify-content:space-between; padding:2px 4px 10px; font-size:var(--fs-sm); color:var(--ink-600);}
+.phone .stack{display:flex; flex-direction:column; gap:10px;}
+
+.divider{height:1px; background:var(--line-soft); margin:var(--sp-4) 0;}
+.section-sub{font-size:var(--fs-xs); letter-spacing:.12em; color:var(--ink-400); margin:var(--sp-5) 0 var(--sp-3); text-transform:uppercase;}
+
+.foot{max-width:1180px; margin:0 auto; padding:0 var(--sp-5) 64px; color:var(--ink-400); font-size:var(--fs-xs); line-height:1.9;}
+
+@media (max-width:900px){
+  .wrap{padding:var(--sp-6) var(--sp-4) 72px;}
+  .board{padding:var(--sp-5);}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important; transition:none !important; scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="设计板导航">
+  <div class="toc-in">
+    <a href="#b1">① 三层总览</a>
+    <a href="#b2">② 聚焦 · 联结</a>
+    <a href="#b3">③ 抽象化 · 具体化</a>
+    <a href="#b4">④ 月度复盘</a>
+    <a href="#b5">⑤ 复盘 → 计划</a>
+    <a href="#b6">⑥ 移动端适配</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ================= 文档头 ================= -->
+  <header class="doc-head">
+    <span class="eyebrow"><span class="dot"></span>观自在 · 迭代方案 1 概念稿</span>
+    <h1>周月复盘 · 概念总览稿
+      <span class="sub">复盘 + 计划结合：先回顾本周 / 本月的发现与规律，再据此推导下周 / 下月的行动意向</span>
+    </h1>
+    <p class="meta">
+      <span><b>版本</b> v1.0</span>
+      <span><b>日期</b> 2026-09-19</span>
+      <span><b>形态</b> 静态概念稿（不含交互）</span>
+      <span><b>数据</b> 书中案例 4/24–4/30</span>
+    </p>
+    <div class="src-note">
+      <b>方法论来源</b>：《复盘自己：从记录到蜕变的行动指南》[日]山田智惠 · 第 4 章「如何做好周度复盘和月度复盘」。
+      <br><b>整理依据</b>：<code>output/知识库/复盘方法论-知识库_v1.0_0919.md</code>、<code>output/知识库/周度月度复盘-书摘原文_0919.md</code>。
+      <br><b>用途</b>：对齐「周 / 月复盘」的页面结构、信息架构与引导语文案；本稿不承诺最终功能范围，引导语逐字取自知识库原文，存疑处标 <span class="pending">待核对</span>。
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="k">图例 · 区块职责</span><span class="v"><span class="sw" style="background:var(--pri-400)"></span>这个界面要做什么</span></div>
+      <div class="item"><span class="k">图例 · 原文引导语</span><span class="v"><span class="sw" style="background:var(--acc)"></span>取自书中的原话 / 提问</span></div>
+      <div class="item"><span class="k">图例 · 示例数据</span><span class="v"><span class="sw" style="background:var(--ink-300)"></span>书中 4/24–4/30 案例</span></div>
+      <div class="item"><span class="k">图例 · 与现有功能关系</span><span class="v"><span class="sw" style="background:var(--pri)"></span>复用 / 新增 说明</span></div>
+    </div>
+  </header>
+
+  <!-- ================= 板 1 · 三层复盘总览 ================= -->
+  <section class="board" id="b1">
+    <div class="board-head">
+      <div class="board-no">1</div>
+      <div>
+        <h2 class="board-title">三层复盘总览：每日记录 → 周度复盘 → 月度复盘</h2>
+        <p class="board-duty">说明新增模块在「观自在」中的位置、入口，以及与前序环节的衔接关系。</p>
+      </div>
+    </div>
+
+    <span class="wf-label">界面草图 · 信息架构</span>
+    <div class="wf">
+      <div class="flow">
+        <div class="node">
+          <div class="node-card">
+            <div class="node-h"><span class="node-t">每日记录</span><span class="tag pri">已有</span></div>
+            <p class="small muted" style="margin:0 0 8px;">每天从触动内心的事件中挑 3 件，以「事件 + 意义重塑」写下。</p>
+            <span class="tag">八栏模板</span> <span class="tag">日历 / 清单回看</span>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node">
+          <div class="node-card" style="border-color:var(--pri-400);">
+            <div class="node-h"><span class="node-t">周度复盘</span><span class="tag pri">新增</span></div>
+            <p class="small muted" style="margin:0 0 8px;">以本周记录为基础，走完四步：聚焦 → 联结 → 抽象化 → 具体化。</p>
+            <span class="tag pri">四步流程</span> <span class="tag">产出下周行动</span>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node">
+          <div class="node-card">
+            <div class="node-h"><span class="node-t">月度复盘</span><span class="tag pri">新增</span></div>
+            <p class="small muted" style="margin:0 0 8px;">以月为周期回顾，一页掌握全年动向，校准人生方向。</p>
+            <span class="tag">内心 / 行动 / 结果</span> <span class="tag">跨周趋势</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <span class="wf-label">入口卡（首页 / 回看页）</span>
+      <div class="row">
+        <div class="col panel pad">
+          <div class="node-h"><span class="node-t small">本周复盘</span><span class="tag acc">周日推荐</span></div>
+          <p class="small muted" style="margin:4px 0 12px;">本周已记录 <b>7</b> 天 · 约 <b>21</b> 条，可以开始本周复盘了。</p>
+          <span class="btn">开始本周复盘</span>
+        </div>
+        <div class="col panel pad">
+          <div class="node-h"><span class="node-t small">本月复盘</span><span class="tag ghost">月末推荐</span></div>
+          <p class="small muted" style="margin:4px 0 12px;">本月已记录 <b>12</b> 天，看看这个月跨周的更大趋势。</p>
+          <span class="btn ghost">查看本月复盘</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>把周 / 月复盘挂到现有产品结构上：它们是「基于每日记录所进行的复盘」，入口自然长在回看页与首页上。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>“周度复盘和月度复盘，是基于每日记录所进行的复盘。因此，坚持每天记录是周度复盘和月度复盘的前提。”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>本周 7 天、约 21 条——书中「每天记录 3 件，一周就是 21 件」。</div>
+      <div class="anno"><span class="ak">与现有功能关系</span>复用现有八栏每日记录作为唯一输入源；不新增记录入口，避免重复录入。</div>
+    </div>
+  </section>
+
+  <!-- ================= 板 2 · 周度复盘 Step1 + Step2 ================= -->
+  <section class="board" id="b2">
+    <div class="board-head">
+      <div class="board-no">2</div>
+      <div>
+        <h2 class="board-title">周度复盘 · 第一步 聚焦 ＋ 第二步 联结</h2>
+        <p class="board-duty">从本周约 21 条记录中筛出最重要的 3 件事，再找出事件之间的「联结」。</p>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <span class="wf-label">第一步 · 聚焦本周最重要的 3 件事</span>
+    <div class="wf">
+      <div class="row">
+        <div class="col" style="flex:1 1 420px;">
+          <p class="small muted" style="margin-top:0;">本周记录（节选）· 共 21 条</p>
+          <div class="grid3">
+            <div class="evt"><span class="d">4/24 一</span>想表达日本独有的魅力——体验、氛围、精神，想把这些语言化</div>
+            <div class="evt"><span class="d">4/24 一</span>结识了澳大利亚商会一位优秀的女士，很想与她合作</div>
+            <div class="evt sel"><span class="d">4/24 一</span>对自己在公司的角色感到有些迷茫</div>
+            <div class="evt"><span class="d">4/25 二</span>为感谢我举办的领导力工作坊，高村先生送我手链，好感动</div>
+            <div class="evt"><span class="d">4/25 二</span>和樱井先生共进晚餐，他说「与众不同是好事」</div>
+            <div class="evt"><span class="d">4/26 三</span>江藤先生构思了部门的媒体策划案，让人充满期待</div>
+            <div class="evt sel"><span class="d">4/28 五</span>大家的好评，让公司决定在全体大会上安排我介绍工作坊</div>
+            <div class="evt sel"><span class="d">4/28 五</span>听到几位同事即将离职，内心有紧迫感，或许该思考「下一步」</div>
+            <div class="evt"><span class="d">4/30 日</span>父母专程送来便当，非常感谢</div>
+          </div>
+        </div>
+        <div class="col" style="flex:1 1 260px;">
+          <p class="small muted" style="margin-top:0;">已聚焦 · 3 件</p>
+          <div class="panel pad">
+            <ol class="small" style="margin:0; padding-left:18px; color:var(--ink-700);">
+              <li style="margin-bottom:8px;">对自己在公司的角色感到有些迷茫</li>
+              <li style="margin-bottom:8px;">领导力工作坊好评 → 公司大会分享</li>
+              <li>几位同事即将离职，该思考「下一步」了</li>
+            </ol>
+            <div class="divider" style="margin:12px 0;"></div>
+            <span class="tag acc">不着急、可先选后调</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="wf">
+      <span class="wf-label">第二步 · 找出「联结」，并用箭头标注</span>
+      <div class="row">
+        <div class="col" style="flex:1 1 380px;">
+          <div class="linkmap">
+            <div class="conn"><span class="from">举办领导力工作坊</span><span class="mid">→</span><span class="to">高村 / 平冈先生好评</span></div>
+            <div class="conn"><span class="from">好评促成</span><span class="mid">→</span><span class="to">公司全体大会分享</span></div>
+            <div class="conn"><span class="from">读喜欢的书</span><span class="mid">⇢</span><span class="to">对待家人态度温和</span></div>
+          </div>
+          <p class="tiny muted" style="margin-top:10px;">实线＝直接联结；虚线箭头＝间接联结（常含个人内在特质）。</p>
+        </div>
+        <div class="col" style="flex:1 1 300px;">
+          <table class="tbl">
+            <thead><tr><th>联结类型</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td class="k">① 直接</td><td>因果直接对应</td></tr>
+              <tr><td class="k">② 间接</td><td>含个人内在特质，尤其值得关注</td></tr>
+              <tr><td class="k">③ 奇妙</td><td>看似无关，复盘时才显现联系</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>聚焦＝从 21 条里做减法；联结＝从事件间找因果与规律，为「成功法则」与「机会」铺路。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>第一步：“每周进行‘聚焦’练习，让你重新明确对自己而言最重要的是什么。”“不要被事件的大小所迷惑。”<br>第二步：“回顾整周的记录，主动寻找这些联结……究竟哪些对我起到了积极的作用？”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>书中 4/24–4/30 案例：「坚持的力量」「工作坊是我的使命」等。<span class="note">（示例页 OCR 有错字，未逐字采信）</span></div>
+      <div class="anno"><span class="ak">与现有功能关系</span>新增交互形态（选 3 件 / 画箭头）；事件数据全部来自已有记录，无需重录。</div>
+    </div>
+  </section>
+
+  <!-- ================= 板 3 · 周度复盘 Step3 + Step4 ================= -->
+  <section class="board" id="b3">
+    <div class="board-head">
+      <div class="board-no">3</div>
+      <div>
+        <h2 class="board-title">周度复盘 · 第三步 抽象化 ＋ 第四步 具体化</h2>
+        <p class="board-duty">把一周的琐碎收敛为「对自己的认识」，再转化成「现在立刻能做的事」。</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <span class="wf-label">第三步 · 抽象化（八层级，按阶段开放）</span>
+    <div class="wf">
+      <table class="tbl">
+        <thead><tr><th style="width:40px;">#</th><th style="width:170px;">层级</th><th>引导问题</th><th style="width:120px;">解锁阶段</th></tr></thead>
+        <tbody>
+          <tr class="on"><td>①</td><td class="lv">自己的状态</td><td>本周你的头脑、内心和身体状态怎么样？</td><td><span class="tag pri">枝叶可见期</span></td></tr>
+          <tr class="on"><td>②</td><td class="lv">内心最在意的事</td><td>当下你最在意的事有哪些？</td><td><span class="tag pri">枝叶可见期</span></td></tr>
+          <tr class="on"><td>③</td><td class="lv">重要人物</td><td>对你来说，生活中的重要人物是谁？</td><td><span class="tag pri">枝叶可见期</span></td></tr>
+          <tr class="off"><td>④</td><td class="lv">兴趣所在</td><td>你最近在关注什么？</td><td><span class="tag ghost">3~6 个月</span></td></tr>
+          <tr class="off"><td>⑤</td><td class="lv">优势和特长</td><td>你的优势和特长是什么？</td><td><span class="tag ghost">3~6 个月</span></td></tr>
+          <tr class="off"><td>⑥</td><td class="lv">思维模式和行为模式</td><td>你有哪些反复出现的思维模式或行为模式？</td><td><span class="tag ghost">3~6 个月</span></td></tr>
+          <tr class="off"><td>⑦</td><td class="lv">信念和固有观念</td><td>促使你形成这些模式的根源是什么？</td><td><span class="tag ghost">6 个月以上</span></td></tr>
+          <tr class="off"><td>⑧</td><td class="lv">想法和愿望</td><td>你真正渴望的是什么？想要成为什么样的人？</td><td><span class="tag ghost">6 个月以上</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin:10px 0 14px;">规则：最开始 3 个月聚焦 ①~③；3~6 个月加 ④~⑥；6 个月以上再尝试 ⑦~⑧。并非每周都要写全八层。<span class="pending">层级名称待核对</span></p>
+
+      <p class="small muted" style="margin:0 0 10px;">本周抽象化（示例 · 书中那一周）</p>
+      <div class="grid3">
+        <div class="evt sel"><span class="d">枝叶 · 状态 / 在意</span>【坚持的力量】我一直在坚持两件事：学习英语、更新 Instagram。这让我更有信心，也感觉能力在逐渐提升，今年决定继续坚持做下去。</div>
+        <div class="evt sel"><span class="d">枝叶 · 重要人物 / 在意</span>【工作坊是我的使命】上周的领导力工作坊反响很棒，高村先生和平冈先生都获得很高评价，还被安排在公司大会上分享。举办工作坊，也许正是我的强项？</div>
+        <div class="evt"><span class="d">枝叶 · 在意</span>【对自己在公司里的角色感到迷茫】听到几位同事即将离职，或许现在是时候思考「下一步」了。</div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="wf">
+      <span class="wf-label">第四步 · 具体化（4W1H ＋ 预算）</span>
+      <div class="row">
+        <div class="col" style="flex:1 1 420px;">
+          <p class="small muted" style="margin-top:0;">把抽象的想法，拆成「现在立刻就能去做」的行动。</p>
+          <table class="tbl">
+            <thead><tr><th style="width:120px;">维度</th><th>填写要求</th><th style="width:180px;">示例</th></tr></thead>
+            <tbody>
+              <tr><td class="k">When 何时</td><td>明确具体行动的日期</td><td>下周一晚</td></tr>
+              <tr><td class="k">Where 何地</td><td>细化到具体地点 / 区域</td><td>公司会议室</td></tr>
+              <tr><td class="k">Who 和谁</td><td>写出具体姓名 / 对象</td><td>小幡先生</td></tr>
+              <tr><td class="k">What 做什么</td><td>具体到立刻可执行</td><td>聊「清晰表达自己长处」的办法</td></tr>
+              <tr><td class="k">How 怎么做</td><td>具体到立刻可执行</td><td>先列 3 个想请教的点</td></tr>
+              <tr><td class="k">How much 预算</td><td>需要花销时明确金额</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col" style="flex:1 1 260px;">
+          <div class="panel pad">
+            <span class="tag acc">下周行动意向</span>
+            <ul class="small" style="margin:10px 0 0; padding-left:18px; color:var(--ink-700);">
+              <li style="margin-bottom:6px;">为了清晰地表达自己的长处，下周找小幡先生聊一期</li>
+              <li style="margin-bottom:6px;">决定每天多运动</li>
+            </ul>
+          </div>
+          <div class="hint" style="margin-top:12px;">
+            <b>提示</b>：请不要把「必须做的待办事项」写进复盘左侧——这里只写你 <b>百分百想做的事</b>；待办请记在日程本里。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>抽象化＝把琐碎事件收敛成对自己的认识；具体化＝把认识落成可执行的行动。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>“从这些庞杂的事件中找出值得注意的点并进行总结……总的来说，这些事情究竟表达了什么？”<br>“把想法转化为‘自己现在立刻就能去做的事情’。行动力强的人，往往都擅长具体化。”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>抽象化：【坚持的力量】【工作坊是我的使命】等；具体化：找小幡先生聊一期、决定每天多运动。</div>
+      <div class="anno"><span class="ak">与现有功能关系</span>复用现有记录的「下一步行动 / 预期结果」字段作为行动意向的来源；抽象化层级为新增。</div>
+    </div>
+  </section>
+
+  <!-- ================= 板 4 · 月度复盘 ================= -->
+  <section class="board" id="b4">
+    <div class="board-head">
+      <div class="board-no">4</div>
+      <div>
+        <h2 class="board-title">月度复盘：一页掌握全年动向</h2>
+        <p class="board-duty">以月为周期回顾每日记录，用「内心 / 行动 / 结果」看跨周的更大趋势。</p>
+      </div>
+    </div>
+
+    <span class="wf-label">界面草图 · 月度复盘模板（内心 / 行动 / 结果 ＋ 备注 × 12 个月）</span>
+    <div class="wf">
+      <table class="tbl">
+        <thead><tr><th style="width:80px;">月份</th><th>内心</th><th>行动</th><th>结果</th><th style="width:140px;">备注</th></tr></thead>
+        <tbody>
+          <tr class="on">
+            <td class="k">4 月</td>
+            <td>工作坊是我的使命；对在公司里的角色有些迷茫</td>
+            <td>坚持英语 / Instagram 更新；找小幡先生聊长处</td>
+            <td>工作坊获好评并被安排全员分享</td>
+            <td><span class="tag acc">本月</span></td>
+          </tr>
+          <tr><td class="k">5 月</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td class="k">6 月</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td class="k">…</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td class="k">12 月</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin:10px 0 0;">模板列名「内心 / 行动 / 结果 / 备注」<span class="pending">待核对</span>：正文表述为「分为内心、行动、结果三个部分」，备注列是否固定待比对原书图 4-2。</p>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>把周复盘的结论按月归拢，看到「跨越数周的更大趋势」，支撑人生方向与重大决策。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>“月度复盘，是指将每日记录以月为周期进行复盘。”“通过以月为周期的复盘，你将看到跨越数周的更大的趋势。”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>用书中那一周所属的 4 月做示意行；其余月份留空。</div>
+      <div class="anno"><span class="ak">与现有功能关系</span>新增视图；数据可自动从已有每日记录与周复盘结论聚合（先做静态呈现）。</div>
+    </div>
+  </section>
+
+  <!-- ================= 板 5 · 复盘 → 计划 ================= -->
+  <section class="board" id="b5">
+    <div class="board-head">
+      <div class="board-no">5</div>
+      <div>
+        <h2 class="board-title">衔接板：从「复盘」自然长出「计划」</h2>
+        <p class="board-duty">复盘的终点不是报告，而是下周 / 下月的行动意向——这就是「计划」的种子。</p>
+      </div>
+    </div>
+
+    <span class="wf-label">界面草图 · 复盘结论 → 下周行动意向 → 下月方向</span>
+    <div class="wf">
+      <div class="flow">
+        <div class="node">
+          <div class="node-card">
+            <div class="node-h"><span class="node-t small">本周规律（抽象化）</span><span class="tag">复盘产出</span></div>
+            <p class="small muted" style="margin:6px 0 0;">「举办工作坊也许正是我的强项」「是时候思考下一步了」</p>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node">
+          <div class="node-card" style="border-color:var(--acc-200);">
+            <div class="node-h"><span class="node-t small">下周行动意向（具体化）</span><span class="tag acc">计划</span></div>
+            <p class="small muted" style="margin:6px 0 0;">找小幡先生聊长处 · 每天多运动</p>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node">
+          <div class="node-card">
+            <div class="node-h"><span class="node-t small">下月方向（月度）</span><span class="tag">计划</span></div>
+            <p class="small muted" style="margin:6px 0 0;">把「工作坊 / 分享」作为一条主线持续投入</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col panel pad">
+          <p class="small" style="margin:0 0 8px; color:var(--ink-600);"><b>下周行动意向</b>（由本周规律自然导出）</p>
+          <div class="evt sel" style="margin-bottom:8px;">找小幡先生聊「如何清晰表达自己的长处」<span class="note"> 　· 承接第二条联结</span></div>
+          <div class="evt sel">每天多运动<span class="note"> 　· 承接「新买自行车」的联结</span></div>
+        </div>
+        <div class="col panel pad">
+          <p class="small" style="margin:0 0 8px; color:var(--ink-600);"><b>来源标注</b>（可追溯）</p>
+          <p class="small muted" style="margin:0;">每条行动意向都标注它来自哪条记录 / 哪个联结，形成「复盘 → 计划」的可追溯闭环，而不是一张空白的待办清单。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>把复盘的"具体化"结果顺手沉淀为下一步行动意向，让复盘不落空、计划有来处。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>“复盘模板左侧要写的，是那些自己百分百想做……只有这样才能找到发自内心的纯粹动机。”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>书中那一周的具体化结果：找小幡先生聊一期、决定每天多运动。</div>
+      <div class="anno"><span class="ak">与现有功能关系</span>这是「复盘 + 计划结合」的关键；计划项先以「行动意向」轻量呈现，不引入重型待办功能。</div>
+    </div>
+  </section>
+
+  <!-- ================= 板 6 · 移动端适配 ================= -->
+  <section class="board" id="b6">
+    <div class="board-head">
+      <div class="board-no">6</div>
+      <div>
+        <h2 class="board-title">移动端适配草图（单列）</h2>
+        <p class="board-duty">与现有产品一致：窄屏（&lt;900px）由左右两栏降为单列，逐步呈现四步。</p>
+      </div>
+    </div>
+
+    <span class="wf-label">界面草图 · 周度复盘（手机单列）</span>
+    <div class="wf">
+      <div class="row" style="align-items:flex-start;">
+        <div class="col" style="flex:1 1 300px;">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="appbar"><span>本周复盘</span><span class="tiny muted">第 2 / 4 步</span></div>
+              <div class="stack">
+                <div class="evt sel"><span class="d">第一步 · 聚焦</span>已选 3 件事 <span class="tiny muted">（可先选后调）</span></div>
+                <div class="evt"><span class="d">第二步 · 联结</span>找出事件间的箭头
+                  <div class="conn" style="margin-top:6px;"><span class="from tiny">工作坊</span><span class="mid">→</span><span class="to tiny">好评</span></div>
+                </div>
+                <div class="evt" style="opacity:.5;"><span class="d">第三步 · 抽象化</span>① 状态 ② 在意的事 ③ 重要人物</div>
+                <div class="evt" style="opacity:.5;"><span class="d">第四步 · 具体化</span>4W1H ＋ 预算</div>
+                <span class="btn" style="justify-content:center;">下一步</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="flex:1 1 300px;">
+          <table class="tbl">
+            <thead><tr><th>断点</th><th>版式</th></tr></thead>
+            <tbody>
+              <tr><td class="k">≥ 900px</td><td>左右两栏：右侧每日记录 / 左侧周复盘（对应书中版式）</td></tr>
+              <tr><td class="k">&lt; 900px</td><td>单列：按 聚焦 → 联结 → 抽象化 → 具体化 纵向推进</td></tr>
+            </tbody>
+          </table>
+          <div class="hint" style="margin-top:12px;">
+            <b>低负担</b>：单次 ≤ 5 分钟可完成；输入即存；不催促、不显示「已断签」。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annos">
+      <div class="anno r"><span class="ak">区块职责</span>保证手机上的复盘体验不被"两栏"挤坏，改为分步单列。</div>
+      <div class="anno q"><span class="ak">原文引导语</span>“整个流程通常可以在 5~10 分钟完成；如果希望更细致，30 分钟也足以完成。”<span class="cite">第 4 章</span></div>
+      <div class="anno"><span class="ak">示例数据</span>同上（聚焦 + 联结示例）。</div>
+      <div class="anno"><span class="ak">与现有功能关系</span>沿用现有产品 &lt;900px 降单列的既有策略，保持体验一致。</div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <p><b>说明</b>：本稿为静态概念稿，用于对齐周 / 月复盘的页面结构、信息架构与引导语文案；不含交互与后端逻辑，示例数据取自书中案例（4/24–4/30）。</p>
+  <p><b>依据</b>：<code>output/知识库/复盘方法论-知识库_v1.0_0919.md</code> ｜ <code>output/知识库/周度月度复盘-书摘原文_0919.md</code> ｜ 现有主程序 <code>output/index.html</code>（参考其设计令牌）。</p>
+  <p><b>待确认</b>：① 月度模板是否含「备注」列；② 抽象化 ④~⑧ 层级名称；③ 是否保留"周度两栏 / 移动端单列"的版式；④ 下一轮先细化哪一块（聚焦 / 联结 / 抽象化 / 具体化 / 月度）。</p>
+  <p style="margin-top:16px;">© 观自在 · 周月复盘概念稿 v1.0 · 2026-09-19</p>
+</footer>
+
+</body>
+</html>
