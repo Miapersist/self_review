@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1789913511578,
+  "updatedAt": 1789913521715,
   "records": [
     {
       "id": "1788318521114.329",
@@ -559,10 +559,16 @@
         "mu3qr1rcr0ctn",
         "mu3ql4vtocy2c"
       ],
-      "links": [],
+      "links": [
+        {
+          "a": "mu3qofb7xhmwr",
+          "b": "mu3qr1rcr0ctn",
+          "type": "direct"
+        }
+      ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1789913510077,
+      "updatedAt": 1789913520213,
       "done": false,
       "doneAt": 0,
       "snap": null
