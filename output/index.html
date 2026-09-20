@@ -409,6 +409,26 @@ a{color:var(--pri);text-decoration:none}
 .wkentry{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .wkentry .txt{font-size:var(--fs-sm);line-height:1.7}
 [data-theme="dark"] .wklink .tp{color:#C0AD66}
+/* 周复盘归档 */
+.wkst{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-xs);border-radius:999px;
+  padding:3px 10px;border:1px solid var(--line);color:var(--ink-400)}
+.wkst.done{border-color:var(--pri-400);color:var(--pri);background:var(--pri-050)}
+.wklock{display:flex;align-items:center;gap:8px;justify-content:center;font-size:var(--fs-sm);
+  color:var(--pri);background:var(--pri-050);border:1px solid var(--pri-400);border-radius:var(--r-md);
+  padding:12px 14px;margin:var(--sp-5) 0}
+.ro-val{background:var(--paper-2);border:1px dashed var(--line);border-radius:var(--r-sm);
+  padding:10px 12px;font-size:var(--fs-sm);line-height:1.7;color:var(--ink-700);white-space:pre-wrap}
+.ro-val .dim{color:var(--ink-300)}
+.wkhist{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 var(--sp-4);
+  padding-top:var(--sp-3);border-top:1px solid var(--line-soft)}
+.wkhist .h{font-size:var(--fs-xs);color:var(--ink-400);margin-right:2px}
+.wkhist .c{font-size:var(--fs-xs);border:1px solid var(--line);border-radius:999px;padding:3px 9px;
+  color:var(--ink-400);cursor:pointer;transition:.2s var(--ease);background:var(--surface);font-family:inherit}
+.wkhist .c:hover{border-color:var(--pri-400)}
+.wkhist .c.done{border-color:var(--pri);color:var(--pri);background:var(--pri-050)}
+.wkhist .c.cur{box-shadow:0 0 0 2px var(--pri-050)}
+.wkhist .c.none{color:var(--ink-200);cursor:default}
+.wkhist .c.none:hover{border-color:var(--line)}
 </style>
 </head>
 <body>
@@ -556,14 +576,30 @@ function loadAll(){
   S.gh      = Object.assign({ token:'', owner:'', repo:'', path:'review-data.json', branch:'main' }, lsGet(K.gh, {}));
   document.documentElement.setAttribute('data-theme', S.prefs.theme || 'light');
 }
+/* 本地滚动备份：每日记录 + 周度复盘一起留一份，恢复时一并还原 */
+function saveBackup(){
+  lsSet(K.bak, { at:Date.now(), records:S.records, weeks:S.wk });
+}
 function saveRecords(){
   lsSet(K.rec, S.records);
-  lsSet(K.bak, { at:Date.now(), records:S.records });
+  saveBackup();
 }
 /* 周度复盘数据独立落盘：只写它自己的 key，不触碰 records */
-function saveWk(){ lsSet(K.wk, S.wk); }
+function saveWk(){
+  lsSet(K.wk, S.wk);
+  saveBackup();
+  if(!S._pulling) autoPushWk();      /* 拉取合并过程中不回推，避免与云端来回打架 */
+}
 var _wt;
 function debounceWk(){ clearTimeout(_wt); _wt = setTimeout(saveWk, 800); }
+/* 周复盘改动后，若已配置云端则静默回推（与每日记录保存后的回推行为一致）；
+   1500ms 防抖，连续编辑只在停下来后推一次。 */
+var _wpt;
+function autoPushWk(){
+  if(!(S.gh.token && S.gh.owner && S.gh.repo)) return;
+  clearTimeout(_wpt);
+  _wpt = setTimeout(function(){ W.ghPush(1); }, 1500);
+}
 
 /* ---------- §3b 周度复盘：配置与取数 ---------- */
 /* 抽象化八层级：①②③ 为「枝叶可见期」默认开放，④~⑧ 为进阶（可稍后再写） */
@@ -590,12 +626,14 @@ function weekEntries(monday){
 }
 /* 取（必要时初始化）某周的复盘对象 */
 function reviewOf(monday){
-  if(!S.wk[monday]) S.wk[monday] = { focus:[], links:[], abs:{}, actions:[], updatedAt:0 };
+  if(!S.wk[monday]) S.wk[monday] = { focus:[], links:[], abs:{}, actions:[], updatedAt:0, done:false, doneAt:0, snap:null };
   var r = S.wk[monday];
   if(!Array.isArray(r.focus)) r.focus = [];
   if(!Array.isArray(r.links)) r.links = [];
   if(!Array.isArray(r.actions)) r.actions = [];
   if(!r.abs || typeof r.abs !== 'object') r.abs = {};
+  r.done = !!r.done;                                   /* 归档后只读，用于区分「已完成」与「草稿」 */
+  if(typeof r.doneAt !== 'number') r.doneAt = 0;
   return r;
 }
 function entryById(id){ var d = locateEntry(id); return d ? findEntry(d, id) : null; }
@@ -729,6 +767,27 @@ function mergeEntries(list){
     if((r.updatedAt||0) > (hit.updatedAt||0)){ l[l.indexOf(hit)] = r; upd++; }
   });
   return { added:added, upd:upd };
+}
+/* 合并远端/导入的周度复盘：按周（周一日期）匹配，同一周取 updatedAt 较新 */
+function mergeWeeks(remoteWeeks){
+  var added = 0, upd = 0;
+  Object.keys(remoteWeeks || {}).forEach(function(k){
+    var rw = remoteWeeks[k];
+    if(!rw || typeof rw !== 'object') return;
+    var lw = S.wk[k];
+    if(!lw){ S.wk[k] = rw; added++; return; }
+    if((rw.updatedAt||0) > (lw.updatedAt||0)){ S.wk[k] = rw; upd++; }
+  });
+  return { added:added, upd:upd };
+}
+/* 解析备份/云端 JSON 载荷，兼容三类格式：
+   ① v2 对象 { v:2, records:[...], weeks:{...} }（当前）
+   ② 裸数组 allEntries()（v1.1 及更早）
+   ③ 按日期分组的对象（更早的 grouped 格式） */
+function parsePayload(data){
+  if(Array.isArray(data)) return { list:data, weeks:null };
+  if(data && data.records) return { list:flattenGrouped(data.records), weeks:data.weeks || null };
+  return { list:flattenGrouped(data), weeks:null };
 }
 
 function filledCount(r){
@@ -906,10 +965,12 @@ function viewHome(){
 
     /* 本周复盘入口 */
     var rmon = mondayOf(t), rdays = weekRecordedDays(rmon), rv = S.wk[rmon];
+    var rvDone = !!(rv && rv.done);
     s += '<div class="card fade wkentry" style="margin-top:14px">'
-      +  '<div class="txt"><b style="color:var(--ink-800)">本周复盘</b><br>'
-      +  '<span style="color:var(--ink-400)">'+(rdays ? ('这一周记录了 '+rdays+' 天，可以开始本周复盘了') : '这一周还没有记录，先去写几条')+'</span></div>'
-      +  '<button class="btn btn-ghost" style="flex:none" onclick="W.go(\'review\')">'+(rv && rv.updatedAt ? '继续本周复盘' : '开始本周复盘')+'</button>'
+      +  '<div class="txt"><b style="color:var(--ink-800)">本周复盘</b>'
+      +  (rvDone?' <span class="wkst done">✓ 已归档</span>':'')+'<br>'
+      +  '<span style="color:var(--ink-400)">'+(rvDone ? '本周复盘已完成并归档' : (rdays ? ('这一周记录了 '+rdays+' 天，可以开始本周复盘了') : '这一周还没有记录，先去写几条'))+'</span></div>'
+      +  '<button class="btn btn-ghost" style="flex:none" onclick="W.go(\'review\')">'+(rvDone ? '查看' : (rv && rv.updatedAt ? '继续本周复盘' : '开始本周复盘'))+'</button>'
       +  '</div>';
   }else{
     s += '<div class="empty fade"><span class="e">·</span>还没有任何记录<br>写下第一件事，就算开始了</div>';
@@ -1046,15 +1107,40 @@ function wkStepHead(n, title, sub){
   return '<div class="wkstep"><span class="n">'+n+'</span><span class="t">'+title+'</span><span class="s2">'+sub+'</span></div>';
 }
 function wkAbsField(f, r){
+  var v = r.abs[f.k] || '';
   return '<div class="wkfield">'
     +  '<div class="lb"><span class="no">'+f.no+'</span>'+esc(f.label)+'</div>'
     +  '<div class="gd">'+esc(f.guide)+'</div>'
-    +  '<textarea rows="2" placeholder="如实写下就好，写一句也算" oninput="W.wkAbs(\''+f.k+'\',this.value)">'+esc(r.abs[f.k]||'')+'</textarea>'
+    +  (r.done
+        ? '<div class="ro-val">'+(v ? esc(v) : '<span class="dim">未填写</span>')+'</div>'
+        : '<textarea rows="2" placeholder="如实写下就好，写一句也算" oninput="W.wkAbs(\''+f.k+'\',this.value)">'+esc(v)+'</textarea>')
     +  '</div>';
 }
-function wkActInput(i, key, label, val, ph){
+function wkActInput(i, key, label, val, ph, ro){
   return '<div class="f"><label>'+esc(label)+'</label>'
-    +  '<input value="'+esc(val||'')+'" placeholder="'+esc(ph)+'" oninput="W.actSet('+i+',\''+key+'\',this.value)"></div>';
+    +  (ro
+        ? '<div class="ro-val" style="padding:8px 10px">'+((val && String(val).trim()) ? esc(val) : '<span class="dim">—</span>')+'</div>'
+        : '<input value="'+esc(val||'')+'" placeholder="'+esc(ph)+'" oninput="W.actSet('+i+',\''+key+'\',this.value)">')
+    +  '</div>';
+}
+/* 近期周复盘状态条：✓ 已归档 / · 有记录未归档 / 灰 无记录；点击可跳转 */
+function wkHistory(thisMon, cur){
+  var s = '<div class="wkhist"><span class="h">近期</span>';
+  var start = shiftDay(thisMon, -7 * 5);
+  for(var i = 0; i < 6; i++){
+    var m = shiftDay(start, i * 7);
+    var recs = weekRecordedDays(m);
+    var rv = S.wk[m];
+    var done = !!(rv && rv.done);
+    var has = recs > 0 || done;
+    var cls = 'c' + (done ? ' done' : '') + (m === cur ? ' cur' : '') + (has ? '' : ' none');
+    var lbl = (+m.slice(5,7)) + '/' + (+m.slice(8,10)) + (done ? ' ✓' : (recs > 0 ? ' ·' : ''));
+    var tip = dateCN(m) + (done ? ' 已归档' : (recs > 0 ? ' 有记录 · 未归档' : ' 暂无记录'));
+    s += '<button class="' + cls + '" title="' + tip + '"'
+      +  (has ? ' onclick="W.gotoWeek(\'' + m + '\')"' : ' disabled')
+      +  '>' + lbl + '</button>';
+  }
+  return s + '</div>';
 }
 function viewReview(){
   var mon = S.reviewWeek || mondayOf(today());
@@ -1063,15 +1149,15 @@ function viewReview(){
   var ents = weekEntries(mon);
   var r = reviewOf(mon);
   var byId = {}; ents.forEach(function(e){ byId[e.id] = e; });
-  r.focus = r.focus.filter(function(id){ return !!byId[id]; });   // 聚焦项若被删，冷静剔除
+  if(!r.done) r.focus = r.focus.filter(function(id){ return !!byId[id]; });   // 聚焦项若被删则剔除；归档后不再改动已固定的内容
 
   var s = '';
+  var thisMon = mondayOf(today());
   s += '<div class="pghd">'
     +  '<button class="iconbtn" onclick="W.go(\'home\')" title="返回">'
     +  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
-    +  '<div class="ti">本周复盘</div></div>';
+    +  '<div class="ti">周度复盘'+(r.done?' <span class="wkst done">✓ 已归档</span>':'')+'</div></div>';
 
-  var thisMon = mondayOf(today());
   s += '<div class="wkbar">'
     +  '<button class="iconbtn" onclick="W.wkMove(-1)" title="上一周">'
     +  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
@@ -1080,27 +1166,41 @@ function viewReview(){
     +  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>'
     +  '</div>';
 
-  if(!ents.length){
+  /* 近期周复盘状态条：一眼看出哪几周已完成归档 */
+  s += wkHistory(thisMon, mon);
+
+  if(!ents.length && !r.done){
     s += '<div class="empty"><span class="e">·</span>这一周还没有记录<br>先去写几条每日八栏，再回来做周度复盘</div>';
     return s;
   }
 
-  s += '<div class="hint" style="text-align:center;margin:2px 0">周度复盘是基于每日记录的复盘。这一周你记录了 '
-    +  weekRecordedDays(mon) + ' 天、共 ' + ents.length + ' 条。</div>';
+  s += (r.done && !ents.length)
+    ? '<div class="hint" style="text-align:center;margin:2px 0">这一周的每日记录已不在，以下为归档时固定的内容。</div>'
+    : '<div class="hint" style="text-align:center;margin:2px 0">周度复盘是基于每日记录的复盘。这一周你记录了 '
+      +  weekRecordedDays(mon) + ' 天、共 ' + ents.length + ' 条。</div>';
 
   /* 第一步 · 聚焦 */
   s += wkStepHead('第一步', '聚焦', '本周最重要的 3 件事');
   s += '<div class="hint">每天记录 3 件，一周就是 21 件。再从中筛选出 3 件最重要的事件，作为本周的重点。不着急，可以先选、再调整。</div>';
   s += '<div class="wkcount">已聚焦 ' + r.focus.length + ' / 3</div>';
+  var snapF = (r.done && r.snap && r.snap.focus) ? r.snap.focus : null;
   s += '<div class="wkevts">';
-  ents.forEach(function(e){
-    var on = r.focus.indexOf(e.id) >= 0;
-    s += '<button class="wkevt'+(on?' on':'')+'" onclick="W.toggleFocus(\''+e.id+'\')">'
-      +  '<span class="d">'+(+e.date.slice(5,7))+'/'+(+e.date.slice(8,10))+'</span>'
-      +  '<span class="t">'+esc(entryTitle(e))+'</span>'
-      +  (on?'<span class="ck">✓</span>':'')
-      +  '</button>';
-  });
+  if(snapF){
+    snapF.forEach(function(f){
+      s += '<button class="wkevt on" disabled style="cursor:default">'
+        +  '<span class="d">'+(+f.date.slice(5,7))+'/'+(+f.date.slice(8,10))+'</span>'
+        +  '<span class="t">'+esc(f.title)+'</span><span class="ck">✓</span></button>';
+    });
+  }else{
+    ents.forEach(function(e){
+      var on = r.focus.indexOf(e.id) >= 0;
+      s += '<button class="wkevt'+(on?' on':'')+'"'+(r.done?' disabled style="cursor:default"':' onclick="W.toggleFocus(\''+e.id+'\')"')+'>'
+        +  '<span class="d">'+(+e.date.slice(5,7))+'/'+(+e.date.slice(8,10))+'</span>'
+        +  '<span class="t">'+esc(entryTitle(e))+'</span>'
+        +  (on?'<span class="ck">✓</span>':'')
+        +  '</button>';
+    });
+  }
   s += '</div>';
 
   /* 第二步 · 联结 */
@@ -1109,7 +1209,18 @@ function viewReview(){
     s += '<div class="hint">先在上一步选出至少 2 件事，再来寻找它们之间的联结。</div>';
   }else{
     s += '<div class="hint">回顾整周的记录，主动寻找事件之间的联结，并想一想：其中，究竟哪些对我起到了积极的作用？</div>';
-    if(r.links.length){
+    var snapL = (r.done && r.snap && r.snap.links) ? r.snap.links : null;
+    if(snapL && snapL.length){
+      s += '<div style="margin:12px 0">';
+      snapL.forEach(function(l){
+        s += '<div class="wklink">'
+          +  '<span>'+esc(l.a)+'</span>'
+          +  '<span class="ar">'+(l.type==='indirect'?'⇢':'→')+'</span>'
+          +  '<span>'+esc(l.b)+'</span>'
+          +  '<span class="tp">'+esc(LINKTYPES[l.type]||'联结')+'</span></div>';
+      });
+      s += '</div>';
+    }else if(r.links.length){
       s += '<div style="margin:12px 0">';
       r.links.forEach(function(l, i){
         var a = byId[l.a], b = byId[l.b];
@@ -1118,17 +1229,19 @@ function viewReview(){
           +  '<span class="ar">'+(l.type==='indirect'?'⇢':'→')+'</span>'
           +  '<span>'+esc(b?entryTitle(b):'（已删除）')+'</span>'
           +  '<span class="tp">'+esc(LINKTYPES[l.type]||'联结')+'</span>'
-          +  '<button class="rm" onclick="W.delLink('+i+')" title="删除">×</button></div>';
+          +  (r.done?'':'<button class="rm" onclick="W.delLink('+i+')" title="删除">×</button>')+'</div>';
       });
       s += '</div>';
     }
-    var opts = r.focus.map(function(id){ return '<option value="'+id+'">'+esc(entryTitle(byId[id]))+'</option>'; }).join('');
-    s += '<div class="wkadd">'
-      +  '<select id="lk-a">'+opts+'</select>'
-      +  '<select id="lk-type"><option value="direct">直接联结</option><option value="indirect">间接联结</option><option value="odd">奇妙联结</option></select>'
-      +  '<select id="lk-b">'+opts+'</select>'
-      +  '<button class="btn btn-ghost" onclick="W.addLink()">＋ 添加联结</button>'
-      +  '</div>';
+    if(!r.done){
+      var opts = r.focus.map(function(id){ return '<option value="'+id+'">'+esc(entryTitle(byId[id]))+'</option>'; }).join('');
+      s += '<div class="wkadd">'
+        +  '<select id="lk-a">'+opts+'</select>'
+        +  '<select id="lk-type"><option value="direct">直接联结</option><option value="indirect">间接联结</option><option value="odd">奇妙联结</option></select>'
+        +  '<select id="lk-b">'+opts+'</select>'
+        +  '<button class="btn btn-ghost" onclick="W.addLink()">＋ 添加联结</button>'
+        +  '</div>';
+    }
   }
 
   /* 第三步 · 抽象化 */
@@ -1142,27 +1255,37 @@ function viewReview(){
   s += wkStepHead('第四步', '具体化', '把想法变成现在就能做的事');
   s += '<div class="hint">把想法转化为「自己现在立刻就能去做的事情」。行动力强的人，往往都擅长具体化。这里只写你<b>百分百想做的事</b>，不写必须做的待办。</div>';
   if(!r.actions.length)
-    s += '<div class="hint" style="margin:12px 0">还没有行动。点下面的按钮，把本周的发现变成一件具体能做的事。</div>';
+    s += '<div class="hint" style="margin:12px 0">'+(r.done?'这一周没有写下具体行动。':'还没有行动。点下面的按钮，把本周的发现变成一件具体能做的事。')+'</div>';
   r.actions.forEach(function(a, i){
     s += '<div class="wkact" style="margin-top:12px">'
       +  '<div class="hd2"><span class="n">行动 '+(i+1)+'</span>'
-      +  '<button class="rm" onclick="W.delAction('+i+')" title="删除">×</button></div>'
-      +  '<input class="what" value="'+esc(a.what||'')+'" placeholder="要做什么？写到一看就知道怎么开始，例如：找小幡先生聊「如何清晰表达自己的长处」" oninput="W.actSet('+i+',\'what\',this.value)">'
+      +  (r.done?'':'<button class="rm" onclick="W.delAction('+i+')" title="删除">×</button>')+'</div>'
+      +  (r.done
+          ? '<div class="ro-val" style="margin-bottom:8px">'+((a.what && a.what.trim()) ? esc(a.what) : '<span class="dim">未填写</span>')+'</div>'
+          : '<input class="what" value="'+esc(a.what||'')+'" placeholder="要做什么？写到一看就知道怎么开始，例如：找小幡先生聊「如何清晰表达自己的长处」" oninput="W.actSet('+i+',\'what\',this.value)">')
       +  '<div class="cols">'
-      +    wkActInput(i,'when','When 何时',a.when,'下周一晚')
-      +    wkActInput(i,'where','Where 何地',a.where,'公司会议室')
-      +    wkActInput(i,'who','Who 和谁',a.who,'小幡先生')
-      +    wkActInput(i,'how','How 怎么做',a.how,'先列 3 个想请教的点')
-      +    wkActInput(i,'much','How much 预算',a.much,'不花钱 / 约 200 元')
+      +    wkActInput(i,'when','When 何时',a.when,'下周一晚',r.done)
+      +    wkActInput(i,'where','Where 何地',a.where,'公司会议室',r.done)
+      +    wkActInput(i,'who','Who 和谁',a.who,'小幡先生',r.done)
+      +    wkActInput(i,'how','How 怎么做',a.how,'先列 3 个想请教的点',r.done)
+      +    wkActInput(i,'much','How much 预算',a.much,'不花钱 / 约 200 元',r.done)
       +  '</div></div>';
   });
-  s += '<div style="margin-top:6px"><button class="btn btn-ghost" onclick="W.addAction()">＋ 添加一条行动</button></div>';
+  if(!r.done) s += '<div style="margin-top:6px"><button class="btn btn-ghost" onclick="W.addAction()">＋ 添加一条行动</button></div>';
 
-  /* 保存 */
-  s += '<div class="wksave">'
-    +  '<button class="btn btn-pri btn-lg" onclick="W.saveReview()">保存本周复盘</button>'
-    +  '<div class="hint">'+(r.updatedAt?('上次保存：'+new Date(r.updatedAt).toLocaleString('zh-CN')):'边写会自动存好')+'</div>'
-    +  '</div>';
+  /* 保存 / 归档 */
+  if(r.done){
+    s += '<div class="wksave">'
+      +  '<div class="wklock">✓ 本周复盘已于 '+(r.doneAt?new Date(r.doneAt).toLocaleString('zh-CN'):'—')+' 归档，内容已固定</div>'
+      +  '<button class="btn btn-ghost" onclick="W.unarchiveReview()">继续编辑这一周</button>'
+      +  '</div>';
+  }else{
+    s += '<div class="wksave">'
+      +  '<button class="btn btn-pri btn-lg" onclick="W.archiveReview()">完成并归档这一周</button>'
+      +  '<button class="btn btn-txt" onclick="W.saveReview()">仅保存（继续留作草稿）</button>'
+      +  '<div class="hint">'+(r.updatedAt?('上次保存：'+new Date(r.updatedAt).toLocaleString('zh-CN')):'边写会自动存好')+' · 归档后只读，随时可「继续编辑」</div>'
+      +  '</div>';
+  }
   return s;
 }
 
@@ -1365,15 +1488,15 @@ function viewSettings(){
     +  '<button class="btn btn-ghost" onclick="W.ghTest()">测试连接</button>'
     +  '<button class="btn btn-ghost" onclick="W.ghPull(1)">从云端拉取</button>'
     +  '<button class="btn btn-pri" onclick="W.ghPush()">立即推送到云端</button></div>'
-    +  '<div class="hint" style="margin-top:10px">token 需要勾选 repo 权限。填好后每次保存都会自动回推，换设备打开网页拉取一次即可接上。</div>'
+    +  '<div class="hint" style="margin-top:10px">token 需要勾选 repo 权限。填好后每次保存都会自动回推（每日记录与周复盘一起），换设备打开网页拉取一次即可接上。</div>'
     +  '</div>';
 
   s += '<div class="card set-sec"><h3>数据备份</h3>'
-    +  '<div class="hint" style="margin-bottom:12px">当前共 '+allEntries().length+' 条记录，覆盖 '+recordedDays().length+' 天，占用约 '+size+' KB</div>'
+    +  '<div class="hint" style="margin-bottom:12px">当前共 '+allEntries().length+' 条记录，覆盖 '+recordedDays().length+' 天，另有 '+Object.keys(S.wk).length+' 周复盘，占用约 '+size+' KB</div>'
     +  '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;'
     +  'background:var(--paper-2);border-radius:var(--r);padding:10px 14px;margin-bottom:12px">'
     +  '<div style="font-size:13px;line-height:1.7"><b style="color:var(--ink-800)">每周日自动备份（本地）</b><br>'
-    +  '<span style="color:var(--ink-400)">每周日打开时，自动下载一份<b>全部历史记录</b>的 json。<br>'
+    +  '<span style="color:var(--ink-400)">每周日打开时，自动下载一份<b>全部历史记录 + 周复盘</b>的 json。<br>'
     +  (S.prefs.lastAutoBackup ? '上次备份：'+S.prefs.lastAutoBackup+' 所在周' : '本周还未备份')+'</span></div>'
     +  '<button class="btn '+(S.prefs.autoBackup?'btn-pri':'btn-ghost')+'" onclick="W.toggleAutoBackup()" style="flex:none">'
     +  (S.prefs.autoBackup ? '开启中' : '已暂停')+'</button></div>'
@@ -1384,7 +1507,7 @@ function viewSettings(){
     +  '<button class="btn btn-ghost" onclick="W.askClear()">清空全部记录</button>'
     +  '</div>'
     +  '<div class="hint" style="margin-top:10px">'
-    +  '自动备份会在<u>每周日打开页面时</u>下载一次，导出的是<b>全部历史记录</b>（不是某一天），'
+    +  '自动备份会在<u>每周日打开页面时</u>下载一次，导出的是<b>全部历史记录 + 周复盘</b>（不是某一天），'
     +  '文件名带当天日期仅用于区分版本。若周日没打开，本周不补（避免打扰）。'
     +  '浏览器默认会询问一次"允许下载"，勾选"总是允许"后即自动。'
     +  '数据不丢的最稳组合：<b>每周日本地全量备份 + GitHub 云同步</b>双保险。</div>'
@@ -1557,6 +1680,44 @@ W.saveReview = function(){
   saveWk();
   toast('本周复盘已保存');
 };
+/* 归档：把这一周的复盘「固定」下来（只读），并留下一份快照，便于日后回看 */
+W.archiveReview = function(){
+  var mon = S.reviewWeek || mondayOf(today());
+  var r = reviewOf(mon);
+  if(!(r.focus.length || r.links.length || r.actions.length || Object.keys(r.abs).length)){
+    toast('这一周还没写内容，先写一点再归档');
+    return;
+  }
+  var byId = {}; weekEntries(mon).forEach(function(e){ byId[e.id] = e; });
+  r.snap = {
+    at: Date.now(),
+    week: mon,
+    focus: r.focus.map(function(id){ var e = byId[id]; return e ? { date:e.date, title:entryTitle(e) } : null; }).filter(Boolean),
+    links: r.links.map(function(l){
+      var a = byId[l.a], b = byId[l.b];
+      return { a:a?entryTitle(a):'（已删除）', b:b?entryTitle(b):'（已删除）', type:l.type };
+    }),
+    abs: JSON.parse(JSON.stringify(r.abs || {})),
+    actions: JSON.parse(JSON.stringify(r.actions || []))
+  };
+  r.done = true;
+  r.doneAt = Date.now();
+  r.updatedAt = r.doneAt;
+  saveWk();
+  toast('已归档：这一周的复盘固定下来了');
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+/* 解除归档：改回草稿状态，可继续编辑 */
+W.unarchiveReview = function(){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  r.done = false;
+  r.updatedAt = Date.now();
+  saveWk();
+  toast('已解除归档，可以继续编辑');
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+/* 跳到某一周的复盘 */
+W.gotoWeek = function(m){ S.reviewWeek = m; S.wkAdv = false; S.page = 'review'; render(); window.scrollTo({ top:0 }); };
 
 W.toggleTheme = function(){ W.setTheme(S.prefs.theme==='dark' ? 'light' : 'dark'); };
 W.setTheme = function(t){
@@ -1795,19 +1956,29 @@ W.ghPull = function(silent){
     .then(function(r){ if(r.status===404) return null; if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(j){
       if(!j || !j.content) return;
-      var remote = JSON.parse(unb64(j.content));
+      var p = parsePayload(JSON.parse(unb64(j.content)));
       S.gh.sha = j.sha;
-      var list = Array.isArray(remote) ? remote : flattenGrouped(remote);
-      var res = mergeEntries(list);
-      saveRecords();
-      if(!silent){ toast('已拉取：新增 '+res.added+' 条，更新 '+res.upd+' 条'); render(); }
+      S._pulling = true;                    /* 合并期间禁止回推，避免与云端来回打架 */
+      var res, ws;
+      try{
+        res = mergeEntries(p.list);
+        ws = p.weeks ? mergeWeeks(p.weeks) : { added:0, upd:0 };
+        saveRecords();
+        if(ws.added || ws.upd) saveWk();
+      } finally { S._pulling = false; }
+      if(!silent){
+        var msg = '已拉取：记录 新增 '+res.added+' 条、更新 '+res.upd+' 条';
+        if(ws.added || ws.upd) msg += '｜周复盘 新增 '+ws.added+' 周、更新 '+ws.upd+' 周';
+        toast(msg); render();
+      }
     })
     .catch(function(e){ if(!silent) toast('拉取失败：'+e.message); });
 };
 W.ghPush = function(silent){
   if(!ghReady()) return Promise.resolve();
+  var payload = { v:2, updatedAt:Date.now(), records:allEntries(), weeks:S.wk };
   var body = { message:'review: '+today()+' 更新', content:b64(JSON.stringify(
-      allEntries(), null, 2)),
+      payload, null, 2)),
       branch:S.gh.branch||'main' };
   if(S.gh.sha) body.sha = S.gh.sha;
   return fetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
@@ -1830,7 +2001,8 @@ W.ghPush = function(silent){
    文件名带当天日期仅用于区分备份版本。 */
 function downloadJSON(silent){
   var data = allEntries();
-  var blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  var payload = { v:2, exportedAt:Date.now(), records:data, weeks:S.wk };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = '观自在_全量备份_' + today().replace(/-/g,'') + '.json';
@@ -1838,7 +2010,7 @@ function downloadJSON(silent){
   setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   S.prefs.lastExport = Date.now();
   lsSet(K.prefs, S.prefs);
-  if(!silent) toast('已导出全部 '+data.length+' 条记录');
+  if(!silent) toast('已导出全部 '+data.length+' 条记录、'+Object.keys(S.wk).length+' 周复盘');
   return true;
 }
 W.exportJSON = function(){ downloadJSON(false); };
@@ -1871,11 +2043,12 @@ W.importJSON = function(input){
   var fr = new FileReader();
   fr.onload = function(){
     try{
-      var data = JSON.parse(fr.result);
-      var list = Array.isArray(data) ? data : flattenGrouped(data);
-      var res = mergeEntries(list);
+      var p = parsePayload(JSON.parse(fr.result));
+      var res = mergeEntries(p.list);
+      var ws = p.weeks ? mergeWeeks(p.weeks) : { added:0, upd:0 };
       saveRecords();
-      toast('已导入 '+res.added+' 条，更新 '+res.upd+' 条');
+      if(ws.added || ws.upd) saveWk();
+      toast('已导入记录 '+res.added+' 条、更新 '+res.upd+' 条' + ((ws.added||ws.upd) ? '；周复盘 新增 '+ws.added+' 周、更新 '+ws.upd+' 周' : ''));
       render();
     }catch(e){ toast('这个文件读不出来，换一个备份文件试试'); }
     input.value = '';
@@ -1886,8 +2059,10 @@ W.restoreBackup = function(){
   var bak = lsGet(K.bak, null);
   if(!bak || !bak.records){ toast('没有可用的备份'); return; }
   S.records = normalizeAll(bak.records);
+  if(bak.weeks && typeof bak.weeks === 'object') S.wk = bak.weeks;
   S.entryId = null;
   saveRecords();
+  saveWk();
   toast('已恢复到 '+new Date(bak.at).toLocaleString('zh-CN')+' 的状态');
   render();
 };
