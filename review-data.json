@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1789913521715,
+  "updatedAt": 1789913539954,
   "records": [
     {
       "id": "1788318521114.329",
@@ -566,9 +566,11 @@
           "type": "direct"
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "g"
+      },
       "actions": [],
-      "updatedAt": 1789913520213,
+      "updatedAt": 1789913539822,
       "done": false,
       "doneAt": 0,
       "snap": null
