@@ -425,6 +425,8 @@ a{color:var(--pri);text-decoration:none}
 .ro-val .dim{color:var(--ink-300)}
 .wkhist{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 var(--sp-4);
   padding-top:var(--sp-3);border-top:1px solid var(--line-soft)}
+/* 仅「回看」页那条整行居中；「复盘」页的「近期」条保持左对齐 */
+.wkhist.center{justify-content:center}
 .wkhist .h{font-size:var(--fs-xs);color:var(--ink-400);margin-right:2px}
 .wkhist .c{font-size:var(--fs-xs);border:1px solid var(--line);border-radius:999px;padding:3px 9px;
   color:var(--ink-400);cursor:pointer;transition:.2s var(--ease);background:var(--surface);font-family:inherit}
@@ -1151,7 +1153,7 @@ function wkMonthBar(y, m){
   var firstStr = ymd(new Date(y, m-1, 1));
   var lastStr  = ymd(new Date(y, m, 0));
   var mon = mondayOf(firstStr), any = false;
-  var out = '<div class="wkhist"><span class="h">周复盘</span>';
+  var out = '<div class="wkhist center"><span class="h">周复盘</span>';
   while(mon <= lastStr){
     var sun = shiftDay(mon, 6);
     var rv = S.wk[mon], done = !!(rv && rv.done), recs = weekRecordedDays(mon);
