@@ -219,7 +219,7 @@ a{color:var(--pri);text-decoration:none}
 .calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .calgrid .wd{text-align:center;font-size:var(--fs-xs);color:var(--ink-400);
   padding-bottom:var(--sp-1);font-weight:500;letter-spacing:.04em}
-.cel{aspect-ratio:1/1;max-height:52px;border-radius:var(--r-sm);display:flex;flex-direction:column;
+.cel{position:relative;aspect-ratio:1/1;max-height:52px;border-radius:var(--r-sm);display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:3px;font-size:13px;font-weight:500;
   color:var(--ink-600);transition:.22s var(--ease);border:1px solid transparent}
 .cel:hover:not(.dis){background:var(--paper-2);color:var(--ink-900)}
@@ -232,6 +232,10 @@ a{color:var(--pri);text-decoration:none}
 .cel .mk.l3{background:var(--pri);opacity:.82}
 .cel .mk.l4{background:var(--pri)}
 .cel .dd{line-height:1}
+/* 周复盘金色小点：实心=已归档，空心=有内容未归档 */
+.cel .wmk{position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.cel .wmk.draft{background:transparent;border:1.5px solid var(--acc);opacity:.7}
+.cel.dis .wmk{opacity:.35}
 .overview{margin-top:var(--sp-5);padding:var(--sp-4) var(--sp-4);border-radius:var(--r-md);
   background:var(--paper-2);font-size:var(--fs-sm);color:var(--ink-600);line-height:1.75;
   border:1px solid var(--line-soft)}
@@ -1418,9 +1422,10 @@ function viewCalMonth(y, m){
     cells += '<div class="cel dis"><span class="dd">'+(prevM.getDate()-i)+'</span></div>';
   }
   for(var d=1; d<=days; d++){
-    var ds = ymd(new Date(y, m-1, d));
+    var dObj = new Date(y, m-1, d);
+    var ds = ymd(dObj);
     var list = doneEntries(ds);
-    var mk = '', cls = 'cel';
+    var mk = '', cls = 'cel', wmark = '';
     if(list.length){
       var sum = 0;
       list.forEach(function(e){
@@ -1432,10 +1437,17 @@ function viewCalMonth(y, m){
       mk = '<span class="mk l'+(avg<=2?2:avg<=4?3:4)+'"></span>';
       if(list.length > 1) mk += '<span class="cnum">'+list.length+'</span>';
     }
+    /* 周复盘金色小点，标在该周周日：实心=已归档，空心=有内容未归档 */
+    if(dObj.getDay() === 0){
+      var rv = S.wk[mondayOf(ds)];
+      if(rv && rv.done) wmark = '<span class="wmk" title="本周复盘已归档"></span>';
+      else if(rv && (rv.focus.length || rv.links.length || rv.actions.length || Object.keys(rv.abs||{}).length))
+        wmark = '<span class="wmk draft" title="本周复盘未归档"></span>';
+    }
     if(ds===t) cls += ' today';
     if(ds>t) cls += ' dis';
     cells += '<div class="'+cls+'" '+(ds>t?'':'onclick="W.openDay(\''+ds+'\')"')+'>'
-      +  '<span class="dd">'+d+'</span>'+mk+'</div>';
+      +  '<span class="dd">'+d+'</span>'+mk+wmark+'</div>';
   }
   var kws = Object.keys(kw).sort(function(a,b){ return kw[b]-kw[a]; }).slice(0,6);
 
