@@ -1142,6 +1142,25 @@ function wkHistory(thisMon, cur){
   }
   return s + '</div>';
 }
+/* 回看（月历/清单）页顶部：本月各周的周复盘状态，点击直接进入那一周 */
+function wkMonthBar(y, m){
+  var firstStr = ymd(new Date(y, m-1, 1));
+  var lastStr  = ymd(new Date(y, m, 0));
+  var mon = mondayOf(firstStr), any = false;
+  var out = '<div class="wkhist"><span class="h">周复盘</span>';
+  while(mon <= lastStr){
+    var sun = shiftDay(mon, 6);
+    var rv = S.wk[mon], done = !!(rv && rv.done), recs = weekRecordedDays(mon);
+    if(sun >= firstStr && (done || recs > 0)){
+      any = true;
+      var lbl = (+mon.slice(5,7)) + '/' + (+mon.slice(8,10)) + '–' + (+sun.slice(5,7)) + '/' + (+sun.slice(8,10)) + (done ? ' ✓' : ' ·');
+      var tip = dateCN(mon) + ' — ' + dateCN(sun) + (done ? ' 已归档' : ' 有记录 · 未归档');
+      out += '<button class="c' + (done?' done':'') + '" title="' + tip + '" onclick="W.gotoWeek(\'' + mon + '\')">' + lbl + '</button>';
+    }
+    mon = shiftDay(mon, 7);
+  }
+  return any ? out + '</div>' : '';
+}
 function viewReview(){
   var mon = S.reviewWeek || mondayOf(today());
   S.reviewWeek = mon;
@@ -1308,6 +1327,8 @@ function viewCalendar(){
     +  '<button class="'+(S.calView==='list'?'on':'')+'" onclick="W.calView(\'list\')">清单</button>'
     +  '</div></div>';
   s += '</div>';
+
+  s += wkMonthBar(y, m);                       /* 本月各周的周复盘归档状态，点击进入 */
 
   s += S.calView==='list' ? viewCalList(y, m) : viewCalMonth(y, m);
   return s;
