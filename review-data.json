@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790730035758,
+  "updatedAt": 1790739924158,
   "records": [
     {
       "id": "1788318521114.329",
@@ -718,6 +718,22 @@
       "thoughts": "我很难过又无助，但是没有办法做什么，醒来了以后默默想了好一会，后面又睡着了",
       "action": "我没做什么，只是发现我更放下了一点执念，知道朋友的状态是最好的",
       "result": "没有什么结果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "munefh8auq0k0",
+      "date": "2026-09-29",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1790730043761,
+      "updatedAt": 1790739924155,
+      "event": "忙工作，偶尔跟朋友唠唠嗑",
+      "thoughts": "感觉很平静，回到了一开始一个人的状态了",
+      "action": "虽然加班，晚上还是有自己做饭，坚持运动一下，看会书",
+      "result": "早上差点没起来，但是晚上睡得很好很香，而且体重也下来了，人精神好多了",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
