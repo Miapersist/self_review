@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790739924158,
+  "updatedAt": 1790740200858,
   "records": [
     {
       "id": "1788318521114.329",
@@ -750,6 +750,25 @@
       "thoughts": "心酸，想念，害，有点小小的感伤",
       "action": "看了看之前拍的照片，就让这个情绪慢慢的流过",
       "result": "无",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "munkeivdlylkk",
+      "date": "2026-09-30",
+      "emotions": [
+        "不安",
+        "厌烦"
+      ],
+      "isDraft": false,
+      "createdAt": 1790740075930,
+      "updatedAt": 1790740200856,
+      "event": "今天是放假前的一天，但是我国庆的安排还没怎么做，也没什么乐子，有点无聊",
+      "thoughts": "有一点空虚、不安、厌烦，感觉是一种待定的状态",
+      "action": "找朋友聊天，问问有什么好玩的事",
+      "result": "然后得到了有酒鬼+美林那边的暴打柠檬茶活动，打算安排一下10.3；今天还是可以盘点一下要做什么（看todolist）",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
