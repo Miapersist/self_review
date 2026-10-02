@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790933505938,
+  "updatedAt": 1790933571934,
   "records": [
     {
       "id": "1788318521114.329",
@@ -963,9 +963,11 @@
         "muku3sx2de81z"
       ],
       "links": [],
-      "abs": {},
+      "abs": {
+        "state": "疲惫"
+      },
       "actions": [],
-      "updatedAt": 1790933504436,
+      "updatedAt": 1790933569631,
       "done": false,
       "doneAt": 0,
       "snap": null
