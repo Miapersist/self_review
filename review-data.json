@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790933477255,
+  "updatedAt": 1790933487455,
   "records": [
     {
       "id": "1788318521114.329",
@@ -958,13 +958,12 @@
     },
     "2026-09-21": {
       "focus": [
-        "mudvrrfeyc42m",
         "mudj8ovt30z1n"
       ],
       "links": [],
       "abs": {},
       "actions": [],
-      "updatedAt": 1790933475753,
+      "updatedAt": 1790933485953,
       "done": false,
       "doneAt": 0,
       "snap": null
