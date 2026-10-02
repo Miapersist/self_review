@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790933571934,
+  "updatedAt": 1790933585812,
   "records": [
     {
       "id": "1788318521114.329",
@@ -964,10 +964,11 @@
       ],
       "links": [],
       "abs": {
-        "state": "疲惫"
+        "state": "疲惫",
+        "care": "最在意的事情，1是喜欢的人，2是我的工作"
       },
       "actions": [],
-      "updatedAt": 1790933569631,
+      "updatedAt": 1790933583509,
       "done": false,
       "doneAt": 0,
       "snap": null
