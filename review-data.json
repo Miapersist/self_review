@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1790740200858,
+  "updatedAt": 1790932226149,
   "records": [
     {
       "id": "1788318521114.329",
@@ -769,6 +769,22 @@
       "thoughts": "有一点空虚、不安、厌烦，感觉是一种待定的状态",
       "action": "找朋友聊天，问问有什么好玩的事",
       "result": "然后得到了有酒鬼+美林那边的暴打柠檬茶活动，打算安排一下10.3；今天还是可以盘点一下要做什么（看todolist）",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "muqqra7sl1nid",
+      "date": "2026-10-01",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1790932150169,
+      "updatedAt": 1790932226142,
+      "event": "今天来姨妈了",
+      "thoughts": "说实话有点沮丧，好不容易放假，本来要去运动，结果来姨妈只能在家好好休息了",
+      "action": "居然如此，既来之则安之，我直接在家补觉休息",
+      "result": "吃得克制一些 体重也还是恢复到了53.3",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
