@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1791009471415,
+  "updatedAt": 1791009543621,
   "records": [
     {
       "id": "1788318521114.329",
@@ -869,6 +869,22 @@
       "thoughts": "有一点点烦躁",
       "action": "我很快消化了一下，打字拒绝了，告诉他我说了不去就是不去，不需要一而再再而三的试探，希望他们玩的开心，我要玩也是自己玩",
       "result": "没带来什么结果，他们俩今天去贵州玩得也不错，一开始割离他们肯定会难受，但是不能心软，这是我跟他们的边界",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mus0swtbnqg0z",
+      "date": "2026-10-03",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1791009485254,
+      "updatedAt": 1791009543614,
+      "event": "在黄埔公园散步吹风",
+      "thoughts": "风吹着的时候很平静",
+      "action": "感受平静和拍照",
+      "result": "感觉人从能量很低的状态下稍微恢复了一点",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
