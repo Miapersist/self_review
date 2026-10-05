@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1791009543621,
+  "updatedAt": 1791179275558,
   "records": [
     {
       "id": "1788318521114.329",
@@ -885,6 +885,24 @@
       "thoughts": "风吹着的时候很平静",
       "action": "感受平静和拍照",
       "result": "感觉人从能量很低的状态下稍微恢复了一点",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "muutudiqccu5y",
+      "date": "2026-10-05",
+      "emotions": [
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1791179211231,
+      "updatedAt": 1791179275551,
+      "event": "在家做了一份蚝烙和看了一会书",
+      "thoughts": "平静、幸福不知从何而起；有一些担忧",
+      "action": "准备更新我的复习计划，把复习指向考试分数而不是只是看视频",
+      "result": "无",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
