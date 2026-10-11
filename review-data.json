@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1791616431678,
+  "updatedAt": 1791695370627,
   "records": [
     {
       "id": "1788318521114.329",
@@ -969,6 +969,24 @@
       "thoughts": "很舒服，很平静",
       "action": "很自然地分享了一张开车照给大柠",
       "result": "聊了两句，然后就去忙碌一早上的工作了",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mv3d2ll9b2r0a",
+      "date": "2026-10-11",
+      "emotions": [
+        "悲痛"
+      ],
+      "isDraft": false,
+      "createdAt": 1791695221668,
+      "updatedAt": 1791695370623,
+      "event": "感情烦恼和工作上越来越多的待办内容和考试特别多事情都压过来",
+      "thoughts": "悲痛",
+      "action": "边干着事情，抽空去图书馆楼下抽了点烟和哭了一会，然后去吃了个饭，回来继续干；然后把感情里的烦恼轻轻地表达给了对方。",
+      "result": "不知道，但是我现在要继续一条条把事情做完，只要做总能做完的不是吗？",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
