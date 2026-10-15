@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1791695370627,
+  "updatedAt": 1792029157731,
   "records": [
     {
       "id": "1788318521114.329",
@@ -987,6 +987,38 @@
       "thoughts": "悲痛",
       "action": "边干着事情，抽空去图书馆楼下抽了点烟和哭了一会，然后去吃了个饭，回来继续干；然后把感情里的烦恼轻轻地表达给了对方。",
       "result": "不知道，但是我现在要继续一条条把事情做完，只要做总能做完的不是吗？",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mv7tq2677fl2w",
+      "date": "2026-10-13",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1791965058724,
+      "updatedAt": 1791965070898,
+      "event": "累到极致，大脑疲惫得转不动",
+      "thoughts": "只想睡觉",
+      "action": "吃完了han b b",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mv8vu00mqwls4",
+      "date": "2026-10-14",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1792029072392,
+      "updatedAt": 1792029157725,
+      "event": "昨天晚上收拾打扫了一下家里，没有怎么想其他事情，主动的休息和屏蔽了消息",
+      "thoughts": "平静，好舒服，工作太多了终于有时间平静下来了",
+      "action": "早早睡觉了，第二天再晾衣服",
+      "result": "早上起来感觉很舒服，困困的但是还是舒服",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
