@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792042290560,
+  "updatedAt": 1792302089702,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1067,6 +1067,22 @@
       "thoughts": "疲惫",
       "action": "淡淡的，但是还是跟大柠解释了一下",
       "result": "淡淡地回了我",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvdeapetb1nl4",
+      "date": "2026-10-18",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1792301943300,
+      "updatedAt": 1792302089696,
+      "event": "今天来图书馆看书了，昨天晚上在家里看书看得我整个人状态极差，在不停地责怪自己",
+      "thoughts": "很开心",
+      "action": "看书前走了走旁边的小河，遇到一只小狗跟主人聊了一会，说9岁之后花钱就开始多起来了，而且买保险居然还要鼻纹；然后很平静，更加专注于自己了",
+      "result": "减少了自己的内耗，我还是得出来、跟大自然交互，才能补充能量，集中注意",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
