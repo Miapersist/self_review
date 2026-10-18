@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792302089702,
+  "updatedAt": 1792302177129,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1067,6 +1067,22 @@
       "thoughts": "疲惫",
       "action": "淡淡的，但是还是跟大柠解释了一下",
       "result": "淡淡地回了我",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvdee1ob7t8bw",
+      "date": "2026-10-17",
+      "emotions": [],
+      "isDraft": false,
+      "createdAt": 1792302095726,
+      "updatedAt": 1792302177127,
+      "event": "白天自己做了午餐，睡得很舒服",
+      "thoughts": "感觉好舒服，久违地自己的无所事事的好时光",
+      "action": "就安静休息",
+      "result": "但是最后因为没抓紧时间复习，最后晚上看了一套题，发现自己错了可多，焦虑得很。。。顺便跟小叮一起吐槽了这垃圾的世界",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
