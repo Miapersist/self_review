@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792467752088,
+  "updatedAt": 1792467883086,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1118,6 +1118,24 @@
       "thoughts": "厌恶、愤怒",
       "action": "起来回了个消息，听了一会课，真恶心，感觉走在路上花也不香了草也不绿了😓",
       "result": "结果就是我复习效率挺差的",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvg50qc18ei8p",
+      "date": "2026-10-20",
+      "emotions": [
+        "伤感"
+      ],
+      "isDraft": false,
+      "createdAt": 1792467758331,
+      "updatedAt": 1792467883084,
+      "event": "今天实在是因为考试、工作各种事情压的我受不了，",
+      "thoughts": "释然、伤感",
+      "action": "然后发了个朋友圈，也把之前一直憋着的想法给大柠说了",
+      "result": "朋友们都来安慰我，我也收获了一些能量，大柠又不说话发表情包，随她的便，那就投入降级，谁也别鸟谁，没这闲功夫陪她玩",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
