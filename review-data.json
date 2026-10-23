@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792724376705,
+  "updatedAt": 1792724966787,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1244,6 +1244,24 @@
       "nextAction": "",
       "nextResult": "",
       "selfDiscovery": ""
+    },
+    {
+      "id": "mvke466sxfvmu",
+      "date": "2026-10-22",
+      "emotions": [
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1792724909954,
+      "updatedAt": 1792724966783,
+      "event": "工作时间专心的梳理工作流，感觉进入了心流状态，好爽",
+      "thoughts": "平静",
+      "action": "没看手机和微信，安静和平和",
+      "result": "专心的感觉让人久违的开心，思路也清晰了一些",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
     }
   ],
   "weeks": {
@@ -1454,6 +1472,16 @@
       }
     },
     "2026-09-28": {
+      "focus": [],
+      "links": [],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 0,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-19": {
       "focus": [],
       "links": [],
       "abs": {},
