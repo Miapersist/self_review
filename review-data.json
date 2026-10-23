@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792724134793,
+  "updatedAt": 1792724224089,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1204,6 +1204,24 @@
       "thoughts": "平静",
       "action": "正常工作，跟朋友聊天，稍微学习了一点，然后自己刷手机，12点前睡觉",
       "result": "带来的结果就是感觉无事一身轻",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvkdnwgbi35bs",
+      "date": "2026-10-22",
+      "emotions": [
+        "不安"
+      ],
+      "isDraft": false,
+      "createdAt": 1792724139841,
+      "updatedAt": 1792724224087,
+      "event": "晚上的时候一个人出门散步，看到昏暗的路灯和干爽舒适的天气，真的是有涌起了情绪",
+      "thoughts": "不安",
+      "action": "我害怕又走回老路子，忍不住自己的行为发给别人，所以跟朋友和考试搭子说了一会话，熬过去了",
+      "result": "无事发生，就这么慢慢地淡下来",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
