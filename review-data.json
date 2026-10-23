@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792631182182,
+  "updatedAt": 1792724134793,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1170,6 +1170,40 @@
       "thoughts": "惊讶，我以为我的状态还好，但是实际并不是，原来焦虑的状态已经外显到烟抽多那么多我都没意识到",
       "action": "晚上洗澡洗头，把这些东西洗干净，然后睡个大觉\n最近少抽点吧，考完戒烟一天一根",
       "result": "第二天天气很好，但是有点睡晚了，而且我的排插好像有问题，导致我的冰箱一直嘀嗒漏水。。。晚上回去看看冰箱里的东西还好不",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mviubsdqle5hh",
+      "date": "2026-10-21",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1792631215745,
+      "updatedAt": 1792724054719,
+      "event": "没看书，晚上在刷手机",
+      "thoughts": "说实话有点内疚，但是看手机又让我觉得终于可以放松了",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvkdm80f9ig7e",
+      "date": "2026-10-22",
+      "emotions": [
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1792724066389,
+      "updatedAt": 1792724134787,
+      "event": "白天的时候感觉很平静，回归一个人专注的时刻了",
+      "thoughts": "平静",
+      "action": "正常工作，跟朋友聊天，稍微学习了一点，然后自己刷手机，12点前睡觉",
+      "result": "带来的结果就是感觉无事一身轻",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
