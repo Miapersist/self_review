@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792977401161,
+  "updatedAt": 1792977481275,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1310,6 +1310,24 @@
       "thoughts": "狂喜，真的是感觉pstd都要出来",
       "action": "打车、跟搭子聊一下题目、匆匆想着回家吃点喝点睡大觉",
       "result": "买了份麻辣烫+买了点酒，然后回去就看点不带脑子的电影（哥斯拉），搞完就睡了一觉",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvokga5fjzag8",
+      "date": "2026-10-24",
+      "emotions": [
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1792977410616,
+      "updatedAt": 1792977481273,
+      "event": "睡醒之后起来把家里收拾了一趟，干到4点多",
+      "thoughts": "平静，感觉家里被收干净，该丢的丢，该整理的整理了那种感觉好爽",
+      "action": "收拾完之后洗洗澡睡觉",
+      "result": "感觉挺舒服的，带来的结果就是自己心里和眼里都干净，爽",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
