@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1793067077344,
+  "updatedAt": 1793067238325,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1380,6 +1380,24 @@
       "thoughts": "平静",
       "action": "自己静静地走，拍拍照，舒服",
       "result": "没有什么结果，就是感受到很安静很舒服",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvq1uey7lefqh",
+      "date": "2026-10-27",
+      "emotions": [
+        "关注"
+      ],
+      "isDraft": false,
+      "createdAt": 1793067086634,
+      "updatedAt": 1793067238324,
+      "event": "早上看了一个视频，讲的是两种不同形态的思维状态，有点对号入座那意思",
+      "thoughts": "我当时关注到了想发给晟哲，但是忍住了，有点带judge意味不是？",
+      "action": "什么都没做，收藏起来了，这是留给自己的指示而已，不要发给其他人",
+      "result": "没有什么结果，克制住了没必要的分享就很好",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
