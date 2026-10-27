@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1793086996195,
+  "updatedAt": 1793087132360,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1432,6 +1432,24 @@
       "thoughts": "平静",
       "action": "",
       "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvqdp9wv54rpj",
+      "date": "2026-10-27",
+      "emotions": [
+        "信任"
+      ],
+      "isDraft": false,
+      "createdAt": 1793087007150,
+      "updatedAt": 1793087132357,
+      "event": "今天找姐夫聊天，问了一下工资的事情怎么办，之后说了下我最近的感受就是害怕也要前行，姐夫回复我不要害怕，他每天也很痛苦",
+      "thoughts": "信任，第一次看到姐夫也会暴露脆弱的一小面，果然成年人没有容易，都是硬抗",
+      "action": "我回复了姐夫让他照顾身体，这个不是什么大事",
+      "result": "没什么结果，就是感叹一下，自己就算痛苦也不要害怕，往前走就行了",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
