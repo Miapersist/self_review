@@ -1,6 +1,6 @@
 {
   "v": 2,
-  "updatedAt": 1792977481275,
+  "updatedAt": 1793066991553,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1332,6 +1332,40 @@
       "nextAction": "",
       "nextResult": "",
       "selfDiscovery": ""
+    },
+    {
+      "id": "mvoki1g3qtk9g",
+      "date": "2026-10-25",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1792977489069,
+      "updatedAt": 1793066858164,
+      "event": "早上",
+      "thoughts": "",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvq1pq4i1webt",
+      "date": "2026-10-26",
+      "emotions": [
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1793066871911,
+      "updatedAt": 1793066991544,
+      "event": "平静地开启新的一周，天气正好凉爽，心情也淡淡的",
+      "thoughts": "平静",
+      "action": "早上晒晒太阳，然后安心工作，晚上洗衣服晾衣服，散散步聊聊天，吃吃好吃的，玩玩手机，结束美好的一天",
+      "result": "感觉淡淡的，挺好的，虽然偶尔还是会想一些消极的片段或幻想，但是意识到是想象并且解离出来就好些了，然后想想更多小的幸福即可",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
     }
   ],
   "weeks": {
@@ -1552,6 +1586,16 @@
       "snap": null
     },
     "2026-10-19": {
+      "focus": [],
+      "links": [],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 0,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-26": {
       "focus": [],
       "links": [],
       "abs": {},
