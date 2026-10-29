@@ -481,8 +481,9 @@ a{color:var(--pri);text-decoration:none}
 .fcard{min-width:0}
 
 /* ============ 情绪标记：块区 / 快速行 / 释义区 / 弹窗 ============ */
-.fcedit{min-height:104px;white-space:pre-wrap;word-break:break-word;line-height:2}
-.fcedit.empty::before{content:attr(data-ph);color:var(--ink-300)}
+.fcedit{min-height:103px;white-space:pre-wrap;word-break:break-word;line-height:1.78;
+  text-align:left;padding:var(--sp-3)}
+.fcedit.is-empty::before{content:attr(data-ph);color:var(--ink-300)}
 .tok{display:inline-flex;align-items:center;gap:4px;background:var(--pri-050);color:var(--pri);
   border-radius:999px;padding:1px 9px;font-size:var(--fs-xs);line-height:1.75;margin:0 2px;
   vertical-align:baseline;user-select:none}
@@ -1442,7 +1443,7 @@ function cardHTML(x, rec){
   s += '<div class="fcguide">'+esc(x.guide)+'</div>';
   if(x.prompts) s += '<ul class="fcprompts">'+x.prompts.map(function(p){ return '<li>'+esc(p)+'</li>'; }).join('')+'</ul>';
   if(x.key === 'thoughts'){
-    var emptyCls = (!String(rec.thoughts||'').trim() && !(rec.emotions||[]).length) ? ' empty' : '';
+    var emptyCls = (!String(rec.thoughts||'').trim() && !(rec.emotions||[]).length) ? ' is-empty' : '';
     s += '<div class="fcta fcedit'+emptyCls+'" data-key="thoughts" contenteditable="true" data-ph="'+esc(x.placeholder||'')+'"'
       +  ' oninput="W.onThoughtInput(this)" onfocus="W.onFocus(this)" onblur="W.onBlur(this)"'
       +  ' onpaste="W.onThoughtPaste(event)">'+editorHTML(rec)+'</div>';
@@ -2346,7 +2347,7 @@ W.onThoughtInput = function(el){
     var w = t.getAttribute('data-w');
     if(live.indexOf(w) < 0) live.push(w);
   });
-  el.classList.toggle('empty', !el.textContent.trim() && !el.querySelector('.tok'));
+  el.classList.toggle('is-empty', !el.textContent.trim() && !el.querySelector('.tok'));
   if(live.join('|') !== (rec.emotions || []).join('|')){
     rec.emotions = live;
     syncEmoExtra(rec);
