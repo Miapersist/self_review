@@ -1363,6 +1363,13 @@ function thoughtText(el){
   return String(c.textContent || '').replace(/\u00a0/g, ' ').replace(/^\s+|\s+$/g, '');
 }
 function emoEditor(){ return document.querySelector('.fcedit'); }
+/* 空态由内容决定：有文字或情绪块就不是空态，占位整层隐藏 */
+function syncEditEmpty(el){
+  el = el || emoEditor();
+  if(!el) return;
+  var has = !!el.querySelector('.tok') || !!thoughtText(el);
+  el.classList.toggle('is-empty', !has);
+}
 function appendTok(w){
   var el = emoEditor();
   if(!el || el.querySelector('.tok[data-w="'+w+'"]')) return;
@@ -1370,12 +1377,14 @@ function appendTok(w){
   box.innerHTML = tokHTML(w);
   el.appendChild(document.createTextNode(' '));
   el.appendChild(box.firstChild);
+  syncEditEmpty(el);
 }
 function removeTok(w){
   var el = emoEditor();
   if(!el) return;
   var t = el.querySelector('.tok[data-w="'+w+'"]');
   if(t) t.parentNode.removeChild(t);
+  syncEditEmpty(el);
 }
 /* 快速行 + 释义区（只重绘这一块，不动正文与光标） */
 function emoExtraHTML(rec){
@@ -2350,7 +2359,7 @@ W.onThoughtInput = function(el){
     var w = t.getAttribute('data-w');
     if(live.indexOf(w) < 0) live.push(w);
   });
-  el.classList.toggle('is-empty', !el.textContent.trim() && !el.querySelector('.tok'));
+  syncEditEmpty(el);
   if(live.join('|') !== (rec.emotions || []).join('|')){
     rec.emotions = live;
     syncEmoExtra(rec);
