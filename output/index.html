@@ -481,9 +481,12 @@ a{color:var(--pri);text-decoration:none}
 .fcard{min-width:0}
 
 /* ============ 情绪标记：块区 / 快速行 / 释义区 / 弹窗 ============ */
-.fcedit{min-height:103px;white-space:pre-wrap;word-break:break-word;line-height:1.78;
-  text-align:left;padding:var(--sp-3)}
-.fcedit.is-empty::before{content:attr(data-ph);color:var(--ink-300)}
+.fcedit{position:relative;min-height:103px;white-space:pre-wrap;word-break:break-word;
+  line-height:1.78;text-align:left;padding:var(--sp-3)}
+/* 占位用绝对定位层，不进入文字流，避免光标被推到占位文字之后 */
+.fcedit.is-empty::after{content:attr(data-ph);position:absolute;left:var(--sp-3);
+  right:var(--sp-3);top:var(--sp-3);color:var(--ink-300);pointer-events:none;
+  white-space:pre-wrap;word-break:break-word}
 .tok{display:inline-flex;align-items:center;gap:4px;background:var(--pri-050);color:var(--pri);
   border-radius:999px;padding:1px 9px;font-size:var(--fs-xs);line-height:1.75;margin:0 2px;
   vertical-align:baseline;user-select:none}
