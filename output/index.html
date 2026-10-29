@@ -2712,13 +2712,18 @@ W.restoreBackup = function(){
 
 /* --- 快捷键 --- */
 document.addEventListener('keydown', function(e){
-  var tag = (e.target.tagName||'').toLowerCase();
-  if(tag==='textarea' || tag==='input') return;
+  var el = e.target || {};
+  var tag = (el.tagName||'').toLowerCase();
+  if(tag==='textarea' || tag==='input' || tag==='select') return;
+  if(el.isContentEditable) return;
+  if(el.closest && el.closest('[contenteditable="true"]')) return;
+  if(e.ctrlKey || e.metaKey || e.altKey) return;
+  if(e.key==='Escape' && S.modal){ S.modal = null; renderModal(); return; }
+  if(e.key==='Escape' && S.emoModal){ W.closeEmo(0); return; }
+  if(S.modal || S.emoModal) return;
   if(e.key==='1') W.go('home');
   if(e.key==='2') W.go('record', today());
   if(e.key==='3') W.go('calendar');
-  if(e.key==='Escape' && S.modal){ S.modal = null; renderModal(); }
-  if(e.key==='Escape' && S.emoModal) W.closeEmo(0);
 });
 
 /* ---------- 启动 ---------- */
