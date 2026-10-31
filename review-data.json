@@ -1,6 +1,6 @@
 {
   "v": 3,
-  "updatedAt": 1793467781319,
+  "updatedAt": 1793467855291,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1558,14 +1558,18 @@
     {
       "id": "mvwoeov2qawbf",
       "date": "2026-10-31",
-      "emotions": [],
-      "isDraft": true,
+      "emotions": [
+        "自在",
+        "平静",
+        "安全"
+      ],
+      "isDraft": false,
       "createdAt": 1793467780376,
-      "updatedAt": 1793467780376,
-      "event": "打扫卫生he",
-      "thoughts": "",
-      "action": "",
-      "result": "",
+      "updatedAt": 1793467855285,
+      "event": "打扫卫生和吃了点清淡的东西",
+      "thoughts": "自己一个人在家里待着就是舒服，打扫卫生也清理了一下乱乱的状况",
+      "action": "打扫完睡了一觉",
+      "result": "没什么后果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
