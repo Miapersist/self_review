@@ -2099,31 +2099,6 @@ function viewReview(){
     +  '<svg class="wkarrows" id="wkarrows"></svg>'
     +  '</div>';
 
-  /* 底部动作区：固定在列底，不随卡片滚动 */
-  s += '<div class="wkmatbot">';
-  if(r.done){
-    s += '<span>已归档：这一周的联结已固定</span>';
-  }else if(_mode === 'link'){
-    if(!S.wkLinkA){
-      s += '<span>点第一张卡片作为起点，再点另一张连起来</span>';
-    }else if(!S.wkLinkB){
-      s += '<span>起点已选：<b>'+esc(entryTitle(byId[S.wkLinkA] || {}))+'</b> — 再点另一件事</span>'
-        +  '<span class="act"><button class="wktype" onclick="W.wkMode(\'link\')">取消</button></span>';
-    }else{
-      s += '<span>选择联结类型：</span><span class="act">'
-        +  '<button class="wktype" onclick="W.wkAddLink(\'direct\')">直接联结</button>'
-        +  '<button class="wktype" onclick="W.wkAddLink(\'indirect\')">间接联结</button>'
-        +  '<button class="wktype" onclick="W.wkAddLink(\'odd\')">奇妙联结</button>'
-        +  '<button class="wktype" onclick="W.wkMode(\'link\')">取消</button>'
-        +  '</span>';
-    }
-  }else{
-    s += '<span>点卡片右侧的圈 ⭕ 圈选，最多 3 件</span>';
-  }
-  s += '</div>';
-  s += '<div class="wklegend">'
-    +  '<span><b>──▶</b> 直接</span><span><b>┄⇢</b> 间接</span><span><b>┈⇝</b> 奇妙</span>'
-    +  '<span>● 点圆标记原因 / 改类型 / 删除</span></div>';
   s += wkLinkRows(r, byId, r.done);
   s += '</div>';   /* /wkcol-r */
 
