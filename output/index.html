@@ -414,6 +414,123 @@ a{color:var(--pri);text-decoration:none}
 .wkentry{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .wkentry .txt{font-size:var(--fs-sm);line-height:1.7}
 [data-theme="dark"] .wklink .tp{color:#C0AD66}
+/* ============ 周度复盘 · 跨页版式（右页素材 / 左页书写） ============ */
+/* 窄屏 Tab：素材 / 复盘 */
+.wktabs{display:none;margin:var(--sp-4) 0 0;border:1px solid var(--line);border-radius:var(--r-sm);
+  overflow:hidden;width:240px}
+.wktabs button{flex:1;padding:8px 0;font-size:var(--fs-sm);color:var(--ink-400);
+  background:var(--surface);border:none;font-family:inherit;cursor:pointer;transition:.2s var(--ease)}
+.wktabs button.on{background:var(--pri-050);color:var(--pri);font-weight:600}
+/* 对开容器 */
+.wkspread{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:var(--sp-4);
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);overflow:hidden}
+.wkcol{padding:var(--sp-4) var(--sp-4) 0;min-width:0;display:flex;flex-direction:column}
+/* DOM 里素材列在前（1&2 步），用 order 让它视觉上落在右侧 —— 对齐书中「右=记录、左=复盘」 */
+.wkcol-l{border-right:1px dashed var(--line);order:1}
+.wkcol-r{background:var(--paper-2);padding-left:0;padding-right:0;max-height:calc(100vh - 250px);order:2}
+.wkct{font-size:var(--fs-sm);font-weight:600;color:var(--ink-800);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.wkct em{font-style:normal;font-weight:400;font-size:var(--fs-xs);color:var(--ink-400)}
+/* 模式切换：① 聚焦 / ② 联结 */
+.wkmodes{display:flex;margin:0 var(--sp-4) 10px;border:1px solid var(--line);border-radius:var(--r-sm);
+  overflow:hidden}
+.wkmodes button{flex:1;padding:8px 0;font-size:var(--fs-sm);color:var(--ink-500);background:var(--surface);
+  border:none;font-family:inherit;cursor:pointer;transition:.2s var(--ease)}
+.wkmodes button.on{background:var(--pri-050);color:var(--pri);font-weight:600;box-shadow:inset 0 -2px 0 var(--pri)}
+/* 步骤头：常驻顶部，不随素材滚动 */
+.wkstepfix{margin:0 var(--sp-4) 10px;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--surface);padding:10px 12px}
+.wkstepfix .st{font-size:var(--fs-sm);font-weight:600;color:var(--ink-800);display:flex;
+  justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.wkstepfix .st i{font-style:normal;font-size:var(--fs-xs);color:var(--ink-400);font-weight:400;white-space:nowrap}
+.wkstepfix .gd{font-size:var(--fs-xs);color:var(--ink-400);margin-top:4px;line-height:1.7}
+/* 筛选 */
+.wkfilters{display:flex;gap:6px;padding:0 var(--sp-4) 8px;flex-wrap:wrap}
+.wkfilters button{font-size:var(--fs-xs);border:1px solid var(--line);border-radius:999px;
+  padding:4px 11px;color:var(--ink-400);background:var(--surface);font-family:inherit;cursor:pointer}
+.wkfilters button.on{border-color:var(--pri);color:var(--pri);background:var(--pri-050)}
+/* 素材滚动区 */
+.wkmat{flex:1;overflow-y:auto;position:relative;padding:0 var(--sp-4) var(--sp-3)}
+.wkday{position:sticky;top:0;z-index:3;background:var(--paper-2);font-size:var(--fs-xs);
+  color:var(--ink-400);letter-spacing:.04em;padding:7px 0 5px;border-bottom:1px solid var(--line-soft);
+  margin-bottom:7px}
+.wkcard{position:relative;background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:var(--r-sm);margin:0 38px 6px 0;transition:.2s var(--ease)}
+.wkcard.on{border-color:var(--pri);background:var(--pri-050)}
+.wkcard.anchor{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc-050)}
+.wkcrow{display:flex;align-items:center;gap:6px;padding:10px 42px 10px 8px;min-height:46px;cursor:pointer}
+.wkcard.dis .wkcrow{cursor:default}
+.wkchev{flex:none;width:22px;height:22px;border-radius:var(--r-xs);color:var(--ink-300);
+  display:grid;place-items:center;font-size:11px;transition:.2s var(--ease)}
+.wkchev:hover{color:var(--pri);background:var(--paper-2)}
+.wkt{flex:1;font-size:var(--fs-sm);color:var(--ink-700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wkring{flex:none;position:absolute;right:9px;top:50%;transform:translateY(-50%);width:22px;height:22px;
+  border-radius:50%;border:1.5px dashed var(--line);display:grid;place-items:center;font-size:11px;
+  color:var(--ink-300);transition:.2s var(--ease)}
+.wkring.on{border-style:solid;border-color:var(--pri);background:var(--pri);color:#fff}
+.wkcbody{padding:9px 12px 11px;font-size:var(--fs-xs);color:var(--ink-600);line-height:1.75;
+  border-top:1px dashed var(--line-soft)}
+.wkcbody .k{display:block;color:var(--ink-400);margin-top:5px}
+.wkcbody .k:first-child{margin-top:0}
+.wkcbody .gen{margin-top:10px}
+/* 箭头层 */
+.wkarrows{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:2}
+.wkarrows .wkdot{pointer-events:auto;cursor:pointer}
+/* 底部动作区（固定在列底） */
+.wkmatbot{flex:none;border-top:1px solid var(--line-soft);background:var(--paper-2);
+  padding:10px var(--sp-4);display:flex;align-items:center;gap:8px;justify-content:space-between;
+  flex-wrap:wrap;font-size:var(--fs-xs);color:var(--ink-400)}
+.wkmatbot .act{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.wktype{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:var(--fs-xs);
+  color:var(--ink-600);background:var(--surface);font-family:inherit;cursor:pointer;transition:.2s var(--ease)}
+.wktype:hover{border-color:var(--acc);color:var(--acc)}
+.wktype.on{border-color:var(--acc);background:var(--acc-050);color:var(--acc);font-weight:600}
+.wklegend{display:flex;gap:12px;flex-wrap:wrap;padding:8px var(--sp-4) 12px;font-size:var(--fs-xs);color:var(--ink-400)}
+.wklegend b{font-weight:600;color:var(--ink-500)}
+/* 联结清单 */
+.wklinks{margin-top:6px}
+.wklinkrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--acc-050);
+  border:1px solid var(--acc-200);border-radius:var(--r-sm);padding:8px 11px;font-size:var(--fs-xs);
+  color:var(--ink-700);margin-bottom:6px}
+.wklinkrow .ar{color:var(--acc);font-weight:600}
+.wklinkrow .tp{font-size:var(--fs-xs);color:#8A7639;border:1px solid var(--acc-200);border-radius:999px;padding:1px 8px}
+.wklinkrow .cs{flex:1;min-width:110px;color:var(--ink-500);font-weight:400}
+/* 联结原因弹窗 */
+.wkovl{position:fixed;inset:0;z-index:200;background:rgba(20,22,20,.42);display:flex;
+  align-items:center;justify-content:center;padding:20px}
+.wkmodal{width:100%;max-width:460px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-md);box-shadow:var(--shadow-lg);padding:var(--sp-5);position:relative;
+  max-height:88vh;overflow-y:auto}
+.wkmodal .wkmt{font-size:var(--fs-md);font-weight:600;color:var(--ink-900);padding-right:28px;line-height:1.6}
+.wkmodal .wkmclose{position:absolute;right:13px;top:11px;color:var(--ink-300);font-size:20px;line-height:1;
+  cursor:pointer;padding:2px 7px;border-radius:999px}
+.wkmodal .wkmclose:hover{color:var(--ink-700);background:var(--paper-2)}
+.wkmodal .wktypes{display:flex;gap:6px;margin:11px 0 2px;flex-wrap:wrap}
+.wkmodal textarea{width:100%;margin-top:10px;padding:10px 12px;border-radius:var(--r-sm);border:1px solid var(--line);
+  background:var(--paper-2);outline:none;font-family:inherit;font-size:var(--fs-sm);line-height:1.7;
+  resize:vertical;min-height:66px;transition:.2s var(--ease)}
+.wkmodal textarea:focus{border-color:var(--pri-400);background:var(--surface)}
+.wkweak{font-size:var(--fs-xs);color:var(--ink-300);margin-top:6px;line-height:1.7}
+.wkmrow{display:flex;gap:8px;align-items:center;margin-top:11px}
+.wkmrow label{flex:none;font-size:var(--fs-xs);color:var(--ink-400)}
+.wkmrow input{flex:1;padding:8px 10px;border-radius:var(--r-xs);border:1px solid var(--line);
+  background:var(--paper-2);outline:none;font-size:var(--fs-sm);font-family:inherit;transition:.2s var(--ease)}
+.wkmrow input:focus{border-color:var(--pri-400);background:var(--surface)}
+.wkmact{display:flex;justify-content:flex-end;gap:8px;margin-top:var(--sp-4)}
+/* 行动来源 */
+.wksrc{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-soft);display:flex;gap:8px;
+  align-items:center;flex-wrap:wrap;font-size:var(--fs-xs);color:var(--ink-400)}
+.wksrc select{flex:1;min-width:150px;padding:7px 9px;border-radius:var(--r-xs);border:1px solid var(--line);
+  background:var(--paper-2);font-size:var(--fs-xs);font-family:inherit;color:var(--ink-600);outline:none}
+/* 窄屏：改为 Tab 切换单列 */
+@media(max-width:1000px){
+  .wktabs{display:flex}
+  .wkspread{grid-template-columns:1fr}
+  .wkspread[data-tab="mat"] .wkcol-l{display:none}
+  .wkspread[data-tab="write"] .wkcol-r{display:none}
+  .wkcol-l{border-right:none}
+  .wkcol-r{max-height:none;height:calc(100vh - 300px);min-height:420px}
+}
 /* 周复盘归档 */
 .wkst{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-xs);border-radius:999px;
   padding:3px 10px;border:1px solid var(--line);color:var(--ink-400)}
@@ -1225,6 +1342,16 @@ function render(){
   var app = document.querySelector('.app');
   if(app) app.classList.toggle('narrow', p!=='record');
   if(p==='record') setTimeout(afterRecordRender, 0);
+  // 周复盘：素材列渲染后按卡片实际坐标绘制联结箭头
+  if(p==='review' && S.rvTab !== 'month'){
+    setTimeout(drawWkArrows, 0);
+    if(!window.__wkArrowBound){
+      window.__wkArrowBound = 1;
+      window.addEventListener('resize', function(){
+        if(S.page === 'review' && S.rvTab !== 'month') drawWkArrows();
+      });
+    }
+  }
   renderModal();
   renderEmoModal();
   window.scrollTo({ top:0 });
@@ -1670,6 +1797,210 @@ function wkMonthBar(y, m){
   }
   return any ? out + '</div>' : '';
 }
+/* ---------- 周度复盘 · 跨页交互（右页素材 / 左页书写） ---------- */
+function wkMode(){ return S.wkMode === 'link' ? 'link' : 'focus'; }
+function wkTab(){ return S.wkSpreadTab === 'write' ? 'write' : 'mat'; }
+function wkArrow(t){ return t === 'indirect' ? '⇢' : (t === 'odd' ? '⇝' : '→'); }
+/* 第一步 / 第二步 的步骤头：常驻列顶，不随素材滚动 */
+function wkStepFix(mode, r){
+  if(mode === 'link'){
+    return '<div class="wkstepfix">'
+      + '<div class="st"><span>第二步 · 联结 —— 找出事件之间的联系</span><i>已建立 '+r.links.length+' 条</i></div>'
+      + '<div class="gd">回顾整周记录，主动寻找事件之间的联结（不再限于聚焦的 3 件），想一想：哪些对我起到了积极的作用？</div>'
+      + '</div>';
+  }
+  return '<div class="wkstepfix">'
+    + '<div class="st"><span>第一步 · 聚焦 —— 本周最重要的 3 件事</span><i>已聚焦 '+r.focus.length+' / 3</i></div>'
+    + '<div class="gd">每天记 3 件，一周约 21 件，再从中筛出 3 件。点卡片右侧的圈 ⭕ 圈选，可以先选、再调整。</div>'
+    + '</div>';
+}
+function wkDayLabel(d){
+  var wd = ['周一','周二','周三','周四','周五','周六','周日'];
+  return wd[(parseYmd(d).getDay()+6)%7] + ' ' + (+d.slice(5,7)) + '/' + (+d.slice(8,10));
+}
+/* 展开后的完整八栏 */
+function wkCardBody(e){
+  var rows = [
+    ['① 事件', e.event], ['② 想法和感受', e.thoughts], ['③ 行动', e.action],
+    ['④ 结果', e.result], ['①-A 重新注意到了什么', e.reframe],
+    ['② 可以采取的行动', e.nextAction], ['③ 可能的结果', e.nextResult],
+    ['①-B 对自己的新发现', e.selfDiscovery]
+  ];
+  var s = '';
+  rows.forEach(function(x){
+    var v = String(x[1] || '').trim();
+    if(v) s += '<span class="k">' + esc(x[0]) + '</span>' + esc(v);
+  });
+  if((e.emotions || []).length) s += '<span class="k">情绪</span>' + esc((e.emotions || []).join('、'));
+  return s || '<span class="k">（这条还没写内容）</span>';
+}
+function wkCardHtml(e, r, mode, ro){
+  var on = r.focus.indexOf(e.id) >= 0;
+  var open = (S.wkOpen === e.id);
+  var cls = 'wkcard' + (on ? ' on' : '') + (S.wkLinkA === e.id ? ' anchor' : '')
+    + (open ? ' open' : '') + (ro ? ' dis' : '');
+  var rowAct = ro ? '' : (mode === 'link' ? 'W.wkPick(\'' + e.id + '\')' : 'W.toggleFocus(\'' + e.id + '\')');
+  var s = '<div class="' + cls + '" data-eid="' + e.id + '">'
+    + '<div class="wkcrow"' + (rowAct ? ' onclick="' + rowAct + '"' : '') + '>'
+    +   '<span class="wkchev" onclick="event.stopPropagation();W.wkToggleOpen(\'' + e.id + '\')">' + (open ? '⌃' : '⌄') + '</span>'
+    +   '<span class="wkt">' + esc(entryTitle(e)) + '</span>'
+    +   '<span class="wkring' + (on ? ' on' : '') + '"'
+    +     (ro ? '' : ' onclick="event.stopPropagation();W.toggleFocus(\'' + e.id + '\')"') + '>' + (on ? '✓' : '') + '</span>'
+    + '</div>';
+  if(open){
+    s += '<div class="wkcbody">' + wkCardBody(e)
+      + (ro ? '' : '<div class="gen"><button class="btn btn-ghost" onclick="W.wkGenAction(\'' + e.id + '\')">→ 据此生成一条行动</button></div>')
+      + '</div>';
+  }
+  return s + '</div>';
+}
+/* 素材区：按周一~周日分组，空的天不显示 */
+function wkMatBody(mon, ents, r, mode){
+  var s = '', ro = !!r.done;
+  var groups = [];
+  weekDays(mon).forEach(function(d){
+    var list = dayEntries(d).filter(hasContent);
+    if(list.length) groups.push({ d:d, list:list });
+  });
+  if(!groups.length){
+    if(ro && r.snap && r.snap.focus && r.snap.focus.length){
+      r.snap.focus.forEach(function(f){
+        s += '<div class="wkcard on dis"><div class="wkcrow">'
+          +  '<span class="wkchev" style="visibility:hidden">⌄</span>'
+          +  '<span class="wkt">' + esc(f.title) + '</span>'
+          +  '<span class="wkring on">✓</span></div></div>';
+      });
+    }
+    return s;
+  }
+  groups.forEach(function(g){
+    s += '<div class="wkday">' + wkDayLabel(g.d) + '</div>';
+    g.list.forEach(function(e){
+      if(S.wkOnlyFocus && r.focus.indexOf(e.id) < 0) return;
+      s += wkCardHtml(e, r, mode, ro);
+    });
+  });
+  return s;
+}
+/* 联结清单（文字版，与箭头并行存在） */
+function wkLinkRows(r, byId, ro){
+  var snapL = (ro && r.snap && r.snap.links) ? r.snap.links : null;
+  var s = '', any = false;
+  if(snapL && snapL.length){
+    snapL.forEach(function(l){
+      any = true;
+      s += '<div class="wklinkrow"><span>' + esc(l.a) + '</span><span class="ar">' + wkArrow(l.type) + '</span>'
+        +  '<span>' + esc(l.b) + '</span><span class="tp">' + esc(LINKTYPES[l.type] || '联结') + '</span>'
+        +  '<span class="cs">' + esc(l.cause || '') + '</span></div>';
+    });
+  }else{
+    r.links.forEach(function(l, i){
+      var a = byId[l.a], b = byId[l.b];
+      if(!a || !b) return;
+      any = true;
+      s += '<div class="wklinkrow"><span>' + esc(entryTitle(a)) + '</span><span class="ar">' + wkArrow(l.type) + '</span>'
+        +  '<span>' + esc(entryTitle(b)) + '</span><span class="tp">' + esc(LINKTYPES[l.type] || '联结') + '</span>'
+        +  '<span class="cs">' + (l.cause ? esc(l.cause) : '<span style="color:var(--ink-300)">未写原因</span>') + '</span>'
+        +  (ro ? '' : '<button class="rm" onclick="W.wkEditLink(' + i + ')" title="记录原因">✎</button>')
+        +  (ro ? '' : '<button class="rm" onclick="W.delLink(' + i + ')" title="删除">×</button>')
+        +  '</div>';
+    });
+  }
+  return any ? '<div class="wklinks">' + s + '</div>' : '';
+}
+/* 联结原因弹窗：画完箭头后立即弹出；只有一个输入框，四问整合为弱提示 */
+var WK_CAUSE_PH = '是什么促成了这个联结？当时采取了哪些有效的行动、怎样的心态起了作用、是否有关键人物支持、是否恰好处在有利的环境中 —— 它究竟是什么在起作用？';
+function wkLinkModal(r, byId){
+  var i = S.wkLinkEdit;
+  if(i == null || !r.links[i]) return '';
+  var l = r.links[i], ro = !!r.done;
+  var a = byId[l.a], b = byId[l.b];
+  var at = a ? entryTitle(a) : '（已删除）', bt = b ? entryTitle(b) : '（已删除）';
+  var s = '<div class="wkovl" onclick="W.wkCloseLink()"><div class="wkmodal" onclick="event.stopPropagation()">';
+  s += '<div class="wkmt">联结原因 · ' + esc(at) + ' ' + wkArrow(l.type) + ' ' + esc(bt) + '</div>'
+    +  '<div class="wkmclose" onclick="W.wkCloseLink()">×</div>';
+  if(ro){
+    s += '<div class="wkweak" style="color:var(--ink-500);margin-top:8px">' + esc(LINKTYPES[l.type] || '联结') + '</div>';
+  }else{
+    s += '<div class="wktypes">';
+    ['direct','indirect','odd'].forEach(function(t){
+      s += '<button class="wktype' + (l.type === t ? ' on' : '') + '" onclick="W.wkSetType(' + i + ',\'' + t + '\')">' + esc(LINKTYPES[t]) + '</button>';
+    });
+    s += '</div>';
+  }
+  if(ro){
+    s += '<div class="ro-val" style="margin-top:10px">' + (l.cause ? esc(l.cause) : '<span class="dim">未填写</span>') + '</div>';
+    if(l.transfer) s += '<div class="wkweak">迁移到：' + esc(l.transfer) + '</div>';
+  }else{
+    s += '<textarea placeholder="' + esc(WK_CAUSE_PH) + '" oninput="W.wkSetCause(' + i + ',this.value)">' + esc(l.cause || '') + '</textarea>'
+      +  '<div class="wkweak">弱提示 · 有效的行动 / 心态 / 关键人物 / 有利环境 / 提炼 —— 想到什么写什么，一句话也行</div>'
+      +  '<div class="wkmrow"><label>迁移到</label><input value="' + esc(l.transfer || '') + '" placeholder="还能用在什么场合？" oninput="W.wkSetTransfer(' + i + ',this.value)"></div>';
+  }
+  s += '<div class="wkmact">';
+  if(!ro) s += '<button class="btn btn-txt" onclick="W.wkDelLink2(' + i + ')">删除联结</button>';
+  s += '<button class="btn btn-pri" onclick="W.wkCloseLink()">' + (ro ? '关闭' : '保存') + '</button>';
+  return s + '</div></div></div>';
+}
+/* 行动「来自」下拉：聚焦项 / 联结 / 抽象化已填 */
+function wkSrcOptions(r, byId, cur){
+  var opts = [], seen = {};
+  function add(v){ if(seen[v]) return; seen[v] = 1; opts.push(v); }
+  r.focus.forEach(function(id){ var e = byId[id]; if(e) add('聚焦：' + entryTitle(e)); });
+  r.links.forEach(function(l){
+    var a = byId[l.a], b = byId[l.b];
+    if(a && b) add('联结：' + entryTitle(a) + ' ' + wkArrow(l.type) + ' ' + entryTitle(b));
+  });
+  ABST.forEach(function(f){
+    var v = r.abs[f.k];
+    if(v && String(v).trim()) add('抽象化' + f.no + '：' + f.label);
+  });
+  if(cur && !seen[cur]) add(cur);
+  var s = '<option value="">（不标注来源）</option>';
+  opts.forEach(function(v){ s += '<option value="' + esc(v) + '"' + (cur === v ? ' selected' : '') + '>' + esc(v) + '</option>'; });
+  return s;
+}
+/* 箭头：渲染后按卡片实际坐标绘制 SVG 曲线（随素材列一起滚动） */
+function relRect(el, box){
+  var r = el.getBoundingClientRect(), b = box.getBoundingClientRect();
+  return { top:r.top - b.top + box.scrollTop, left:r.left - b.left, w:r.width, h:r.height };
+}
+function drawWkArrows(){
+  var box = document.getElementById('wkmat'), svg = document.getElementById('wkarrows');
+  if(!box || !svg) return;
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  var cs = getComputedStyle(document.documentElement);
+  var acc = (cs.getPropertyValue('--acc') || '#A08D4E').trim();
+  var surf = (cs.getPropertyValue('--surface') || '#FBFAF6').trim();
+  var pos = {};
+  [].forEach.call(box.querySelectorAll('.wkcard'), function(c){ pos[c.getAttribute('data-eid')] = c; });
+  var H = Math.max(box.scrollHeight, 1), W = Math.max(box.clientWidth, 1);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  svg.style.height = H + 'px';
+  var out = '<defs><marker id="wkah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">'
+    + '<path d="M0 0 L8 4 L0 8 z" fill="' + acc + '"/></marker></defs>';
+  var n = 0;
+  r.links.forEach(function(l, i){
+    var ca = pos[l.a], cb = pos[l.b];
+    if(!ca || !cb) return;                                  /* 记录已删除则不画 */
+    var ra = relRect(ca, box), rb = relRect(cb, box);
+    var X = Math.max(ra.left + ra.w, rb.left + rb.w);
+    var y1 = ra.top + ra.h / 2, y2 = rb.top + rb.h / 2;
+    var bulge = 13 + (n % 3) * 7;
+    var dash = l.type === 'indirect' ? '5 4' : (l.type === 'odd' ? '2 3' : '');
+    out += '<path d="M' + X + ' ' + y1 + ' C ' + (X + bulge) + ' ' + (y1 + (y2 - y1) * 0.28)
+      + ', ' + (X + bulge) + ' ' + (y2 - (y2 - y1) * 0.28) + ', ' + X + ' ' + y2 + '"'
+      + ' fill="none" stroke="' + acc + '" stroke-width="1.6" opacity=".8"'
+      + (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' marker-end="url(#wkah)"/>';
+    var mx = X + bulge * 0.75, my = (y1 + y2) / 2;
+    out += '<circle class="wkdot" cx="' + mx + '" cy="' + my + '" r="7" fill="' + surf + '" stroke="'
+      + acc + '" stroke-width="1.4" onclick="W.wkEditLink(' + i + ')"><title>'
+      + (l.cause ? '已写原因，点开查看' : '点开记录联结原因') + '</title></circle>';
+    if(l.cause) out += '<circle cx="' + mx + '" cy="' + my + '" r="2.6" fill="' + acc + '" pointer-events="none"/>';
+    n++;
+  });
+  svg.innerHTML = out;
+}
+
 function viewReview(){
   if(S.rvTab === 'month') return viewMonthReview();
   var mon = S.reviewWeek || mondayOf(today());
@@ -1709,70 +2040,65 @@ function viewReview(){
     : '<div class="hint" style="text-align:center;margin:2px 0">周度复盘是基于每日记录的复盘。这一周你记录了 '
       +  weekRecordedDays(mon) + ' 天、共 ' + ents.length + ' 条。</div>';
 
-  /* 第一步 · 聚焦 */
-  s += wkStepHead('第一步', '聚焦', '本周最重要的 3 件事');
-  s += '<div class="hint">每天记录 3 件，一周就是 21 件。再从中筛选出 3 件最重要的事件，作为本周的重点。不着急，可以先选、再调整。</div>';
-  s += '<div class="wkcount">已聚焦 ' + r.focus.length + ' / 3</div>';
-  var snapF = (r.done && r.snap && r.snap.focus) ? r.snap.focus : null;
-  s += '<div class="wkevts">';
-  if(snapF){
-    snapF.forEach(function(f){
-      s += '<button class="wkevt on" disabled style="cursor:default">'
-        +  '<span class="d">'+(+f.date.slice(5,7))+'/'+(+f.date.slice(8,10))+'</span>'
-        +  '<span class="t">'+esc(f.title)+'</span><span class="ck">✓</span></button>';
-    });
+  /* ===== 跨页版式：右页素材（1&2 步）/ 左页书写（3&4 步） ===== */
+  var _tab = wkTab(), _mode = wkMode();
+  s += '<div class="wktabs">'
+    +  '<button class="'+(_tab==='mat'?'on':'')+'" onclick="W.wkTab(\'mat\')">素材</button>'
+    +  '<button class="'+(_tab==='write'?'on':'')+'" onclick="W.wkTab(\'write\')">复盘</button>'
+    +  '</div>';
+  s += '<div class="wkspread" data-tab="'+_tab+'">';
+
+  /* ---------- 右页 · 本周素材（第一、二步在此列上直接操作） ---------- */
+  s += '<div class="wkcol wkcol-r">';
+  s += '<div class="wkct" style="padding:0 var(--sp-4)"><span>右页 · 本周素材</span>'
+    +  '<em>'+ents.length+' 条 · '+weekRecordedDays(mon)+' 天 · 本列独立滚动</em></div>';
+  if(!r.done){
+    s += '<div class="wkmodes">'
+      +  '<button class="'+(_mode==='focus'?'on':'')+'" onclick="W.wkMode(\'focus\')">① 聚焦 '+r.focus.length+'/3</button>'
+      +  '<button class="'+(_mode==='link'?'on':'')+'" onclick="W.wkMode(\'link\')">② 联结 '+r.links.length+'</button>'
+      +  '</div>';
+  }
+  s += wkStepFix(_mode, r);
+  s += '<div class="wkfilters">'
+    +  '<button class="'+(S.wkOnlyFocus?'':'on')+'" onclick="W.wkFilter(0)">全部 '+ents.length+'</button>'
+    +  '<button class="'+(S.wkOnlyFocus?'on':'')+'" onclick="W.wkFilter(1)">只看聚焦 '+r.focus.length+'</button>'
+    +  '</div>';
+  s += '<div class="wkmat" id="wkmat">'
+    +  wkMatBody(mon, ents, r, _mode)
+    +  '<svg class="wkarrows" id="wkarrows"></svg>'
+    +  '</div>';
+
+  /* 底部动作区：固定在列底，不随卡片滚动 */
+  s += '<div class="wkmatbot">';
+  if(r.done){
+    s += '<span>已归档：这一周的联结已固定</span>';
+  }else if(_mode === 'link'){
+    if(!S.wkLinkA){
+      s += '<span>点第一张卡片作为起点，再点另一张连起来</span>';
+    }else if(!S.wkLinkB){
+      s += '<span>起点已选：<b>'+esc(entryTitle(byId[S.wkLinkA] || {}))+'</b> — 再点另一件事</span>'
+        +  '<span class="act"><button class="wktype" onclick="W.wkMode(\'link\')">取消</button></span>';
+    }else{
+      s += '<span>选择联结类型：</span><span class="act">'
+        +  '<button class="wktype" onclick="W.wkAddLink(\'direct\')">直接联结</button>'
+        +  '<button class="wktype" onclick="W.wkAddLink(\'indirect\')">间接联结</button>'
+        +  '<button class="wktype" onclick="W.wkAddLink(\'odd\')">奇妙联结</button>'
+        +  '<button class="wktype" onclick="W.wkMode(\'link\')">取消</button>'
+        +  '</span>';
+    }
   }else{
-    ents.forEach(function(e){
-      var on = r.focus.indexOf(e.id) >= 0;
-      s += '<button class="wkevt'+(on?' on':'')+'"'+(r.done?' disabled style="cursor:default"':' onclick="W.toggleFocus(\''+e.id+'\')"')+'>'
-        +  '<span class="d">'+(+e.date.slice(5,7))+'/'+(+e.date.slice(8,10))+'</span>'
-        +  '<span class="t">'+esc(entryTitle(e))+'</span>'
-        +  (on?'<span class="ck">✓</span>':'')
-        +  '</button>';
-    });
+    s += '<span>点卡片右侧的圈 ⭕ 圈选，最多 3 件</span>';
   }
   s += '</div>';
+  s += '<div class="wklegend">'
+    +  '<span><b>──▶</b> 直接</span><span><b>┄⇢</b> 间接</span><span><b>┈⇝</b> 奇妙</span>'
+    +  '<span>● 点圆标记原因 / 改类型 / 删除</span></div>';
+  s += wkLinkRows(r, byId, r.done);
+  s += '</div>';   /* /wkcol-r */
 
-  /* 第二步 · 联结 */
-  s += wkStepHead('第二步', '联结', '找出事件之间的联系');
-  if(r.focus.length < 2){
-    s += '<div class="hint">先在上一步选出至少 2 件事，再来寻找它们之间的联结。</div>';
-  }else{
-    s += '<div class="hint">回顾整周的记录，主动寻找事件之间的联结，并想一想：其中，究竟哪些对我起到了积极的作用？</div>';
-    var snapL = (r.done && r.snap && r.snap.links) ? r.snap.links : null;
-    if(snapL && snapL.length){
-      s += '<div style="margin:12px 0">';
-      snapL.forEach(function(l){
-        s += '<div class="wklink">'
-          +  '<span>'+esc(l.a)+'</span>'
-          +  '<span class="ar">'+(l.type==='indirect'?'⇢':'→')+'</span>'
-          +  '<span>'+esc(l.b)+'</span>'
-          +  '<span class="tp">'+esc(LINKTYPES[l.type]||'联结')+'</span></div>';
-      });
-      s += '</div>';
-    }else if(r.links.length){
-      s += '<div style="margin:12px 0">';
-      r.links.forEach(function(l, i){
-        var a = byId[l.a], b = byId[l.b];
-        s += '<div class="wklink">'
-          +  '<span>'+esc(a?entryTitle(a):'（已删除）')+'</span>'
-          +  '<span class="ar">'+(l.type==='indirect'?'⇢':'→')+'</span>'
-          +  '<span>'+esc(b?entryTitle(b):'（已删除）')+'</span>'
-          +  '<span class="tp">'+esc(LINKTYPES[l.type]||'联结')+'</span>'
-          +  (r.done?'':'<button class="rm" onclick="W.delLink('+i+')" title="删除">×</button>')+'</div>';
-      });
-      s += '</div>';
-    }
-    if(!r.done){
-      var opts = r.focus.map(function(id){ return '<option value="'+id+'">'+esc(entryTitle(byId[id]))+'</option>'; }).join('');
-      s += '<div class="wkadd">'
-        +  '<select id="lk-a">'+opts+'</select>'
-        +  '<select id="lk-type"><option value="direct">直接联结</option><option value="indirect">间接联结</option><option value="odd">奇妙联结</option></select>'
-        +  '<select id="lk-b">'+opts+'</select>'
-        +  '<button class="btn btn-ghost" onclick="W.addLink()">＋ 添加联结</button>'
-        +  '</div>';
-    }
-  }
+  /* ---------- 左页 · 周复盘书写区（第三、四步） ---------- */
+  s += '<div class="wkcol wkcol-l">';
+  s += '<div class="wkct"><span>左页 · 周复盘</span><em>书中：3&4 步写在左侧</em></div>';
 
   /* 第三步 · 抽象化 */
   s += wkStepHead('第三步', '抽象化', '从一周的事件里看见自己');
@@ -1799,9 +2125,18 @@ function viewReview(){
       +    wkActInput(i,'who','Who 和谁',a.who,'小幡先生',r.done)
       +    wkActInput(i,'how','How 怎么做',a.how,'先列 3 个想请教的点',r.done)
       +    wkActInput(i,'much','How much 预算',a.much,'不花钱 / 约 200 元',r.done)
-      +  '</div></div>';
+      +  '</div>'
+      +  (r.done
+          ? (a.src ? '<div class="wksrc"><span>来自</span><span style="color:var(--ink-600)">'+esc(a.src)+'</span></div>' : '')
+          : '<div class="wksrc"><span>来自</span><select onchange="W.wkSetSrc('+i+',this.value)">'+wkSrcOptions(r, byId, a.src)+'</select></div>')
+      +  '</div>';
   });
   if(!r.done) s += '<div style="margin-top:6px"><button class="btn btn-ghost" onclick="W.addAction()">＋ 添加一条行动</button></div>';
+  s += '</div>';   /* /wkcol-l */
+  s += '</div>';   /* /wkspread */
+
+  /* 联结原因弹窗：画完箭头后立即弹出 */
+  s += wkLinkModal(r, byId);
 
   /* 保存 / 归档 */
   if(r.done){
@@ -2168,15 +2503,90 @@ W.toggleFocus = function(id){
   saveWk();
   var y = window.scrollY; render(); window.scrollTo({ top:y });
 };
-W.addLink = function(){
+/* ---------- 跨页交互 ---------- */
+W.wkTab = function(t){ S.wkSpreadTab = t; render(); };
+W.wkMode = function(m){
+  S.wkMode = m; S.wkLinkA = null; S.wkLinkB = null;
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+W.wkFilter = function(n){ S.wkOnlyFocus = !!n; render(); };
+W.wkToggleOpen = function(id){
+  S.wkOpen = (S.wkOpen === id) ? null : id;
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+/* 联结：点第一张卡再点第二张，任意两条记录都能连 */
+W.wkPick = function(id){
   var r = reviewOf(S.reviewWeek || mondayOf(today()));
-  var a = document.getElementById('lk-a'), b = document.getElementById('lk-b'), t = document.getElementById('lk-type');
-  if(!a || !b || !t) return;
-  if(a.value === b.value){ toast('请选择两件不同的事'); return; }
-  r.links.push({ a:a.value, b:b.value, type:t.value });
+  if(r.done) return;
+  if(!S.wkLinkA || S.wkLinkA === id){ S.wkLinkA = id; S.wkLinkB = null; render(); return; }
+  S.wkLinkB = id;
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+W.wkAddLink = function(type){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  if(!S.wkLinkA || !S.wkLinkB) return;
+  if(S.wkLinkA === S.wkLinkB) return;
+  var dup = r.links.some(function(l){
+    return (l.a === S.wkLinkA && l.b === S.wkLinkB) || (l.a === S.wkLinkB && l.b === S.wkLinkA);
+  });
+  if(dup){ toast('这两件事之间已经有联结了'); return; }
+  r.links.push({ a:S.wkLinkA, b:S.wkLinkB, type:type, cause:'', transfer:'' });
+  S.wkLinkEdit = r.links.length - 1;      // 画完立即弹出「联结原因」
+  S.wkLinkA = null; S.wkLinkB = null;
   r.updatedAt = Date.now();
   saveWk();
+  render();
+};
+W.wkEditLink = function(i){ S.wkLinkEdit = i; render(); };
+W.wkCloseLink = function(){
+  S.wkLinkEdit = null;
   var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+W.wkSetType = function(i, t){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  if(!r.links[i]) return;
+  r.links[i].type = t; r.updatedAt = Date.now();
+  saveWk(); render();
+};
+W.wkSetCause = function(i, v){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  if(!r.links[i]) return;
+  r.links[i].cause = v; r.updatedAt = Date.now();
+  debounceWk();                            // 输入不重渲染，避免光标丢失
+};
+W.wkSetTransfer = function(i, v){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  if(!r.links[i]) return;
+  r.links[i].transfer = v; r.updatedAt = Date.now();
+  debounceWk();
+};
+W.wkDelLink2 = function(i){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  r.links.splice(i, 1);
+  S.wkLinkEdit = null;
+  r.updatedAt = Date.now();
+  saveWk(); render();
+};
+W.wkSetSrc = function(i, v){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  if(!r.actions[i]) return;
+  r.actions[i].src = v; r.updatedAt = Date.now();
+  saveWk();
+  var y = window.scrollY; render(); window.scrollTo({ top:y });
+};
+/* 从素材卡片一键生成行动 */
+W.wkGenAction = function(id){
+  var r = reviewOf(S.reviewWeek || mondayOf(today()));
+  var e = entryById(id);
+  if(!e || r.done) return;
+  var title = entryTitle(e);
+  var src = (r.focus.indexOf(id) >= 0) ? ('聚焦：' + title) : ('记录：' + title);
+  r.actions.push({ what:title, when:'', where:'', who:'', how:'', much:'', src:src });
+  r.updatedAt = Date.now();
+  saveWk();
+  S.wkSpreadTab = 'write';
+  toast('已生成一条行动，去左页「复盘」补上 4W1H');
+  render();
 };
 W.delLink = function(i){
   var r = reviewOf(S.reviewWeek || mondayOf(today()));
@@ -2235,7 +2645,8 @@ W.archiveReview = function(){
     focus: r.focus.map(function(id){ var e = byId[id]; return e ? { date:e.date, title:entryTitle(e) } : null; }).filter(Boolean),
     links: r.links.map(function(l){
       var a = byId[l.a], b = byId[l.b];
-      return { a:a?entryTitle(a):'（已删除）', b:b?entryTitle(b):'（已删除）', type:l.type };
+      return { a:a?entryTitle(a):'（已删除）', b:b?entryTitle(b):'（已删除）',
+               type:l.type, cause:l.cause||'', transfer:l.transfer||'' };
     }),
     abs: JSON.parse(JSON.stringify(r.abs || {})),
     actions: JSON.parse(JSON.stringify(r.actions || []))
