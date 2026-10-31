@@ -1,6 +1,6 @@
 {
   "v": 3,
-  "updatedAt": 1793467855291,
+  "updatedAt": 1793468012274,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1570,6 +1570,24 @@
       "thoughts": "自己一个人在家里待着就是舒服，打扫卫生也清理了一下乱乱的状况",
       "action": "打扫完睡了一觉",
       "result": "没什么后果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvwogenoe8jps",
+      "date": "2026-10-31",
+      "emotions": [
+        "窝火"
+      ],
+      "isDraft": false,
+      "createdAt": 1793467865026,
+      "updatedAt": 1793468012271,
+      "event": "跟大柠周六聊天",
+      "thoughts": "",
+      "action": "因为对方默认我知道她有switch，我就讲了她一嘴让她反思下，我不是有义务了解所有情况并且她也没怎么分享",
+      "result": "她哦哦我，感觉表述可能还是需要柔和一点，在情绪有点上来的时候，先不说话，想想平时和朋友怎么沟通，柔和点指出想要的+多夸奖支持才对",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
