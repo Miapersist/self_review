@@ -2361,9 +2361,11 @@ function viewSettings(){
     +  '<div class="fld"><label>分支</label><input id="gh-branch" value="'+esc(g.branch)+'" placeholder="main" oninput="W.setGH(\'branch\',this.value)"></div>'
     +  '<div class="row-btns">'
     +  '<button class="btn btn-ghost" onclick="W.ghTest()">测试连接</button>'
-    +  '<button class="btn btn-ghost" onclick="W.ghPull(1)">从云端拉取</button>'
+    +  '<button class="btn btn-ghost" onclick="W.ghPull()">从云端拉取</button>'
     +  '<button class="btn btn-pri" onclick="W.ghPush()">立即推送到云端</button></div>'
-    +  '<div class="hint" style="margin-top:10px">token 需要勾选 repo 权限。填好后每次保存都会自动回推（每日记录、周复盘、月复盘一起），换设备打开网页拉取一次即可接上。</div>'
+    +  '<div class="hint" style="margin-top:10px">只读拉取：填「owner + 仓库名」即可（公共仓库不必填 token），每次打开页面会自动拉一次。<br>'
+    +  '写入推送：需要 token（勾选 repo 权限）。填好后每次保存自动回推（每日记录、周复盘、月复盘一起）。<br>'
+    +  '安全闸：本地条目比云端少时会自动阻止推送，避免把云端数据冲掉 —— 先拉再写。</div>'
     +  '</div>';
 
   s += '<div class="card set-sec"><h3>数据备份</h3>'
@@ -2978,9 +2980,23 @@ function ghURL(){
   return 'https://api.github.com/repos/'+encodeURIComponent(g.owner)+'/'+encodeURIComponent(g.repo)+
          '/contents/'+g.path.split('/').map(encodeURIComponent).join('/');
 }
+/* 公共仓库只读时可以不填 token：此时不发送 Authorization 头，避免空凭据被判为 401 */
 function ghHeaders(){
-  return { 'Authorization':'token '+S.gh.token, 'Accept':'application/vnd.github.v3+json',
-           'Content-Type':'application/json' };
+  var h = { 'Accept':'application/vnd.github.v3+json', 'Content-Type':'application/json' };
+  if(S.gh.token) h['Authorization'] = 'token '+S.gh.token;
+  return h;
+}
+/* 云端条目数与 sha：用于推送前的「覆盖安全闸」 */
+function ghCloudStat(){
+  if(!ghReadyPull()) return Promise.resolve(null);
+  return fetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
+    .then(function(r){ if(r.status===404 || !r.ok) return null; return r.json(); })
+    .then(function(j){
+      if(!j || !j.content) return null;
+      try{ var p = parsePayload(JSON.parse(unb64(j.content))); return { count:(p.list||[]).length, sha:j.sha }; }
+      catch(e){ return null; }
+    })
+    .catch(function(){ return null; });
 }
 function b64(str){
   var b = new TextEncoder().encode(str), s = '';
@@ -2992,9 +3008,14 @@ function unb64(str){
   for(var i=0;i<s.length;i++) b[i] = s.charCodeAt(i);
   return new TextDecoder().decode(b);
 }
+/* 推送（写）：三项必须齐全 */
 function ghReady(){
   if(!S.gh.token || !S.gh.owner || !S.gh.repo){ toast('先把 token、用户名、仓库名填好'); return false; }
   return true;
+}
+/* 拉取（读）：公共仓库只需 owner + repo，不填 token 也能读 */
+function ghReadyPull(){
+  return !!(S.gh.owner && S.gh.repo);
 }
 W.ghTest = function(){
   if(!ghReady()) return;
@@ -3008,7 +3029,10 @@ W.ghTest = function(){
     .catch(function(e){ toast('连不上：'+e.message+'（检查 token 与仓库名）'); });
 };
 W.ghPull = function(silent){
-  if(!ghReady()) return Promise.resolve();
+  if(!ghReadyPull()){
+    if(!silent) toast('先填好「仓库 owner」和「仓库名」（公共仓库只读可不填 token）');
+    return Promise.resolve();
+  }
   var url = ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main');
   return fetch(url, { headers:ghHeaders() })
     .then(function(r){ if(r.status===404) return null; if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
@@ -3032,29 +3056,46 @@ W.ghPull = function(silent){
         if(ms.added || ms.upd) msg += '｜月复盘 新增 '+ms.added+' 月、更新 '+ms.upd+' 月';
         toast(msg); render();
       }
+      /* 启动时的静默拉取：真的拉到了东西才提示一句，避免无声无息 */
+      else if(res && (res.added || res.upd || ws.added || ws.upd || ms.added || ms.upd)){
+        toast('已从云端同步：记录 新增 ' + res.added + '、更新 ' + res.upd);
+        render();
+      }
     })
     .catch(function(e){ if(!silent) toast('拉取失败：'+e.message); });
 };
 W.ghPush = function(silent){
   if(!ghReady()) return Promise.resolve();
-  var payload = { v:3, updatedAt:Date.now(), records:allEntries(), weeks:S.wk, months:S.mo };
-  var body = { message:'review: '+today()+' 更新', content:b64(JSON.stringify(
-      payload, null, 2)),
-      branch:S.gh.branch||'main' };
-  if(S.gh.sha) body.sha = S.gh.sha;
-  return fetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
-    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(function(j){
-      S.gh.sha = j.content && j.content.sha;
-      if(!silent) toast('已推送到云端');
-    })
-    .catch(function(e){
-      if(!silent) toast('推送失败：'+e.message);
-      // 仅 sha 冲突（409）时先拉再推一次，其它错误不重试
-      if(e.message === 'HTTP 409'){
-        W.ghPull(1).then(function(){ W.ghPush(1); });
+  /* 覆盖安全闸：本地条目数少于云端时，绝不把云端冲掉 —— 先拉再写 */
+  return ghCloudStat().then(function(st){
+    if(st){
+      S.gh.sha = st.sha;
+      var n = allEntries().length;
+      if(st.count > n){
+        toast('云端有 ' + st.count + ' 条、本地只有 ' + n + ' 条 —— 已阻止覆盖，请先点「从云端拉取」');
+        if(!silent) render();
+        return;
       }
-    });
+    }
+    var payload = { v:3, updatedAt:Date.now(), records:allEntries(), weeks:S.wk, months:S.mo };
+    var body = { message:'review: '+today()+' 更新', content:b64(JSON.stringify(
+        payload, null, 2)),
+        branch:S.gh.branch||'main' };
+    if(S.gh.sha) body.sha = S.gh.sha;
+    return fetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(j){
+        S.gh.sha = j.content && j.content.sha;
+        if(!silent) toast('已推送到云端');
+      })
+      .catch(function(e){
+        if(!silent) toast('推送失败：'+e.message);
+        // 仅 sha 冲突（409）时先拉再推一次，其它错误不重试
+        if(e.message === 'HTTP 409'){
+          W.ghPull(1).then(function(){ W.ghPush(1); });
+        }
+      });
+  });
 };
 
 /* --- 设置：导入导出备份 --- */
@@ -3161,8 +3202,8 @@ document.addEventListener('keydown', function(e){
   render();
   // 每周日自动本地备份：仅周日首次进入时下载一次，避免重复打扰
   setTimeout(function(){ W.maybeAutoBackup(); }, 600);
-  // GitHub 云：启动拉取一次合并；若有新改动由保存时自动回推
-  if(S.gh.token && S.gh.owner && S.gh.repo) W.ghPull(1);
+  // GitHub 云：启动拉取一次合并（公共仓库只读只需 owner+repo）；有新改动时由保存自动回推
+  if(ghReadyPull()) W.ghPull(1);
 })();
 </script>
 </body>
