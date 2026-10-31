@@ -403,7 +403,7 @@ a{color:var(--pri);text-decoration:none}
 .wkact .hd2 .n{font-size:var(--fs-xs);color:var(--ink-400);letter-spacing:.08em}
 .wkact .what{width:100%;padding:10px 12px;border-radius:var(--r-sm);border:1px solid var(--line);
   background:var(--paper-2);outline:none;font-size:var(--fs-sm);font-family:inherit;margin-bottom:8px;
-  transition:.2s var(--ease)}
+  line-height:1.7;resize:vertical;min-height:84px;transition:.2s var(--ease)}
 .wkact .what:focus{border-color:var(--pri-400);background:var(--surface)}
 .wkact .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
 .wkact .cols .f label{display:block;font-size:var(--fs-xs);color:var(--ink-400);margin-bottom:3px}
@@ -423,11 +423,12 @@ a{color:var(--pri);text-decoration:none}
 .wktabs button.on{background:var(--pri-050);color:var(--pri);font-weight:600}
 /* 对开容器 */
 .wkspread{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:0;margin-top:var(--sp-4);
-  border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);overflow:hidden}
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
 .wkcol{padding:var(--sp-4) var(--sp-4) 0;min-width:0}
 /* 素材列（DOM 在前）落在左侧且更宽 —— 先看素材，右侧书写列小一些 */
 .wkcol-l{border-left:1px dashed var(--line)}
-.wkcol-r{background:var(--paper-2);padding-left:0;padding-right:0}
+.wkcol-r{background:var(--paper-2);padding-left:0;padding-right:0;
+  border-top-left-radius:var(--r-md);border-bottom-left-radius:var(--r-md)}
 /* 右页顶部操作区：吸顶但绝不锁内容 —— 素材平铺，随页面滚动 */
 .wktop{position:sticky;top:0;z-index:6;background:var(--paper-2);
   padding:0 var(--sp-4) 8px;border-bottom:1px solid var(--line-soft)}
@@ -447,11 +448,17 @@ a{color:var(--pri);text-decoration:none}
   display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
 .wkct em{font-style:normal;font-weight:400;font-size:var(--fs-xs);color:var(--ink-400)}
 /* 模式切换：① 聚焦 / ② 联结 */
-.wkmodes{display:flex;margin:0 0 6px;border:1px solid var(--line);border-radius:var(--r-sm);
-  overflow:hidden}
-.wkmodes button{flex:1;padding:8px 0;font-size:var(--fs-sm);color:var(--ink-500);background:var(--surface);
-  border:none;font-family:inherit;cursor:pointer;transition:.2s var(--ease)}
-.wkmodes button.on{background:var(--pri-050);color:var(--pri);font-weight:600;box-shadow:inset 0 -2px 0 var(--pri)}
+/* 模式切换：每个步骤独立成一颗药丸，各自带一个问号说明 */
+.wkmodes{display:flex;gap:6px;margin:0 0 6px}
+.wkmode{flex:1;min-width:0;display:flex;align-items:center;border:1px solid var(--line);
+  border-radius:999px;background:var(--surface);transition:.2s var(--ease)}
+.wkmode.on{border-color:var(--pri);background:var(--pri-050)}
+.wkmode button{flex:1;min-width:0;padding:7px 4px 7px 12px;font-size:var(--fs-sm);color:var(--ink-500);
+  background:transparent;border:none;font-family:inherit;cursor:pointer;text-align:left;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wkmode.on button{color:var(--pri);font-weight:600}
+.wkmode .wkhelp{margin:0 7px 0 0;border-color:transparent}
+.wkmode.on .wkhelp{border-color:var(--pri-400)}
 /* 筛选 */
 .wkfilters{display:flex;gap:6px;padding:0 0 2px;flex-wrap:wrap}
 .wkfilters button{font-size:var(--fs-xs);border:1px solid var(--line);border-radius:999px;
@@ -1812,23 +1819,22 @@ function wkArrow(t){ return t === 'indirect' ? '⇢' : (t === 'odd' ? '⇝' : '�
 function wkHelpText(mode){
   if(mode === 'link'){
     return '第二步 · 联结 —— 找出事件之间的联系\n'
-      + '任意两条记录都能连（不限于聚焦的 3 件）：点第一张卡片作起点，再点另一张，选类型即成箭头。\n'
+      + '点第一张卡片作起点，再点另一张即建立联结；再点同一张可取消。\n'
+      + '任意两条记录都能连（不限于聚焦的 3 件）。\n'
       + '线型：──▶ 直接　┄⇢ 间接　┈⇝ 奇妙\n'
-      + '点箭头上的圆标可写「联结原因」：当时有效的行动、心态、关键人物、有利环境，并想想能迁移到什么场合。';
+      + '点箭头上的圆标：记录联结原因 / 改类型 / 删除。\n'
+      + '原因写什么：当时采取了哪些有效的行动、怎样的心态起了作用、有谁支持、是否处在有利环境 —— 究竟是什么在起作用，能迁移到哪些场合。';
   }
   return '第一步 · 聚焦 —— 本周最重要的 3 件事\n'
     + '每天记 3 件，一周约 21 件，再从中筛出 3 件。\n'
-    + '点卡片右侧的圈 ⭕ 圈选，可以先选、再调整。';
+    + '点卡片右侧的圈 ⭕ 圈选（选满 3 件后其余圈会隐藏），点 ★ 可取消。';
 }
 /* 渲染但不滚回顶部（render 默认回顶，交互过程中要保持位置） */
 function renderKeep(){ var y = window.scrollY; render(); window.scrollTo({ top:y }); }
-/* 状态行：只在需要时出现，不重复显示已选内容（起点卡片本身会高亮） */
+/* 状态行：操作说明已收进问号，这里只保留归档提示，不占版面 */
 function wkStatusRow(mode, r){
   if(r.done) return '<div class="wkstatus">已归档：这一周的复盘内容已固定</div>';
-  if(mode !== 'link') return '';
-  if(!S.wkLinkA) return '<div class="wkstatus">点第一张卡片作起点，再点另一张即建立联结；再点同一张可取消</div>';
-  return '<div class="wkstatus">已选起点 · 再点另一件事建立联结（点起点可取消）'
-    + '<button class="wktype" onclick="W.wkMode(\'link\')">取消</button></div>';
+  return '';
 }
 function wkDayLabel(d){
   var wd = ['周一','周二','周三','周四','周五','周六','周日'];
@@ -2070,12 +2076,16 @@ function viewReview(){
   /* ---------- 右页 · 本周素材（第一、二步在此列上直接操作） ---------- */
   s += '<div class="wkcol wkcol-r">';
   s += '<div class="wktop">';
-  s += '<div class="wkct"><span>右页 · 本周素材<span class="wkhelp" data-tip="'+esc(wkHelpText(_mode))+'">?</span></span>'
+  s += '<div class="wkct"><span>本周素材</span>'
     +  '<em>'+ents.length+' 条 · '+weekRecordedDays(mon)+' 天</em></div>';
   if(!r.done){
     s += '<div class="wkmodes">'
-      +  '<button class="'+(_mode==='focus'?'on':'')+'" onclick="W.wkMode(\'focus\')">① 聚焦 '+r.focus.length+'/3</button>'
-      +  '<button class="'+(_mode==='link'?'on':'')+'" onclick="W.wkMode(\'link\')">② 联结 '+r.links.length+'</button>'
+      +  '<div class="wkmode'+(_mode==='focus'?' on':'')+'">'
+      +    '<button onclick="W.wkMode(\'focus\')">① 聚焦 '+r.focus.length+'/3</button>'
+      +    '<span class="wkhelp" data-tip="'+esc(wkHelpText('focus'))+'">?</span></div>'
+      +  '<div class="wkmode'+(_mode==='link'?' on':'')+'">'
+      +    '<button onclick="W.wkMode(\'link\')">② 联结 '+r.links.length+'</button>'
+      +    '<span class="wkhelp" data-tip="'+esc(wkHelpText('link'))+'">?</span></div>'
       +  '</div>';
   }
   s += wkStatusRow(_mode, r);
@@ -2119,7 +2129,7 @@ function viewReview(){
 
   /* ---------- 左页 · 周复盘书写区（第三、四步） ---------- */
   s += '<div class="wkcol wkcol-l">';
-  s += '<div class="wkct"><span>左页 · 周复盘</span><em>书中：3&4 步写在左侧</em></div>';
+  s += '<div class="wkct"><span>周复盘</span><em>第三、四步</em></div>';
 
   /* 第三步 · 抽象化 */
   s += wkStepHead('第三步', '抽象化', '从一周的事件里看见自己');
@@ -2139,7 +2149,7 @@ function viewReview(){
       +  (r.done?'':'<button class="rm" onclick="W.delAction('+i+')" title="删除">×</button>')+'</div>'
       +  (r.done
           ? '<div class="ro-val" style="margin-bottom:8px">'+((a.what && a.what.trim()) ? esc(a.what) : '<span class="dim">未填写</span>')+'</div>'
-          : '<input class="what" value="'+esc(a.what||'')+'" placeholder="要做什么？写到一看就知道怎么开始，例如：找小幡先生聊「如何清晰表达自己的长处」" oninput="W.actSet('+i+',\'what\',this.value)">')
+          : '<textarea class="what" rows="3" placeholder="要做什么？写到一看就知道怎么开始，例如：找小幡先生聊「如何清晰表达自己的长处」" oninput="W.actSet('+i+',\'what\',this.value)">'+esc(a.what||'')+'</textarea>')
       +  '<div class="cols">'
       +    wkActInput(i,'when','When 何时',a.when,'下周一晚',r.done)
       +    wkActInput(i,'where','Where 何地',a.where,'公司会议室',r.done)
