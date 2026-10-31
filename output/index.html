@@ -2983,7 +2983,16 @@ W.calMove = function(n){
 };
 
 /* --- 设置：GitHub --- */
-W.setGH = function(k, v){ S.gh[k] = v.trim(); lsSet(K.gh, S.gh); };
+/* 配置只允许可打印 ASCII：复制粘贴常带进全角字符/弯引号/中文，
+   一旦进了 header，fetch 会在发请求前直接抛错（String contains non ISO-8859-1 code point） */
+W.setGH = function(k, v){
+  var raw = String(v == null ? '' : v);
+  var clean = raw.replace(/[^\x20-\x7E]/g, '').trim();
+  if(clean !== raw.trim()){
+    setTimeout(function(){ toast('已自动清除「' + k + '」里的非法字符（多来自复制粘贴）'); }, 0);
+  }
+  S.gh[k] = clean; lsSet(K.gh, S.gh);
+};
 function ghURL(){
   var g = S.gh;
   return 'https://api.github.com/repos/'+encodeURIComponent(g.owner)+'/'+encodeURIComponent(g.repo)+
@@ -2995,10 +3004,16 @@ function ghHeaders(){
   if(S.gh.token) h['Authorization'] = 'token '+S.gh.token;
   return h;
 }
+/* fetch 在 header 含非 ISO-8859-1 字符时会「同步抛错」而不是返回 rejected Promise，
+   包一层，避免把调用方（含启动流程）整段打断 */
+function ghFetch(url, opt){
+  try{ return fetch(url, opt); }
+  catch(e){ return Promise.reject(e); }
+}
 /* 云端条目数与 sha：用于推送前的「覆盖安全闸」 */
 function ghCloudStat(){
   if(!ghReadyPull()) return Promise.resolve(null);
-  return fetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
+  return ghFetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
     .then(function(r){ if(r.status===404 || !r.ok) return null; return r.json(); })
     .then(function(j){
       if(!j || !j.content) return null;
@@ -3028,14 +3043,19 @@ function ghReadyPull(){
 }
 W.ghTest = function(){
   if(!ghReady()) return;
-  fetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
+  ghFetch(ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main'), { headers:ghHeaders() })
     .then(function(r){
       if(r.status===404) { toast('连接正常，云端还没有数据文件，保存一次就会创建'); return null; }
       if(!r.ok) throw new Error('HTTP '+r.status);
       return r.json();
     })
     .then(function(j){ if(j) toast('连接正常，云端已有数据'); })
-    .catch(function(e){ toast('连不上：'+e.message+'（检查 token 与仓库名）'); });
+    .catch(function(e){
+      var m = /non ISO-8859-1/i.test(e.message || '')
+        ? 'token 里有非法字符（全角/中文/弯引号），请重新粘贴一次'
+        : (e.message || '未知错误');
+      toast('连不上：' + m);
+    });
 };
 W.ghPull = function(silent){
   if(!ghReadyPull()){
@@ -3043,7 +3063,7 @@ W.ghPull = function(silent){
     return Promise.resolve();
   }
   var url = ghURL()+'?ref='+encodeURIComponent(S.gh.branch||'main');
-  return fetch(url, { headers:ghHeaders() })
+  return ghFetch(url, { headers:ghHeaders() })
     .then(function(r){ if(r.status===404) return null; if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(j){
       if(!j || !j.content) return;
@@ -3091,7 +3111,7 @@ W.ghPush = function(silent){
         payload, null, 2)),
         branch:S.gh.branch||'main' };
     if(S.gh.sha) body.sha = S.gh.sha;
-    return fetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
+    return ghFetch(ghURL(), { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) })
       .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
       .then(function(j){
         S.gh.sha = j.content && j.content.sha;
@@ -3212,7 +3232,10 @@ document.addEventListener('keydown', function(e){
   // 每周日自动本地备份：仅周日首次进入时下载一次，避免重复打扰
   setTimeout(function(){ W.maybeAutoBackup(); }, 600);
   // GitHub 云：启动拉取一次合并（公共仓库只读只需 owner+repo）；有新改动时由保存自动回推
-  if(ghReadyPull()) W.ghPull(1);
+  // 无论拉取如何失败都不能打断启动流程
+  try{
+    if(ghReadyPull()) W.ghPull(1).catch(function(){});
+  }catch(e){}
 })();
 </script>
 </body>
