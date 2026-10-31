@@ -1,6 +1,6 @@
 {
-  "v": 2,
-  "updatedAt": 1793166201933,
+  "v": 3,
+  "updatedAt": 1793459791581,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1488,6 +1488,22 @@
       "nextAction": "",
       "nextResult": "",
       "selfDiscovery": ""
+    },
+    {
+      "id": "mvt87sk0anzef",
+      "date": "2026-10-29",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1793259184939,
+      "updatedAt": 1793459780377,
+      "event": "",
+      "thoughts": "q we q",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
     }
   ],
   "weeks": {
@@ -1722,10 +1738,11 @@
       "links": [],
       "abs": {},
       "actions": [],
-      "updatedAt": 0,
+      "updatedAt": 1793459790077,
       "done": false,
       "doneAt": 0,
       "snap": null
     }
-  }
+  },
+  "months": {}
 }
