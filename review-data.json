@@ -1,6 +1,6 @@
 {
   "v": 3,
-  "updatedAt": 1793459812313,
+  "updatedAt": 1793464473027,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1490,6 +1490,22 @@
       "selfDiscovery": ""
     },
     {
+      "id": "mvst59lh3om9z",
+      "date": "2026-10-29",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 0,
+      "updatedAt": 0,
+      "event": "",
+      "thoughts": "平静",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
       "id": "mvt87sk0anzef",
       "date": "2026-10-29",
       "emotions": [],
@@ -1504,9 +1520,57 @@
       "nextAction": "",
       "nextResult": "",
       "selfDiscovery": ""
+    },
+    {
+      "id": "mvulzh6c7z7te",
+      "date": "2026-10-30",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1793342776396,
+      "updatedAt": 1793342778973,
+      "event": "1",
+      "thoughts": "2",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
     }
   ],
   "weeks": {
+    "2026-10-26": {
+      "focus": [
+        "mvrkcc8on7xo1",
+        "mvqdp9wv54rpj",
+        "mvq1sm6al5cvh"
+      ],
+      "links": [
+        {
+          "a": "mvq1pq4i1webt",
+          "b": "mvq1uey7lefqh",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
+        }
+      ],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 1793464471516,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-19": {
+      "focus": [],
+      "links": [],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 0,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
     "2026-09-14": {
       "focus": [
         "mu55lxikix2gc",
@@ -1719,30 +1783,6 @@
       "abs": {},
       "actions": [],
       "updatedAt": 0,
-      "done": false,
-      "doneAt": 0,
-      "snap": null
-    },
-    "2026-10-19": {
-      "focus": [],
-      "links": [],
-      "abs": {},
-      "actions": [],
-      "updatedAt": 0,
-      "done": false,
-      "doneAt": 0,
-      "snap": null
-    },
-    "2026-10-26": {
-      "focus": [
-        "mvrkcc8on7xo1",
-        "mvqdp9wv54rpj",
-        "mvq1sm6al5cvh"
-      ],
-      "links": [],
-      "abs": {},
-      "actions": [],
-      "updatedAt": 1793459810811,
       "done": false,
       "doneAt": 0,
       "snap": null
