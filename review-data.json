@@ -1,6 +1,6 @@
 {
   "v": 3,
-  "updatedAt": 1793465841694,
+  "updatedAt": 1793467781319,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1536,72 +1536,43 @@
       "nextAction": "",
       "nextResult": "",
       "selfDiscovery": ""
+    },
+    {
+      "id": "mvwoby6psybra",
+      "date": "2026-10-31",
+      "emotions": [
+        "无聊"
+      ],
+      "isDraft": false,
+      "createdAt": 1793467660862,
+      "updatedAt": 1793467773387,
+      "event": "去外面逛了逛，跟烟酒店的老板聊天",
+      "thoughts": "感觉男的聊的东西都是钱、性、或者权利之类的，属实无聊，不过确实了解到了一些物业的上下层情况和一些工程或拆迁的信息",
+      "action": "听完大概了解两个人的身份和行业内容就走了",
+      "result": "没有后果，多抽了两根烟和喝了两杯茶",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvwoeov2qawbf",
+      "date": "2026-10-31",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1793467780376,
+      "updatedAt": 1793467780376,
+      "event": "打扫卫生he",
+      "thoughts": "",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
     }
   ],
   "weeks": {
-    "2026-10-26": {
-      "focus": [
-        "mvrkcc8on7xo1",
-        "mvqdo1r3qbkvw",
-        "mvq1xsukye96i"
-      ],
-      "links": [
-        {
-          "a": "mvq1pq4i1webt",
-          "b": "mvq1uey7lefqh",
-          "type": "direct",
-          "cause": "",
-          "transfer": ""
-        },
-        {
-          "a": "mvq1xsukye96i",
-          "b": "mvqdo1r3qbkvw",
-          "type": "odd",
-          "cause": "",
-          "transfer": ""
-        },
-        {
-          "a": "mvq1uey7lefqh",
-          "b": "mvq1xsukye96i",
-          "type": "direct",
-          "cause": "",
-          "transfer": ""
-        },
-        {
-          "a": "mvq1pq4i1webt",
-          "b": "mvq1sm6al5cvh",
-          "type": "direct",
-          "cause": "",
-          "transfer": ""
-        }
-      ],
-      "abs": {},
-      "actions": [
-        {
-          "what": "",
-          "when": "",
-          "where": "",
-          "who": "",
-          "how": "",
-          "much": "",
-          "src": "聚焦：昨天跟建文聊完了挺多，他说到2个很关键的点： 1和2和6是最重要的，其他都是术法 1、真实去了解一个人，不要看星座mbti这些东西，很多人会特意伪装自己是某一类的人格，那玩意是跟你们跟朋友拉近距离的，不是套人身上的模板 2、无所求 无所取 自然吸引；做好自己自然吸引 3、其实你希望对方怎么对你，你就怎么对对方就可以了 4、稳定的情绪与浓烈的感情无法共存 5、太想得到结果，所以没了分寸 6、需求点没对上，人家想要苹果你给梨子 1.喜欢上一个人就等于把伤害自己的刀给到对方，只是大家承受伤害的程度强弱而已 2.会存在不回应默默享受，也会存在用不回应来拒绝对方，态度即是结果，大家都是独立个体，都有自己的方式，所以这个不用多想 3.对对方有价值的就说明已经干扰了，但是是正面的，因为已经享受到了，所以具体情况具体分析吧，一个愿打一个愿挨，价值单方面说不算数其实 4.冷漠-收回喜欢：实则是没招了该放下了，说文艺是因为你把停止接触说成得到不被喜欢的释放，这词我第一次见，见怪莫怪"
-        }
-      ],
-      "updatedAt": 1793465809917,
-      "done": false,
-      "doneAt": 0,
-      "snap": null
-    },
-    "2026-10-19": {
-      "focus": [],
-      "links": [],
-      "abs": {},
-      "actions": [],
-      "updatedAt": 0,
-      "done": false,
-      "doneAt": 0,
-      "snap": null
-    },
     "2026-09-14": {
       "focus": [
         "mu55lxikix2gc",
@@ -1809,6 +1780,79 @@
       }
     },
     "2026-09-28": {
+      "focus": [],
+      "links": [],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 0,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-19": {
+      "focus": [],
+      "links": [],
+      "abs": {},
+      "actions": [],
+      "updatedAt": 0,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-26": {
+      "focus": [
+        "mvrkcc8on7xo1",
+        "mvqdo1r3qbkvw",
+        "mvq1xsukye96i"
+      ],
+      "links": [
+        {
+          "a": "mvq1pq4i1webt",
+          "b": "mvq1uey7lefqh",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
+        },
+        {
+          "a": "mvq1xsukye96i",
+          "b": "mvqdo1r3qbkvw",
+          "type": "odd",
+          "cause": "",
+          "transfer": ""
+        },
+        {
+          "a": "mvq1uey7lefqh",
+          "b": "mvq1xsukye96i",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
+        },
+        {
+          "a": "mvq1pq4i1webt",
+          "b": "mvq1sm6al5cvh",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
+        }
+      ],
+      "abs": {},
+      "actions": [
+        {
+          "what": "",
+          "when": "",
+          "where": "",
+          "who": "",
+          "how": "",
+          "much": "",
+          "src": "聚焦：昨天跟建文聊完了挺多，他说到2个很关键的点： 1和2和6是最重要的，其他都是术法 1、真实去了解一个人，不要看星座mbti这些东西，很多人会特意伪装自己是某一类的人格，那玩意是跟你们跟朋友拉近距离的，不是套人身上的模板 2、无所求 无所取 自然吸引；做好自己自然吸引 3、其实你希望对方怎么对你，你就怎么对对方就可以了 4、稳定的情绪与浓烈的感情无法共存 5、太想得到结果，所以没了分寸 6、需求点没对上，人家想要苹果你给梨子 1.喜欢上一个人就等于把伤害自己的刀给到对方，只是大家承受伤害的程度强弱而已 2.会存在不回应默默享受，也会存在用不回应来拒绝对方，态度即是结果，大家都是独立个体，都有自己的方式，所以这个不用多想 3.对对方有价值的就说明已经干扰了，但是是正面的，因为已经享受到了，所以具体情况具体分析吧，一个愿打一个愿挨，价值单方面说不算数其实 4.冷漠-收回喜欢：实则是没招了该放下了，说文艺是因为你把停止接触说成得到不被喜欢的释放，这词我第一次见，见怪莫怪"
+        }
+      ],
+      "updatedAt": 1793465809917,
+      "done": false,
+      "doneAt": 0,
+      "snap": null
+    },
+    "2026-10-12": {
       "focus": [],
       "links": [],
       "abs": {},
