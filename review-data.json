@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632775954,
+  "updatedAt": 1793632845415,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1934,16 +1934,16 @@
           "transfer": "实在不开心还是需要述说，线下说说"
         },
         {
-          "a": "mvkdm80f9ig7e",
+          "a": "mviubsdqle5hh",
           "b": "mvke466sxfvmu",
-          "type": "direct",
-          "cause": "",
-          "transfer": ""
+          "type": "indirect",
+          "cause": "在压力到最大的时候还是自己放纵了一下，有必要不被那种状态压垮，跟备考搭子都是比较佛系的，还好，释放了之后工作也稍微顺畅了",
+          "transfer": "压力山大时减少suo"
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793632760407,
+      "updatedAt": 1793632845270,
       "done": false,
       "doneAt": 0,
       "snap": null
