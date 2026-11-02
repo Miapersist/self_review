@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793581416418,
+  "updatedAt": 1793581579151,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1613,6 +1613,24 @@
       "selfDiscovery": ""
     },
     {
+      "id": "mvyk2pc7ui3b0",
+      "date": "2026-11-01",
+      "emotions": [
+        "放松"
+      ],
+      "isDraft": false,
+      "createdAt": 1793581440504,
+      "updatedAt": 1793581577649,
+      "event": "好久不运动，去运动健身了，体脂率又他喵的回到了23，肌肉降到36.4kg，少了差不多2kg，苏教练说可以增肌了，吃倒是不太严格但是练需要上重量。",
+      "thoughts": "",
+      "action": "运动了2小时，没全力，因为熬夜更新观自在了",
+      "result": "运动后皮质醇爆炸，晚上没睡好",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
       "id": "mvyjyuey0gta4",
       "date": "2026-11-02",
       "emotions": [
@@ -1623,7 +1641,7 @@
       ],
       "isDraft": false,
       "createdAt": 1793581259174,
-      "updatedAt": 1793581414700,
+      "updatedAt": 1793581423317,
       "event": "睡到两点钟醒来了，可能是健身+喝酒+近期的能量外泄有点多，有点幻听水流声（或者是感官敏锐到空调声音），视觉有点晃动；然后白泽一直叫个不停",
       "thoughts": "",
       "action": "开灯恍惚了一会，思考了下人生然后关灯睡觉",
