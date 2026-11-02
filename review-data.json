@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632845415,
+  "updatedAt": 1793632900030,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1938,12 +1938,19 @@
           "b": "mvke466sxfvmu",
           "type": "indirect",
           "cause": "在压力到最大的时候还是自己放纵了一下，有必要不被那种状态压垮，跟备考搭子都是比较佛系的，还好，释放了之后工作也稍微顺畅了",
-          "transfer": "压力山大时减少suo"
+          "transfer": "压力山大时减少所有会干扰自己的因素，专注工作、学习即可"
+        },
+        {
+          "a": "mvoj2djjxpghp",
+          "b": "mvojdp8xohvev",
+          "type": "direct",
+          "cause": "最后考试关头还是好好学了一会，有用的这个佛脚抱的，因为我发现现在记忆力",
+          "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793632845270,
+      "updatedAt": 1793632899773,
       "done": false,
       "doneAt": 0,
       "snap": null
