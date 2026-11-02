@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793631965880,
+  "updatedAt": 1793632027191,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1336,11 +1336,14 @@
     {
       "id": "mvoki1g3qtk9g",
       "date": "2026-10-25",
-      "emotions": [],
+      "emotions": [
+        "疲惫",
+        "烦躁"
+      ],
       "isDraft": true,
       "createdAt": 1792977489069,
-      "updatedAt": 1793066858164,
-      "event": "早上",
+      "updatedAt": 1793632015500,
+      "event": "早上发现自己的身份证放考场了",
       "thoughts": "",
       "action": "",
       "result": "",
@@ -1897,13 +1900,12 @@
     "2026-10-19": {
       "focus": [
         "mvg50qc18ei8p",
-        "mvg8da0xd82qs",
         "mvojdp8xohvev"
       ],
       "links": [],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793631963559,
+      "updatedAt": 1793631980042,
       "done": false,
       "doneAt": 0,
       "snap": null
