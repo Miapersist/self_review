@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793631344065,
+  "updatedAt": 1793631403570,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1988,13 +1988,15 @@
           "a": "mv220tg3v0tni",
           "b": "mv3d2ll9b2r0a",
           "type": "indirect",
-          "cause": "工作的压力让人无法动弹，促进了自己的焦虑情绪，导致情感上也思绪万分，就是e xing xun huan",
-          "transfer": ""
+          "cause": "工作的压力让人无法动弹，促进了自己的焦虑情绪，导致情感上也思绪万分，就是恶性循环，还有考试的pstd",
+          "transfer": "任何场合心态都要好，心态摆平减少内耗"
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "头脑估计思绪万分，内心无用的内耗占多，身体状态也是无精打采"
+      },
       "actions": [],
-      "updatedAt": 1793631343994,
+      "updatedAt": 1793631403541,
       "done": false,
       "doneAt": 0,
       "snap": null
