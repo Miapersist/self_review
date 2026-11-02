@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793631644426,
+  "updatedAt": 1793631776993,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1970,11 +1970,21 @@
           "type": "indirect",
           "cause": "在家里待着看书也看不下去，还是到图书馆看看书的，所以我不适合在家里学习，能量容易变低，多和大自然外界互动，或者多跟有趣的人交流互动才能激发更高的情绪",
           "transfer": "情绪偏低的时候可以出门走走或者找人聊天"
+        },
+        {
+          "a": "mv8vu00mqwls4",
+          "b": "mv8vw4jfaphak",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "烦恼、压抑、焦虑，身体应该处于极度疲惫",
+        "care": "工作、感情（虚无的）"
+      },
       "actions": [],
-      "updatedAt": 1793631640828,
+      "updatedAt": 1793631774556,
       "done": false,
       "doneAt": 0,
       "snap": null
