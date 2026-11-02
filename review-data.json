@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632410587,
+  "updatedAt": 1793632471609,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1354,6 +1354,22 @@
       "selfDiscovery": ""
     },
     {
+      "id": "mvzefw91pjeg0",
+      "date": "2026-10-25",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1793632445449,
+      "updatedAt": 1793632449125,
+      "event": "跟慧仪约了东山口聊天",
+      "thoughts": "",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
       "id": "mvq1pq4i1webt",
       "date": "2026-10-26",
       "emotions": [
@@ -1901,12 +1917,13 @@
     "2026-10-19": {
       "focus": [
         "mvg50qc18ei8p",
-        "mvojdp8xohvev"
+        "mvojdp8xohvev",
+        "mvoki1g3qtk9g"
       ],
       "links": [],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793631980042,
+      "updatedAt": 1793632416565,
       "done": false,
       "doneAt": 0,
       "snap": null
