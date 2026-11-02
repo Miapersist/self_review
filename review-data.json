@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793514285167,
+  "updatedAt": 1793581416418,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1607,6 +1607,27 @@
       "thoughts": "",
       "action": "去的路上买了包子，然后回来的路上吃馒头，还有霉豆腐，现在感觉很爽",
       "result": "心情变好了一点，出去走走，运动一下，对身体也好",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mvyjyuey0gta4",
+      "date": "2026-11-02",
+      "emotions": [
+        "精疲力尽",
+        "消沉",
+        "无力",
+        "疲惫"
+      ],
+      "isDraft": false,
+      "createdAt": 1793581259174,
+      "updatedAt": 1793581414700,
+      "event": "睡到两点钟醒来了，可能是健身+喝酒+近期的能量外泄有点多，有点幻听水流声（或者是感官敏锐到空调声音），视觉有点晃动；然后白泽一直叫个不停",
+      "thoughts": "",
+      "action": "开灯恍惚了一会，思考了下人生然后关灯睡觉",
+      "result": "早上困得不行，点了咖啡提神",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
