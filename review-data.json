@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632716066,
+  "updatedAt": 1793632775954,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1932,11 +1932,18 @@
           "type": "direct",
           "cause": "压抑的心态让我需要找个人聊聊天释放一下，又刚好1和叮叮没空，只能约这位老友了",
           "transfer": "实在不开心还是需要述说，线下说说"
+        },
+        {
+          "a": "mvkdm80f9ig7e",
+          "b": "mvke466sxfvmu",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793632678100,
+      "updatedAt": 1793632760407,
       "done": false,
       "doneAt": 0,
       "snap": null
