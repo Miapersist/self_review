@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793631776993,
+  "updatedAt": 1793631837127,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1975,7 +1975,7 @@
           "a": "mv8vu00mqwls4",
           "b": "mv8vw4jfaphak",
           "type": "direct",
-          "cause": "",
+          "cause": "累到不行的时候跟妈妈聊聊天还是能开心点，妈妈总想着让我开心点",
           "transfer": ""
         }
       ],
@@ -1984,7 +1984,7 @@
         "care": "工作、感情（虚无的）"
       },
       "actions": [],
-      "updatedAt": 1793631774556,
+      "updatedAt": 1793631817512,
       "done": false,
       "doneAt": 0,
       "snap": null
