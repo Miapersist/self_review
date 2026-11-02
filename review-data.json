@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793631524186,
+  "updatedAt": 1793631583984,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1963,10 +1963,18 @@
         "mv8vw4jfaphak",
         "mvdeapetb1nl4"
       ],
-      "links": [],
+      "links": [
+        {
+          "a": "mvdee1ob7t8bw",
+          "b": "mvdeapetb1nl4",
+          "type": "indirect",
+          "cause": "在家里待着看书也看不下去，还是到图书馆看看书的，所以我不适合在家里",
+          "transfer": ""
+        }
+      ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793631510335,
+      "updatedAt": 1793631583701,
       "done": false,
       "doneAt": 0,
       "snap": null
