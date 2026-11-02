@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632595593,
+  "updatedAt": 1793632656068,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1921,14 +1921,22 @@
     },
     "2026-10-19": {
       "focus": [
-        "mvg50qc18ei8p",
         "mvojdp8xohvev",
-        "mvoki1g3qtk9g"
+        "mvoki1g3qtk9g",
+        "mvzefw91pjeg0"
       ],
-      "links": [],
+      "links": [
+        {
+          "a": "mvg50qc18ei8p",
+          "b": "mvg8da0xd82qs",
+          "type": "direct",
+          "cause": "压抑的心态让我需要找个人聊聊天释放一下，又刚好1和叮叮没空，只能yue",
+          "transfer": ""
+        }
+      ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1793632416565,
+      "updatedAt": 1793632655699,
       "done": false,
       "doneAt": 0,
       "snap": null
