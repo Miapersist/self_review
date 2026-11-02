@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793581641109,
+  "updatedAt": 1793631196642,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1632,6 +1632,26 @@
       "selfDiscovery": ""
     },
     {
+      "id": "mvykb2fucyno4",
+      "date": "2026-11-01",
+      "emotions": [
+        "失落",
+        "沮丧",
+        "释然"
+      ],
+      "isDraft": false,
+      "createdAt": 1793581825799,
+      "updatedAt": 1793582047921,
+      "event": "早上出门锻炼给小柠留了言，晚上看她没回我，再问了一句",
+      "thoughts": "",
+      "action": "收拾完小聚的东西之后有点小失落，后面留言收到了对方的小狗照片，简短结束了对话，至少收到了她出去玩还跟小狗玩了的照片，她开心就好；\n还去看了下测测，劝我不要贸然行事，那倒没有，情绪上来的时候不适合做决策",
+      "result": "感受到自己情绪波动的有点小无理由，只是一天晚回消息还是会难受，不过好在没有情绪外漏到行动。",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
       "id": "mvyjyuey0gta4",
       "date": "2026-11-02",
       "emotions": [
@@ -1861,11 +1881,15 @@
       }
     },
     "2026-09-28": {
-      "focus": [],
+      "focus": [
+        "muqqtd5lz38vv",
+        "mus0swtbnqg0z",
+        "murxvmh5wytip"
+      ],
       "links": [],
       "abs": {},
       "actions": [],
-      "updatedAt": 0,
+      "updatedAt": 1793631195132,
       "done": false,
       "doneAt": 0,
       "snap": null
