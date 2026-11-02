@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793632900030,
+  "updatedAt": 1793632959700,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1944,13 +1944,15 @@
           "a": "mvoj2djjxpghp",
           "b": "mvojdp8xohvev",
           "type": "direct",
-          "cause": "最后考试关头还是好好学了一会，有用的这个佛脚抱的，因为我发现现在记忆力",
-          "transfer": ""
+          "cause": "最后考试关头还是好好学了一会，有用的这个佛脚抱的，因为我发现现在记忆力变好不少，可能神经元比较活跃，可以更好地链接联想记忆",
+          "transfer": "临上场看看相关资料激活记忆和激活肾上腺还是有必要"
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": ""
+      },
       "actions": [],
-      "updatedAt": 1793632899773,
+      "updatedAt": 1793632958906,
       "done": false,
       "doneAt": 0,
       "snap": null
