@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793633456445,
+  "updatedAt": 1793673498396,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1692,6 +1692,26 @@
       "thoughts": "",
       "action": "开灯恍惚了一会，思考了下人生然后关灯睡觉",
       "result": "早上困得不行，点了咖啡提神",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw02td30xymfm",
+      "date": "2026-11-03",
+      "emotions": [
+        "惬意",
+        "高兴",
+        "活力"
+      ],
+      "isDraft": false,
+      "createdAt": 1793673385854,
+      "updatedAt": 1793673495552,
+      "event": "早上在想着搞副业",
+      "thoughts": "",
+      "action": "问完一圈身边的可用资源之后，准备这周开启，跃跃欲试（昨晚xhs测到我明年今天会有一些新的工作或什么的开启，说不定我发财了呢？！）",
+      "result": "有点活力的一天，虽然没睡得很好",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
