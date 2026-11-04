@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793771699617,
+  "updatedAt": 1793771772749,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1774,6 +1774,29 @@
       "thoughts": "",
       "action": "以小时间段的幻想获得一些精神支持，然后回到现实不做过多的沉溺",
       "result": "没什么结果，现在进步了，能把行动和想象切割开，但还保持乐观",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw1pcvphov59e",
+      "date": "2026-11-04",
+      "emotions": [
+        "有爱",
+        "轻松",
+        "舒适",
+        "安宁",
+        "惬意",
+        "困倦"
+      ],
+      "isDraft": false,
+      "createdAt": 1793771706886,
+      "updatedAt": 1793771771172,
+      "event": "今天早上有点疲惫，不过早上起来看到白泽乖乖滴",
+      "thoughts": "",
+      "action": "简单地撸撸她然后上班，跟它说了拜拜",
+      "result": "无",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
