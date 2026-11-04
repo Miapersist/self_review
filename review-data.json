@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793771501955,
+  "updatedAt": 1793771699617,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1692,6 +1692,25 @@
       "thoughts": "",
       "action": "开灯恍惚了一会，思考了下人生然后关灯睡觉",
       "result": "早上困得不行，点了咖啡提神",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw1p8rdp0iyas",
+      "date": "2026-11-02",
+      "emotions": [
+        "专注",
+        "受激励"
+      ],
+      "isDraft": false,
+      "createdAt": 1793771514690,
+      "updatedAt": 1793771698240,
+      "event": "晚上跟1崽、朋友圈里看出来做小红书的几个人聊了一下我的副业",
+      "thoughts": "",
+      "action": "第二天就开启",
+      "result": "未知",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
