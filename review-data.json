@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793771978312,
+  "updatedAt": 1793784057530,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1835,6 +1835,25 @@
       "thoughts": "",
       "action": "我直接拉人跟他对了事情，不过没有上头，让他处理好就行，然后我就忙自己更重要的事情去了，没必要费口舌",
       "result": "没有结果，让他自己处理就行",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw1wnvvcksvq6",
+      "date": "2026-11-04",
+      "emotions": [
+        "疲惫",
+        "疲倦"
+      ],
+      "isDraft": false,
+      "createdAt": 1793783980744,
+      "updatedAt": 1793784056628,
+      "event": "讲完报表 巨累 感觉话都说完了 精力条耗尽",
+      "thoughts": "",
+      "action": "刷了会小红书 晚上打算点个麦麦 也不做饭了 累人 然后把鸡心冻了或者吃掉 早点睡觉",
+      "result": "",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
