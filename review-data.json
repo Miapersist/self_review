@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793771871877,
+  "updatedAt": 1793771978312,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1816,6 +1816,25 @@
       "thoughts": "",
       "action": "觉察出他对象可能的行为原因，让他们好好聊一下具体情况",
       "result": "当局者迷，希望给婷子带来了一些好的沟通思路",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw1pgo2xn5izz",
+      "date": "2026-11-04",
+      "emotions": [
+        "烦躁",
+        "筋疲力尽"
+      ],
+      "isDraft": false,
+      "createdAt": 1793771884086,
+      "updatedAt": 1793771976548,
+      "event": "不知道为什么感觉有点憋得慌，然后早上被开发问问题，被他那不想解决问题只想找人问的状态搞得有点情绪",
+      "thoughts": "",
+      "action": "我直接拉人跟他对了事情，不过没有上头，让他处理好就行，然后我就忙自己更重要的事情去了，没必要费口舌",
+      "result": "没有结果，让他自己处理就行",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
