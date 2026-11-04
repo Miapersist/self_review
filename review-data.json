@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793771772749,
+  "updatedAt": 1793771871877,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1797,6 +1797,25 @@
       "thoughts": "",
       "action": "简单地撸撸她然后上班，跟它说了拜拜",
       "result": "无",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw1pedu30wcxd",
+      "date": "2026-11-04",
+      "emotions": [
+        "平静",
+        "冷静"
+      ],
+      "isDraft": false,
+      "createdAt": 1793771802691,
+      "updatedAt": 1793771870113,
+      "event": "跟阿婷聊了会天，说到她跟她对象的事情",
+      "thoughts": "",
+      "action": "觉察出他对象可能的行为原因，让他们好好聊一下具体情况",
+      "result": "当局者迷，希望给婷子带来了一些好的沟通思路",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
