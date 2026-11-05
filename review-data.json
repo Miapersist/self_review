@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793784118847,
+  "updatedAt": 1793862761274,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1854,6 +1854,25 @@
       "thoughts": "",
       "action": "刷了会小红书 晚上打算点个麦麦 也不做饭了 累人 也不运动散步了 然后把鸡心冻了或者吃掉 早点睡觉",
       "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw37dbohx3jpf",
+      "date": "2026-11-05",
+      "emotions": [
+        "活力",
+        "亢奋"
+      ],
+      "isDraft": false,
+      "createdAt": 1793862425105,
+      "updatedAt": 1793862759303,
+      "event": "早上一来就早早把腿敲了 早餐吃了，决定晚上去运动，然后就开始工作（跟研发、业务一顿逼逼）",
+      "thoughts": "",
+      "action": "就干就对了，但说实话我更喜欢平静点的状态",
+      "result": "有点亢奋，导致我思绪有点活跃，没办法很好地专注工作",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
