@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793862930341,
+  "updatedAt": 1793930354333,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1892,6 +1892,25 @@
       "thoughts": "",
       "action": "需要把这个问题记录到我的工作总结里面，后续要迭代，并且我觉得在工作时间还是尽量平静的状态会让人能专注",
       "result": "修改工作方式",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw4bre5vfsado",
+      "date": "2026-11-05",
+      "emotions": [
+        "自豪",
+        "活力"
+      ],
+      "isDraft": false,
+      "createdAt": 1793930275044,
+      "updatedAt": 1793930352660,
+      "event": "本来吃完晚饭有点晕碳想偷懒，但是一想跟自己说好了要去健身的，还是爬起来去练了",
+      "thoughts": "",
+      "action": "路上下了点小雨，小跑去健身了",
+      "result": "练完回家买了点沃尔玛的菜，然后收拾了一下家里洗洗 玩了会手机睡",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
