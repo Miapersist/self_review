@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793930354333,
+  "updatedAt": 1793930446431,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1911,6 +1911,25 @@
       "thoughts": "",
       "action": "路上下了点小雨，小跑去健身了",
       "result": "练完回家买了点沃尔玛的菜，然后收拾了一下家里洗洗 玩了会手机睡",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw4btk07tlm9p",
+      "date": "2026-11-06",
+      "emotions": [
+        "困扰",
+        "困倦"
+      ],
+      "isDraft": false,
+      "createdAt": 1793930368711,
+      "updatedAt": 1793930445025,
+      "event": "昨天练完，感觉今天鸡翅根都没痛，并且累了所以有点淡淡的",
+      "thoughts": "",
+      "action": "就正常生活，淡淡地回复（人淡淡 话微热）",
+      "result": "没啥结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
