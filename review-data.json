@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1793930446431,
+  "updatedAt": 1794045154744,
   "records": [
     {
       "id": "1788318521114.329",
@@ -1930,6 +1930,41 @@
       "thoughts": "",
       "action": "就正常生活，淡淡地回复（人淡淡 话微热）",
       "result": "没啥结果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw4m1n1gjlte9",
+      "date": "2026-11-06",
+      "emotions": [
+        "疲惫",
+        "反感"
+      ],
+      "isDraft": false,
+      "createdAt": 1793947542066,
+      "updatedAt": 1794045136634,
+      "event": "今天真的好困，淡淡的，不想干活",
+      "thoughts": "",
+      "action": "中午吃了饭好好睡了一觉，少干了点活",
+      "result": "工作没有完全做完，留了一点用户权限收集清单的尾巴",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mw685l59jdo4i",
+      "date": "2026-11-07",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1794045145143,
+      "updatedAt": 1794045149818,
+      "event": "早上起来神清气爽，看到是冬至，跟ba ma预估了一下",
+      "thoughts": "",
+      "action": "",
+      "result": "",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
