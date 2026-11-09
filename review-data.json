@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794185955041,
+  "updatedAt": 1794186016224,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2483,10 +2483,18 @@
         "mw689dmobaxez",
         "mw8jvo0ix938z"
       ],
-      "links": [],
+      "links": [
+        {
+          "a": "mvyjyuey0gta4",
+          "b": "mw37dbohx3jpf",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
+        }
+      ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1794185933397,
+      "updatedAt": 1794186015997,
       "done": false,
       "doneAt": 0,
       "snap": null
