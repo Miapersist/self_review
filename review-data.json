@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794186319493,
+  "updatedAt": 1794186380179,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2521,13 +2521,15 @@
           "a": "mw689dmobaxez",
           "b": "mw8k35j58c8x6",
           "type": "indirect",
-          "cause": "可能是前一天的聊天有点密集，所以有一点焦虑的气息",
-          "transfer": ""
+          "cause": "可能是前一天的聊天有点密集，所以又触发了我有一点焦虑的气息？",
+          "transfer": "聊天如果多了，要记得不要上头，控制行动，不然会重新进入焦虑-回避的循环"
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "平静，"
+      },
       "actions": [],
-      "updatedAt": 1794186315755,
+      "updatedAt": 1794186378184,
       "done": false,
       "doneAt": 0,
       "snap": null
