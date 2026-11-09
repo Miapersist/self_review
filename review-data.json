@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794186078003,
+  "updatedAt": 1794186138806,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2014,6 +2014,22 @@
       "selfDiscovery": "还是对消息的回复带有期待了；我真正渴望的是对方能回应我的喜欢？我不懂，待我去问问豆包"
     },
     {
+      "id": "mw8k35j58c8x6",
+      "date": "2026-11-07",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1794186117637,
+      "updatedAt": 1794186137759,
+      "event": "不知道是不是太晚喝了咖啡，然后小红书也没什么动静，还有xiao",
+      "thoughts": "",
+      "action": "",
+      "result": "",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
       "id": "mw8jvo0ix938z",
       "date": "2026-11-08",
       "emotions": [
@@ -2490,11 +2506,18 @@
           "type": "direct",
           "cause": "自己觉察到了自己的疲惫的原因，主动收回了能量，并且补充了养血饮口服液",
           "transfer": "极度疲惫的时候"
+        },
+        {
+          "a": "mw02td30xymfm",
+          "b": "mw685l59jdo4i",
+          "type": "direct",
+          "cause": "想搞副业然后周末安排了去散步输出我的小红书",
+          "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1794186058468,
+      "updatedAt": 1794186095675,
       "done": false,
       "doneAt": 0,
       "snap": null
