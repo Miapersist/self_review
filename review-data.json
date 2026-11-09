@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794186258659,
+  "updatedAt": 1794186319493,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2516,11 +2516,18 @@
           "type": "direct",
           "cause": "想搞副业然后周末安排了去散步输出我的小红书",
           "transfer": ""
+        },
+        {
+          "a": "mw689dmobaxez",
+          "b": "mw8k35j58c8x6",
+          "type": "indirect",
+          "cause": "可能是前一天的聊天有点密集，所以有一点焦虑的气息",
+          "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1794186095675,
+      "updatedAt": 1794186315755,
       "done": false,
       "doneAt": 0,
       "snap": null
