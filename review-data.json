@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794272993426,
+  "updatedAt": 1794273055185,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2720,7 +2720,38 @@
       "doneAt": 0,
       "updatedAt": 0,
       "snap": null
+    },
+    "2026-10": {
+      "inner": "10月真是最多事情，压力山大的一个月，焦虑+压力让人变形",
+      "action": "考试、",
+      "result": "",
+      "note": "",
+      "done": false,
+      "doneAt": 0,
+      "updatedAt": 1794273054965,
+      "snap": null
+    },
+    "2026-12": {
+      "inner": "",
+      "action": "",
+      "result": "",
+      "note": "",
+      "done": false,
+      "doneAt": 0,
+      "updatedAt": 1794273054149,
+      "snap": null
     }
   },
-  "mlinks": []
+  "mlinks": [
+    {
+      "a": "2026-01|inner",
+      "b": "2026-03|action",
+      "cause": ""
+    },
+    {
+      "a": "2026-06|result",
+      "b": "2026-03|note",
+      "cause": ""
+    }
+  ]
 }
