@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794364187729,
+  "updatedAt": 1794364459680,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2128,6 +2128,29 @@
       "thoughts": "",
       "action": "让妈妈下载了一个wb，然后教她如何去使用",
       "result": "妈妈学会了如何，少花10块钱买ppt",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwbi72up7h2dh",
+      "date": "2026-11-11",
+      "emotions": [
+        "有爱",
+        "满足",
+        "随和",
+        "自在",
+        "活泼",
+        "快乐"
+      ],
+      "isDraft": false,
+      "createdAt": 1794364342924,
+      "updatedAt": 1794364458526,
+      "event": "今天早上在推进工作+看小红书+搞我的obsidian知识库+跟朋友聊天；还遇到了之前煊赫门老哥打招呼哈哈哈哈",
+      "thoughts": "",
+      "action": "继续做事，保持好心情",
+      "result": "没什么结果，就是这种推进事情的状态让人开心，不因为外物太多影响，自己发自内心的开心",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
