@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794845352940,
+  "updatedAt": 1794845447956,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2396,6 +2396,24 @@
       "thoughts": "",
       "action": "微信沟通了",
       "result": "对方也表现出比较平和的接受，也不尴尬，是好的表达歉意的方式了",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwjgkx36vu8x7",
+      "date": "2026-11-16",
+      "emotions": [
+        "闷闷不乐"
+      ],
+      "isDraft": false,
+      "createdAt": 1794845359742,
+      "updatedAt": 1794845446982,
+      "event": "下午抽时间把豆包的照片处理好了",
+      "thoughts": "",
+      "action": "p图效果很一般，没达到效果，感觉不是很好",
+      "result": "没什么结果，至少是履约了，但是就是我的小红书本来想发这个 没发成功",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
