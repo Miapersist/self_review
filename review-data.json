@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794845064456,
+  "updatedAt": 1794845178729,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2358,6 +2358,25 @@
       "thoughts": "",
       "action": "6点多锻炼，到9点多",
       "result": "不过晚上没睡好，2点多醒来了，身上甚至有包包（可能是寻麻疹？）",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwjgevenuxfwn",
+      "date": "2026-11-15",
+      "emotions": [
+        "自在",
+        "随和"
+      ],
+      "isDraft": false,
+      "createdAt": 1794845074744,
+      "updatedAt": 1794845177701,
+      "event": "周天难得多联系了一下大柠，没有期待她会回",
+      "thoughts": "",
+      "action": "看到就回了，感觉很舒服，我还发了个朋友圈表示最近这种状态是我期望的平稳慢慢来的状态，不知道对方看懂没，不过懂不懂都无妨了",
+      "result": "没结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
