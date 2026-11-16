@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794844971614,
+  "updatedAt": 1794845064456,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2339,6 +2339,25 @@
       "thoughts": "",
       "action": "跟着一起问了一些问题，还有版权边界呢，而且查出来的吃饭推荐貌似都还不错，我猜了售价10w，倩倩回去查了确实是11w，看来我的预估价值能力还是不错捏",
       "result": "没什么结果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwjgcss33zkpx",
+      "date": "2026-11-15",
+      "emotions": [
+        "痛快",
+        "专注"
+      ],
+      "isDraft": false,
+      "createdAt": 1794844982445,
+      "updatedAt": 1794845063269,
+      "event": "周天的时候虽然不想去健身，但是还是坚持去了，因为前一天吃得属实有点多。",
+      "thoughts": "",
+      "action": "6点多锻炼，到9点多",
+      "result": "不过晚上没睡好，2点多醒来了，身上甚至有包包（可能是寻麻疹？）",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
