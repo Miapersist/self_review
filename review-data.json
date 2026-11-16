@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794845907410,
+  "updatedAt": 1794845966788,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3052,11 +3052,20 @@
           "type": "odd",
           "cause": "",
           "transfer": ""
+        },
+        {
+          "a": "mwjgcss33zkpx",
+          "b": "mwjgevenuxfwn",
+          "type": "direct",
+          "cause": "",
+          "transfer": ""
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "好很多了，比较清醒，坚持了一周没抽烟，就是吃零食有点多"
+      },
       "actions": [],
-      "updatedAt": 1794845895247,
+      "updatedAt": 1794845958736,
       "done": false,
       "doneAt": 0,
       "snap": null
