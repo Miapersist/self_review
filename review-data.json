@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794880342666,
+  "updatedAt": 1794963502527,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2454,6 +2454,27 @@
       "thoughts": "",
       "action": "吃就吃了，我给自己说吃了那就晚上把todolist+知识库搭建好，并且整理好了待办事项（搞到了一点多）",
       "result": "结果就是第二天上称108了（微笑）",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwleoxlzrms02",
+      "date": "2026-11-17",
+      "emotions": [
+        "困扰",
+        "舒心",
+        "平和",
+        "舒适"
+      ],
+      "isDraft": false,
+      "createdAt": 1794963133556,
+      "updatedAt": 1794963500953,
+      "event": "昨天基本把个人知识库的框架和该调整的todolist内容改好了，还有把该买的东西买好了。\n很多事情堆着，所以工作和图书馆的书没读的事情后置了",
+      "thoughts": "",
+      "action": "列出来了当日的任务和计划时间",
+      "result": "开启了一些比较重要的事情，隐隐的小压力稍微缓解了",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
