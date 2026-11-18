@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794964652698,
+  "updatedAt": 1794965120414,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2516,6 +2516,24 @@
       "thoughts": "",
       "action": "晚上去洗完碗丢了垃圾，还去散了一会步，昨儿也不知道为啥这么兴奋，妈耶",
       "result": "没啥结果，就是记录一下",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwlfsuqkqzap0",
+      "date": "2026-11-17",
+      "emotions": [
+        "深思"
+      ],
+      "isDraft": false,
+      "createdAt": 1794964981029,
+      "updatedAt": 1794965118370,
+      "event": "昨晚又有点晚睡了，到1点",
+      "thoughts": "",
+      "action": "虽然之前这段时间的平静状态很不错，让生活变得很稳定，不过稳定压抑之后有一些压抑后的翻涌而起的东西，让我思考，决定之后做马丁，但是不用太压抑一些事情，但也不能每天都太随性，可以看情况缓步调整",
+      "result": "没有结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
