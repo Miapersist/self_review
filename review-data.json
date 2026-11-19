@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1794965810865,
+  "updatedAt": 1795057079294,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2554,6 +2554,26 @@
       "thoughts": "",
       "action": "想着看来李超的号要请假一天了，虽然隐隐约约不舒服，不过也不是什么大事",
       "result": "没啥，心态稳住，这都是小小小事",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwmv6yasmv69j",
+      "date": "2026-11-18",
+      "emotions": [
+        "有福",
+        "舒适",
+        "满足"
+      ],
+      "isDraft": false,
+      "createdAt": 1795051301982,
+      "updatedAt": 1795057077487,
+      "event": "昨天一天都在搞工作，书都没什么时间看，本来想偷懒一下，然后小柠说allin，给我打了一波牛血",
+      "thoughts": "",
+      "action": "运动了",
+      "result": "刚运动完还是蛮爽的，好久没运动这么多动作了",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
