@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795057419703,
+  "updatedAt": 1795057785782,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2594,6 +2594,25 @@
       "thoughts": "",
       "action": "完成了一部分，后面1点了就去洗澡睡觉了，生气这破软件",
       "result": "没啥后果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwmyyx9r7jxc1",
+      "date": "2026-11-18",
+      "emotions": [
+        "失落",
+        "感动"
+      ],
+      "isDraft": false,
+      "createdAt": 1795057647727,
+      "updatedAt": 1795057784550,
+      "event": "最近的小红书很惨淡，然后看到一个博主也弄plog，问了她一嘴为什么直接抄自己朋友圈的照片效果很一般",
+      "thoughts": "",
+      "action": "这位姐妹回了：朋友圈和红薯的逻辑不一样，朋友圈发的是心情，小红书发的是攻略。纯风景照很难有共鸣，要试试输出个人感受，要恰饭就要人设+场景+定位",
+      "result": "准备尝试一下",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
