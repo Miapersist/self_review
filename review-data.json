@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795057079294,
+  "updatedAt": 1795057147743,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2574,6 +2574,26 @@
       "thoughts": "",
       "action": "运动了",
       "result": "刚运动完还是蛮爽的，好久没运动这么多动作了",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwmymycbqq0uk",
+      "date": "2026-11-18",
+      "emotions": [
+        "舒适",
+        "困扰",
+        "烦恼"
+      ],
+      "isDraft": false,
+      "createdAt": 1795057080157,
+      "updatedAt": 1795057146300,
+      "event": "把2个电脑接上了hdmi；把我的win本尝试卸载云shu了，但是还有一部分残留；",
+      "thoughts": "",
+      "action": "完成了一部分，后面1点了就去洗澡睡觉了，生气这破软件",
+      "result": "没啥后果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
