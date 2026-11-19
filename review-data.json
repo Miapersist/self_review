@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795057147743,
+  "updatedAt": 1795057349430,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2594,6 +2594,25 @@
       "thoughts": "",
       "action": "完成了一部分，后面1点了就去洗澡睡觉了，生气这破软件",
       "result": "没啥后果",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwmyoul66fn51",
+      "date": "2026-11-19",
+      "emotions": [
+        "烦躁",
+        "闷闷不乐"
+      ],
+      "isDraft": false,
+      "createdAt": 1795057240586,
+      "updatedAt": 1795057347913,
+      "event": "早上起来上称发现109.8 吓傻了",
+      "thoughts": "",
+      "action": "运动了，但是姨妈期前就是吃得多加储水严重；然后找了一下大柠聊天吐槽了一下，顺带邀请她一起设计女性专属的健身工具，好的小主也算是勉为其难地答应了",
+      "result": "没什么结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
