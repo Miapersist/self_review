@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795401289024,
+  "updatedAt": 1795401696581,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2760,6 +2760,27 @@
       "thoughts": "",
       "action": "我提前送了婷子生日礼物，还有给她了一些跟阿聪事件的情绪支撑和分析，她也听我说了一些我的感情想法。",
       "result": "没什么结果，两个人都很开心的结束了一天的游玩～",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwsnkml2ckl3x",
+      "date": "2026-11-22",
+      "emotions": [
+        "无力",
+        "精疲力尽",
+        "疲倦",
+        "平静"
+      ],
+      "isDraft": false,
+      "createdAt": 1795401315681,
+      "updatedAt": 1795401695408,
+      "event": "虽然来姨妈，但是有一堆要做的事情，而且有点情绪的翻滚，在思考为什么xxj没有回消息",
+      "thoughts": "",
+      "action": "虽然有些不太舒服+累，但是还是把大多数事情做好了，我可真棒啊，又进步了",
+      "result": "周一发了一条消息给xxj，发现是自己想多了（好吧）",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
