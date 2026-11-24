@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508213717,
+  "updatedAt": 1795508275131,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3571,12 +3571,22 @@
     },
     "2026-11-16": {
       "focus": [
-        "mwjgh83863cvh"
+        "mwjgh83863cvh",
+        "mwsltv650wi9g",
+        "mwlexaaxwa8m1"
       ],
-      "links": [],
+      "links": [
+        {
+          "a": "mwk1bovaodwni",
+          "b": "mwlexaaxwa8m1",
+          "type": "direct",
+          "cause": "压抑dao zhi",
+          "transfer": ""
+        }
+      ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1795508210058,
+      "updatedAt": 1795508274856,
       "done": false,
       "doneAt": 0,
       "snap": null
