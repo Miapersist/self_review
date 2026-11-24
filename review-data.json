@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508580489,
+  "updatedAt": 1795508644504,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3613,10 +3613,21 @@
         }
       ],
       "abs": {
-        "state": "q xing"
+        "state": "清醒、开心+活力满满、练练练，储水了但是正常锻炼",
+        "care": "健身、副业、朋友亲人",
+        "people": "父母、朋友、大柠"
       },
-      "actions": [],
-      "updatedAt": 1795508580427,
+      "actions": [
+        {
+          "what": "jian sh",
+          "when": "",
+          "where": "",
+          "who": "",
+          "how": "",
+          "much": ""
+        }
+      ],
+      "updatedAt": 1795508644408,
       "done": false,
       "doneAt": 0,
       "snap": null
