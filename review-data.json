@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508520127,
+  "updatedAt": 1795508580489,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3608,13 +3608,15 @@
           "a": "mwody3nt4rt38",
           "b": "mwsnkml2ckl3x",
           "type": "odd",
-          "cause": "兴奋状态+姨妈导致的情绪变化，让人",
+          "cause": "兴奋状态+姨妈导致的情绪变化，让人容易想多，发现这种情况在姨妈状态下会放大，不过这次比较好的是没有行为变化+没有无端指责，而且自己守住了边界和个人做事的状态，还不错",
           "transfer": ""
         }
       ],
-      "abs": {},
+      "abs": {
+        "state": "q xing"
+      },
       "actions": [],
-      "updatedAt": 1795508518194,
+      "updatedAt": 1795508580427,
       "done": false,
       "doneAt": 0,
       "snap": null
