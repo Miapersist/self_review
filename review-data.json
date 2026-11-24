@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508461307,
+  "updatedAt": 1795508520127,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3602,12 +3602,19 @@
           "b": "mwodtjasv61z6",
           "type": "indirect",
           "cause": "最近聊天成为了习惯，并且状态比较舒服，所以就会有点依恋情绪上来，觉察到了控制住行为的变化",
-          "transfer": "情绪不稳定的时候要分析一下情况是否触发了依恋状态，一，守住行为边界"
+          "transfer": "情绪不稳定的时候要分析一下情况是否触发了依恋状态，一些小事不能乱了大谋，守住行为边界"
+        },
+        {
+          "a": "mwody3nt4rt38",
+          "b": "mwsnkml2ckl3x",
+          "type": "odd",
+          "cause": "兴奋状态+姨妈导致的情绪变化，让人",
+          "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1795508460972,
+      "updatedAt": 1795508518194,
       "done": false,
       "doneAt": 0,
       "snap": null
