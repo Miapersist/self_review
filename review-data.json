@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508399514,
+  "updatedAt": 1795508461307,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3601,13 +3601,13 @@
           "a": "mwodrxfx02mk4",
           "b": "mwodtjasv61z6",
           "type": "indirect",
-          "cause": "最近聊图",
-          "transfer": ""
+          "cause": "最近聊天成为了习惯，并且状态比较舒服，所以就会有点依恋情绪上来，觉察到了控制住行为的变化",
+          "transfer": "情绪不稳定的时候要分析一下情况是否触发了依恋状态，一，守住行为边界"
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1795508397968,
+      "updatedAt": 1795508460972,
       "done": false,
       "doneAt": 0,
       "snap": null
