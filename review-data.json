@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795509705775,
+  "updatedAt": 1795509789428,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2872,13 +2872,13 @@
       "emotions": [
         "筋疲力尽"
       ],
-      "isDraft": true,
+      "isDraft": false,
       "createdAt": 1795509271222,
-      "updatedAt": 1795509303426,
+      "updatedAt": 1795509787447,
       "event": "中午起来特别困",
       "thoughts": "",
       "action": "趴着睡到了快2点",
-      "result": "",
+      "result": "没什么结果，不过我查了一下，可能是最近睡得比较晚，然后中午的碳水比较多导致嗜睡",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
