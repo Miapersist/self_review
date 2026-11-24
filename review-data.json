@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795509212501,
+  "updatedAt": 1795509273013,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2848,11 +2848,32 @@
     {
       "id": "mwuflk7dljjck",
       "date": "2026-11-24",
+      "emotions": [
+        "冷静",
+        "平和",
+        "舒适",
+        "轻松"
+      ],
+      "isDraft": false,
+      "createdAt": 1795508833886,
+      "updatedAt": 1795509260444,
+      "event": "今天在调整我的个人健身情况，发现了蛮多之前没注意到的地方，让豆包给我好好梳理了一波，睡眠情况深睡最近也变得低了",
+      "thoughts": "",
+      "action": "观察+输出",
+      "result": "可以给我的健身工具作为输入",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwufuv7zxhpgu",
+      "date": "2026-11-24",
       "emotions": [],
       "isDraft": true,
-      "createdAt": 1795508833886,
-      "updatedAt": 1795509211168,
-      "event": "今天在调整我的个人健身情况，发现了蛮多之前没注意到的地方，让豆包给我好好梳理了一波，睡眠情况深睡最近也变得低了",
+      "createdAt": 1795509271222,
+      "updatedAt": 1795509271222,
+      "event": "中午起来特别困",
       "thoughts": "",
       "action": "",
       "result": "",
