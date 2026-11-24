@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508830915,
+  "updatedAt": 1795508896285,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2840,6 +2840,22 @@
       "thoughts": "",
       "action": "练吧 感觉力量还是不够",
       "result": "无",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwuflk7dljjck",
+      "date": "2026-11-24",
+      "emotions": [],
+      "isDraft": true,
+      "createdAt": 1795508833886,
+      "updatedAt": 1795508842561,
+      "event": "今天在调整我的个人健身情况",
+      "thoughts": "",
+      "action": "",
+      "result": "",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
