@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795509273013,
+  "updatedAt": 1795509334686,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2869,13 +2869,15 @@
     {
       "id": "mwufuv7zxhpgu",
       "date": "2026-11-24",
-      "emotions": [],
+      "emotions": [
+        "筋疲力尽"
+      ],
       "isDraft": true,
       "createdAt": 1795509271222,
-      "updatedAt": 1795509271222,
+      "updatedAt": 1795509303426,
       "event": "中午起来特别困",
       "thoughts": "",
-      "action": "",
+      "action": "趴着睡到了快2点",
       "result": "",
       "reframe": "",
       "nextAction": "",
