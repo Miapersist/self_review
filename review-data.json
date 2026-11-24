@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508336772,
+  "updatedAt": 1795508399514,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3594,13 +3594,20 @@
           "a": "mwmv6yasmv69j",
           "b": "mwodrxfx02mk4",
           "type": "indirect",
-          "cause": "一些被激励到",
+          "cause": "一些被激励到后的整体变得积极起来了（？）精力用太多，自己没意识到，有点用力过多会疲惫，特别后面快来姨妈了",
+          "transfer": ""
+        },
+        {
+          "a": "mwodrxfx02mk4",
+          "b": "mwodtjasv61z6",
+          "type": "indirect",
+          "cause": "最近聊图",
           "transfer": ""
         }
       ],
       "abs": {},
       "actions": [],
-      "updatedAt": 1795508336690,
+      "updatedAt": 1795508397968,
       "done": false,
       "doneAt": 0,
       "snap": null
