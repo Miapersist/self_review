@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795508644504,
+  "updatedAt": 1795508705933,
   "records": [
     {
       "id": "1788318521114.329",
@@ -3619,15 +3619,15 @@
       },
       "actions": [
         {
-          "what": "jian sh",
-          "when": "",
-          "where": "",
-          "who": "",
-          "how": "",
+          "what": "健身的小工具从开始来说，做得更体系化一点",
+          "when": "下周三周六",
+          "where": "公司或家",
+          "who": "ai",
+          "how": "根据fang fa l",
           "much": ""
         }
       ],
-      "updatedAt": 1795508644408,
+      "updatedAt": 1795508705902,
       "done": false,
       "doneAt": 0,
       "snap": null
