@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795509789428,
+  "updatedAt": 1795566749248,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2879,6 +2879,25 @@
       "thoughts": "",
       "action": "趴着睡到了快2点",
       "result": "没什么结果，不过我查了一下，可能是最近睡得比较晚，然后中午的碳水比较多导致嗜睡",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwve0m17j7jpx",
+      "date": "2026-11-24",
+      "emotions": [
+        "喜庆",
+        "失望"
+      ],
+      "isDraft": false,
+      "createdAt": 1795566646798,
+      "updatedAt": 1795566747020,
+      "event": "昨天迷迷瞪瞪的，以为自己买到了过期商品，还以为要发财了，结果是我算错了时间，可恶，还被大柠知道了，有点羞耻",
+      "thoughts": "",
+      "action": "还好听了吴老师说的 再看了一眼日期，不然我就要社s，无事发生，就当散步了",
+      "result": "无",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
