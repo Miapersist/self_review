@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795566749248,
+  "updatedAt": 1795685144671,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2898,6 +2898,25 @@
       "thoughts": "",
       "action": "还好听了吴老师说的 再看了一眼日期，不然我就要社s，无事发生，就当散步了",
       "result": "无",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwxci3f48srze",
+      "date": "2026-11-25",
+      "emotions": [
+        "平静",
+        "提防"
+      ],
+      "isDraft": false,
+      "createdAt": 1795685037581,
+      "updatedAt": 1795685143757,
+      "event": "开会讲报表内容，业务提了好多问题",
+      "thoughts": "",
+      "action": "遇到不懂就直说，遇到有问题的就表示后续会跟进，不过说实话心里被问到很多问题的时候答不上来还是有点感到没有做好工作的感觉（虽然就是没办法，很多东西很久不看就会忘记，不知道能不能有什么更好的方法修复）",
+      "result": "没什么结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
