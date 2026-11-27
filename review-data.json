@@ -1,6 +1,6 @@
 {
   "v": 4,
-  "updatedAt": 1795742894647,
+  "updatedAt": 1795742994667,
   "records": [
     {
       "id": "1788318521114.329",
@@ -2991,6 +2991,27 @@
       "thoughts": "",
       "action": "看手机，喝了感冒药，晚上睡到一半喉咙痛醒+小猫咪咪摸摸的😓，不过后面又睡着了",
       "result": "没有结果，就是好好休息吧",
+      "reframe": "",
+      "nextAction": "",
+      "nextResult": "",
+      "selfDiscovery": ""
+    },
+    {
+      "id": "mwyaycbpp971l",
+      "date": "2026-11-27",
+      "emotions": [
+        "筋疲力尽",
+        "无力",
+        "消沉",
+        "疲惫"
+      ],
+      "isDraft": false,
+      "createdAt": 1795742900912,
+      "updatedAt": 1795742993300,
+      "event": "早上在车上通勤的时候看考试经验+想象之后复习可能有点辛苦，再加上咀嚼自己没考过的情况",
+      "thoughts": "",
+      "action": "虽然这样，但是早上来公司还是好好打卡+吃早餐+干活，心情不好不代表生活要被影响，分离",
+      "result": "没有结果",
       "reframe": "",
       "nextAction": "",
       "nextResult": "",
